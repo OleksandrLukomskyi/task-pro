@@ -24,7 +24,7 @@ export default function App() {
                 <Route path="RegisterForm" element={<RegisterForm />} /> */}
           </Route>
           <Route path="/home" element={<HomePage />} />
-          <Route path="/home/boardName" element={<ScreensPage />}></Route>
+          <Route path="/home/:boardName" element={<ScreensPage />}></Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
