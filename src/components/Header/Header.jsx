@@ -3,9 +3,9 @@ import { useState } from "react";
 const Header = () => {
   const [isOpen, setOpen] = useState(false);
 
-  const close = () => {
-    setOpen(false);
-  };
+  //   const close = () => {
+  //     setOpen(false);
+  //   };
 
   return (
     <header>
