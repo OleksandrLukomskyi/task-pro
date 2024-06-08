@@ -5,10 +5,13 @@ const authSlice = createSlice({
   name: "auth",
   initialState: {
     user: {
-      name: null,
+      userName: null,
       email: null,
+      avatarURL: null,
     },
     token: null,
+    isLoggedIn: false,
+    isRefreshing: false,
     loading: false,
     error: false,
   },
@@ -21,14 +24,13 @@ const authSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
+        // state.token = action.payload.token;
         state.loading = false;
       })
       .addCase(register.rejected, (state) => {
         state.loading = false;
         state.error = true;
       })
-      // payload without password ---------------------------------------------
       .addCase(logIn.pending, (state) => {
         state.loading = true;
         state.error = false;
@@ -36,12 +38,14 @@ const authSlice = createSlice({
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
+        state.isLoggedIn = true;
         state.loading = false;
       })
       .addCase(logIn.rejected, (state) => {
         state.loading = false;
         state.error = true;
       })
+      // ------------------------------------------------------------------------
       .addCase(editUser.pending, (state) => {
         state.loading = true;
         state.error = false;
@@ -55,6 +59,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = true;
       })
+      // --------------------------------------------------------------------------
       .addCase(logOut.fulfilled, (state) => {
         state.user = {
           name: null,
@@ -62,6 +67,7 @@ const authSlice = createSlice({
           password: null,
         };
         state.token = null;
+        state.isLoggedIn = false;
         state.loading = false;
       }),
 });
