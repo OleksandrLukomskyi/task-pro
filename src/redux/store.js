@@ -43,3 +43,4 @@ export const store = configureStore({
 //     tasks: taskReducer,
 //   },
 // });
+export const persistor = persistStore(store);
