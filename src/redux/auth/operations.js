@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // --------------------------------------------------
-axios.defaults.baseURL = "BASEURL";
+axios.defaults.baseURL = "https://project-back-codewave1-rqmw.onrender.com";
 // --------------------------------------------------
 
 const setAuthHeader = (token) => {
@@ -18,7 +18,7 @@ export const register = createAsyncThunk(
   "auth/register",
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.post("/register", credentials);
+      const response = await axios.post("/users/register", credentials);
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
@@ -31,7 +31,7 @@ export const logIn = createAsyncThunk(
   "auth/login",
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.post("/login", credentials);
+      const response = await axios.post("/users/login", credentials);
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
@@ -44,7 +44,7 @@ export const editUser = createAsyncThunk(
   "auth/edit",
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.patch("/edit", credentials);
+      const response = await axios.patch("users/edit", credentials);
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
@@ -55,7 +55,7 @@ export const editUser = createAsyncThunk(
 
 export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
-    const response = await axios.post("/logout");
+    const response = await axios.post("users/logout");
     clearAuthHeader();
   } catch (error) {
     return thunkAPI.rejectWithValue(error);
