@@ -1,0 +1,63 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+// --------------------------------------------------
+axios.defaults.baseURL = "BASEURL";
+// --------------------------------------------------
+
+const setAuthHeader = (token) => {
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+};
+
+const clearAuthHeader = () => {
+  axios.defaults.headers.common["Authorization"] = "";
+};
+
+// credentials - облікові дані отримані з форми
+export const register = createAsyncThunk(
+  "auth/register",
+  async (credentials, thunkAPI) => {
+    try {
+      const response = await axios.post("/register", credentials);
+      setAuthHeader(response.data.token);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const logIn = createAsyncThunk(
+  "auth/login",
+  async (credentials, thunkAPI) => {
+    try {
+      const response = await axios.post("/login", credentials);
+      setAuthHeader(response.data.token);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const editUser = createAsyncThunk(
+  "auth/edit",
+  async (credentials, thunkAPI) => {
+    try {
+      const response = await axios.patch("/edit", credentials);
+      setAuthHeader(response.data.token);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
+  try {
+    const response = await axios.post("/logout");
+    clearAuthHeader();
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+  }
+});
