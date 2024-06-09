@@ -1,5 +1,5 @@
 import { Suspense, lazy } from "react";
-import { Route, Routes, redirect } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 import { PrivateRoute } from "components/PrivateRoute.jsx";
 import { RestrictedRoute } from "components/RestrictedRoute.jsx";
@@ -21,7 +21,12 @@ export default function App() {
     <Layout>
       <Suspense fallback={"LOADING"}>
         <Routes>
-          <Route path="/welcome" element={<WelcomePage />} />
+          <Route
+            path="/welcome"
+            element={
+              <RestrictedRoute component={<WelcomePage />}></RestrictedRoute>
+            }
+          />
           <Route
             path="/auth/:id"
             element={
@@ -40,15 +45,7 @@ export default function App() {
               ></PrivateRoute>
             }
           />
-          <Route
-            path="/home/:boardName"
-            element={
-              <PrivateRoute
-                component={<ScreensPage />}
-                redirectTo="/welcome"
-              ></PrivateRoute>
-            }
-          ></Route>
+          <Route path="/home/:boardName" element={<ScreensPage />}></Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
