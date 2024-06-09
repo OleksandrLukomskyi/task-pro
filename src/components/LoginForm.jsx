@@ -3,6 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { TextField, Button, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -11,6 +12,7 @@ const schema = yup.object().shape({
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const [error, setError] = useState(null); // Состояние для ошибок
   const {
     register,
     handleSubmit,
@@ -19,18 +21,45 @@ const LoginForm = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // Виконання асинхронного запиту
-    // Після успішного виконання перенаправити на /home
-    navigate("/home");
+  const onSubmit = async (data) => {
+    try {
+      // Отправляем данные на сервер
+      const response = await fetch(
+        "https://project-back-codewave1-rqmw.onrender.com/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Login failed");
+      }
+
+      // Если логин успешный, перенаправляем пользователя на страницу /home
+      navigate("/home");
+    } catch (error) {
+      console.error("Login failed:", error);
+      setError("Login failed. Please try again."); // Устанавливаем ошибку в состояние
+    }
   };
 
   return (
-    <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+    <Box
+      component="form"
+      onSubmit={handleSubmit(onSubmit)}
+      display="flex"
+      flexDirection="column"
+      borderRadius={8}
+      height={424}
+      width={508}
+    >
       <TextField
         {...register("email")}
-        label="Email"
+        label="Enter your email"
         variant="outlined"
         margin="normal"
         fullWidth
@@ -39,7 +68,7 @@ const LoginForm = () => {
       />
       <TextField
         {...register("password")}
-        label="Password"
+        label="Confirm a password"
         type="password"
         variant="outlined"
         margin="normal"

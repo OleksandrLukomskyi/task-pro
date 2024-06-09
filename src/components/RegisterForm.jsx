@@ -3,6 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { TextField, Button, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { registerUser } from "../api/auth";
 
 const schema = yup.object().shape({
   name: yup.string().min(2).max(32).required(),
@@ -21,18 +22,28 @@ const RegisterForm = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
     // Виконання асинхронного запиту для реєстрації
-    // Після успішної реєстрації автоматично логінізувати користувача
-    // і перенаправити на /home
-    navigate("/home");
+    try {
+      const result = await registerUser(data);
+      console.log("Registration successful:", result);
+      // ескпорт user id  з  result
+      const userId = result._id;
+      console.log("User ID:", userId);
+      // Після успішної реєстрації автоматично логінізувати користувача
+      // Сохраняем токен аутентификации в локальном хранилище после регистрации
+      localStorage.setItem("authToken", result.token);
+      // і перенаправити на /home
+      navigate("/home");
+    } catch (error) {
+      console.error("Registration failed:", error);
+    }
   };
 
   return (
     <Box component="form" onSubmit={handleSubmit(onSubmit)}>
       <TextField
         {...register("name")}
-        label="Name"
+        label="Enter your name"
         variant="outlined"
         margin="normal"
         fullWidth
@@ -41,7 +52,7 @@ const RegisterForm = () => {
       />
       <TextField
         {...register("email")}
-        label="Email"
+        label="Enter your email"
         variant="outlined"
         margin="normal"
         fullWidth
@@ -50,7 +61,7 @@ const RegisterForm = () => {
       />
       <TextField
         {...register("password")}
-        label="Password"
+        label="Create a password"
         type="password"
         variant="outlined"
         margin="normal"

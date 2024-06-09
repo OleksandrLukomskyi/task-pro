@@ -1,0 +1,30 @@
+/* 0-374px */
+Box {
+  width: 375px;
+  height: 812px;
+  background: #f6f6f7;
+}
+/* mobile 375px + */
+@media screen and (min-width: 375px) {
+}
+/* tablet 768px + */
+@media screen and (min-width: 768px) {
+}
+
+/* desktop 1440px + */
+@media screen and (min-width: 1440px) {
+  Box {
+    height: 100vh;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* Точки перелому:
+- гумова від 320 - mobile
+- mobile: верстка гумова, стає адаптивною з 375px;
+- tablet: з 768px;
+- desktop: з 1440px */
