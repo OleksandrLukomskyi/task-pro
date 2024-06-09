@@ -25,10 +25,7 @@ export default function App() {
           <Route
             path="/auth/:id"
             element={
-              <RestrictedRoute
-                component={<AuthPage />}
-                redirectTo="/home"
-              ></RestrictedRoute>
+              <RestrictedRoute component={<AuthPage />}></RestrictedRoute>
             }
           >
             {/* <Route path="LoginForm" element={<LoginForm />} />
