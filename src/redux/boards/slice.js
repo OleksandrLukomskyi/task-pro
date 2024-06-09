@@ -99,4 +99,4 @@ const boardSlice = createSlice({
       }),
 });
 
-export const taskReducer = boardSlice.reducer;
+export const boardReducer = boardSlice.reducer;

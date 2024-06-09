@@ -1,7 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { filtersReducer } from "./filters/slice";
 import { authReducer } from "./auth/slice";
-import { taskReducer } from "./tasks/slice";
+import { boardReducer } from "./boards/slice";
+import { columnReducer } from "./columns/slice";
 import {
   persistStore,
   persistReducer,
@@ -25,7 +26,8 @@ const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
-    tasks: taskReducer,
+    boards: boardReducer,
+    columns: columnReducer,
     filters: filtersReducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -36,11 +38,26 @@ export const store = configureStore({
     }),
 });
 
-// export const store = configureStore({
-//   reducer: {
-//     filters: filtersReducer,
-//     auth: authReducer,
-//     tasks: taskReducer,
-//   },
-// });
 export const persistor = persistStore(store);
+
+// Зразок використання store
+
+// ------------------------------------
+// import { useDispatch } from "react-redux";
+// import { useSelector } from "react-redux";
+
+// import { selectIsRefreshing } from "../redux/auth/selectors";
+// import { register } from "../../redux/auth/operations";
+
+// -------------------------------------------------
+// відправка даних реєстрації
+// const handleSubmit = (values, actions) => {
+// dispatch(register(values));
+// actions.resetForm();
+// };
+// --------------------------------------------------
+// dispatch(назва операції(значення які передаємо за потреби));
+// --------------------------------------------------
+// приклад отримання якоїсь властивості зі слайсу, в даному випадку isRefreshing
+// const userIsRefresh = useSelector(selectIsRefreshing);
+// ------------------------------------------------------
