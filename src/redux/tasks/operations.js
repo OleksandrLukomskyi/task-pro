@@ -1,11 +1,20 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchTasks = createAsyncThunk(
-  "tasks/fetchAll",
-  async (_, thunkAPI) => {
+export const fetchBoards = createAsyncThunk("boards/fetchAll", async (_, thunkAPI) => {
+  try {
+    const response = await axios.get("/api/boards/");
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+  }
+});
+
+export const getBoard = createAsyncThunk(
+  "boards/getBoard",
+  async (boardId, thunkAPI) => {
     try {
-      const response = await axios.get("/tasks????????????????????????");
+      const response = await axios.get(`/api/boards/${boardId}`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -13,11 +22,11 @@ export const fetchTasks = createAsyncThunk(
   }
 );
 
-export const getTask = createAsyncThunk(
-  "tasks/getTask",
-  async (taskId, thunkAPI) => {
+export const deleteBoard = createAsyncThunk(
+  "boards/deleteBoard",
+  async (boardId, thunkAPI) => {
     try {
-      const response = await axios.get(`/tasks/${taskId}`);
+      const response = await axios.delete(`/api/boards/${boardId}`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -25,23 +34,11 @@ export const getTask = createAsyncThunk(
   }
 );
 
-export const deleteTask = createAsyncThunk(
-  "tasks/deleteTask",
-  async (taskId, thunkAPI) => {
+export const addBoard = createAsyncThunk(
+  "boards/addBoard",
+  async (newBoard, thunkAPI) => {
     try {
-      const response = await axios.delete(`/tasks/${taskId}`);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
-
-export const addTask = createAsyncThunk(
-  "tasks/addTask",
-  async (newTask, thunkAPI) => {
-    try {
-      const response = await axios.post("/tasks", newTask);
+      const response = await axios.post("/api/boards/", newBoard);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -49,11 +46,11 @@ export const addTask = createAsyncThunk(
   }
 );
 
-export const editTask = createAsyncThunk(
-  "tasks/updateTask",
-  async (editTask, thunkAPI) => {
+export const editBoard = createAsyncThunk(
+  "boards/updateBoard",
+  async (editBoard, thunkAPI) => {
     try {
-      const response = await axios.patch(`/tasks/${taskId}`, editTask);
+      const response = await axios.put(`/api/boards/${boardId}`, editBoard);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -61,13 +58,14 @@ export const editTask = createAsyncThunk(
   }
 );
 
-export const moveTask = createAsyncThunk(
-  "tasks/moveTasks",
-  async (taskId, thunkAPI) => {
+// -------------------&&&&&&&&&&&&&&&&&----------------------
+export const moveBoard = createAsyncThunk(
+  "boards/moveBoard",
+  async (boardId, thunkAPI) => {
     try {
-      const response = await axios.delete(`/tasks/${taskId}`);
-      const moveTask = response.data;
-      //   addTask в обрану колонку
+      const response = await axios.delete(`/api/boards/${boardId}`);
+      const moveBoard = response.data;
+      //   addBoard в обрану колонку
       // return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
