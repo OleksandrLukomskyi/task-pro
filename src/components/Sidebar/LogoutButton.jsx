@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logOut } from '../redux/auth/operations.js'; // Убедитесь, что путь к вашим действиям правильный
+import { logOut } from '../.././redux/auth/operations';
 
 const LogoutButton = () => {
   const dispatch = useDispatch();
