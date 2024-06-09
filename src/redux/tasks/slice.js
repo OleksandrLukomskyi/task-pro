@@ -1,15 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  fetchTasks,
-  getTask,
-  deleteTask,
-  addTask,
-  editTask,
-  moveTask,
+  fetchBoards,
+  getBoard,
+  deleteBoard,
+  addBoard,
+  editBoard,
+  moveBoard,
 } from "./operations";
+import { logOut } from "../auth/operations";
 
-const taskSlice = createSlice({
-  name: "tasks",
+const boardSlice = createSlice({
+  name: "boards",
   initialState: {
     items: [],
     loading: false,
@@ -17,80 +18,85 @@ const taskSlice = createSlice({
   },
   extraReducers: (builder) =>
     builder
-      .addCase(fetchTasks.pending, (state) => {
+      .addCase(fetchBoards.pending, (state) => {
         state.loading = true;
         state.error = false;
       })
-      .addCase(fetchTasks.fulfilled, (state, action) => {
+      .addCase(fetchBoards.fulfilled, (state, action) => {
         state.loading = false;
         state.items = action.payload;
       })
-      .addCase(fetchTasks.rejected, (state) => {
+      .addCase(fetchBoards.rejected, (state) => {
         state.loading = false;
         state.error = true;
       })
-      .addCase(getTask.pending, (state) => {
+      .addCase(getBoard.pending, (state) => {
         state.loading = true;
         state.error = false;
       })
-      .addCase(getTask.fulfilled, (state, action) => {
+      .addCase(getBoard.fulfilled, (state, action) => {
         state.loading = false;
         state.items = action.payload;
       })
-      .addCase(getTask.rejected, (state) => {
+      .addCase(getBoard.rejected, (state) => {
         state.loading = false;
         state.error = true;
       })
-      .addCase(deleteTask.pending, (state) => {
+      .addCase(deleteBoard.pending, (state) => {
         state.loading = true;
         state.error = false;
       })
-      .addCase(deleteTask.fulfilled, (state, action) => {
+      .addCase(deleteBoard.fulfilled, (state, action) => {
         state.loading = false;
         state.items = state.items.filter(
           (item) => item.id !== action.payload.id
         );
       })
-      .addCase(deleteTask.rejected, (state) => {
+      .addCase(deleteBoard.rejected, (state) => {
         state.loading = false;
         state.error = true;
       })
-      .addCase(addTask.pending, (state) => {
+      .addCase(addBoard.pending, (state) => {
         state.loading = true;
         state.error = false;
       })
-      .addCase(addTask.fulfilled, (state, action) => {
+      .addCase(addBoard.fulfilled, (state, action) => {
         state.loading = false;
         state.items.push(action.payload);
       })
-      .addCase(addTask.rejected, (state) => {
+      .addCase(addBoard.rejected, (state) => {
         state.loading = false;
         state.error = true;
       })
-      .addCase(editTask.pending, (state) => {
+      .addCase(editBoard.pending, (state) => {
         state.loading = true;
         state.error = false;
       })
-      .addCase(editTask.fulfilled, (state, action) => {
-        const taskIndex = state.items.findIndex(
+      .addCase(editBoard.fulfilled, (state, action) => {
+        const boardIndex = state.items.findIndex(
           (item) => item.id === action.payload.id
         );
         // -1 ??????????? -------------------------------------------------
-        state.items[taskIndex] = action.payload;
+        state.items[boardIndex] = action.payload;
       })
-      .addCase(editTask.rejected, (state) => {
+      .addCase(editBoard.rejected, (state) => {
         state.loading = false;
         state.error = true;
       })
-      .addCase(moveTask.pending, (state) => {
+      .addCase(moveBoard.pending, (state) => {
         state.loading = true;
         state.error = false;
       })
-      .addCase(moveTask.fulfilled, (state, action) => {})
-      .addCase(moveTask.rejected, (state) => {
+      .addCase(moveBoard.fulfilled, (state, action) => {})
+      .addCase(moveBoard.rejected, (state) => {
         state.loading = false;
         state.error = true;
+      })
+      .addCase(logOut.fulfilled, (state) => {
+        state.items = [];
+        state.loading = false;
+        state.error = false;
       }),
 });
 
-export const taskReducer = taskSlice.reducer;
+export const taskReducer = boardSlice.reducer;
