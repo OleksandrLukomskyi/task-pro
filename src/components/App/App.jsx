@@ -1,8 +1,8 @@
 import { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import { PrivateRoute } from "components/PrivateRoute.jsx";
-import { RestrictedRoute } from "components/RestrictedRoute.jsx";
+import PrivateRoute from "../PrivateRoute.jsx";
+import RestrictedRoute from "../RestrictedRoute.jsx";
 
 import Layout from "../Layout/Layout.jsx";
 
