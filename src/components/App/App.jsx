@@ -21,12 +21,7 @@ export default function App() {
     <Layout>
       <Suspense fallback={"LOADING"}>
         <Routes>
-          <Route
-            path="/welcome"
-            element={
-              <RestrictedRoute component={<WelcomePage />}></RestrictedRoute>
-            }
-          />
+          <Route path="/welcome" element={<WelcomePage />} />
           <Route
             path="/auth/:id"
             element={
