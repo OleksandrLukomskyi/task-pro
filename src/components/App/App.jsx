@@ -39,7 +39,7 @@ export default function App() {
             element={
               <PrivateRoute
                 component={<HomePage />}
-                redirectTo="/login"
+                redirectTo="/welcome"
               ></PrivateRoute>
             }
           />
@@ -48,7 +48,7 @@ export default function App() {
             element={
               <PrivateRoute
                 component={<ScreensPage />}
-                redirectTo="/login"
+                redirectTo="/welcome"
               ></PrivateRoute>
             }
           ></Route>
