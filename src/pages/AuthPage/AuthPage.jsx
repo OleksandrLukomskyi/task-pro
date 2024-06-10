@@ -2,8 +2,9 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import LoginForm from "../../components/LoginForm";
 import RegisterForm from "../../components/RegisterForm";
 import { Box, Tabs, Tab } from "@mui/material";
-// import { makeStyles } from "@mui/styles";
 import css from "./AuthPage.module.css";
+
+// import { makeStyles } from "@mui/styles";
 
 // const useStyles = makeStyles((theme) => ({
 //   container: {
@@ -42,7 +43,7 @@ const AuthPage = () => {
   };
 
   return (
-    <Box className={css.container}>
+    <Box className={css.containerl}>
       <Tabs value={id} onChange={handleChange}>
         <Tab
           className={css.tabLabel}
@@ -50,14 +51,15 @@ const AuthPage = () => {
           value="register"
           component={Link}
           to="/auth/register"
-          style={{ textTransform: "capitalize" }}
+          // style={{ textTransform: "capitalize" }}
         />
         <Tab
+          className={css.tabLabel}
           label="Log In"
           value="login"
           component={Link}
           to="/auth/login"
-          style={{ textTransform: "capitalize" }}
+          // style={{ textTransform: "capitalize" }}
         />
       </Tabs>
       {id === "login" && <LoginForm />}
