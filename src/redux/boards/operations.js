@@ -1,14 +1,17 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchBoards = createAsyncThunk("boards/fetchAll", async (_, thunkAPI) => {
-  try {
-    const response = await axios.get("/api/boards/");
-    return response.data;
-  } catch (error) {
-    return thunkAPI.rejectWithValue(error);
+export const fetchBoards = createAsyncThunk(
+  "boards/fetchAll",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get("/api/boards/");
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
   }
-});
+);
 
 export const getBoard = createAsyncThunk(
   "boards/getBoard",
@@ -54,21 +57,6 @@ export const editBoard = createAsyncThunk(
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-// -------------------&&&&&&&&&&&&&&&&&----------------------
-export const moveBoard = createAsyncThunk(
-  "boards/moveBoard",
-  async (boardId, thunkAPI) => {
-    try {
-      const response = await axios.delete(`/api/boards/${boardId}`);
-      const moveBoard = response.data;
-      //   addBoard в обрану колонку
-      // return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
     }
   }
 );

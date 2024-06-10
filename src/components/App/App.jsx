@@ -1,5 +1,8 @@
 import { Suspense, lazy } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
+
+import { PrivateRoute } from "../PrivateRoute.jsx";
+import { RestrictedRoute } from "../RestrictedRoute.jsx";
 
 import Layout from "../Layout/Layout.jsx";
 
@@ -18,12 +21,26 @@ export default function App() {
     <Layout>
       <Suspense fallback={"LOADING"}>
         <Routes>
+          <Route path="/" element={<Navigate to="/welcome" />} />
           <Route path="/welcome" element={<WelcomePage />} />
-          <Route path="/auth/:id" element={<AuthPage />}>
+          <Route
+            path="/auth/:id"
+            element={
+              <RestrictedRoute component={<AuthPage />}></RestrictedRoute>
+            }
+          >
             {/* <Route path="LoginForm" element={<LoginForm />} />
-                <Route path="RegisterForm" element={<RegisterForm />} /> */}
+            <Route path="RegisterForm" element={<RegisterForm />} /> */}
           </Route>
-          <Route path="/home" element={<HomePage />} />
+          <Route
+            path="/home"
+            element={
+              <PrivateRoute
+                component={<HomePage />}
+                redirectTo="/welcome"
+              ></PrivateRoute>
+            }
+          />
           <Route path="/home/:boardName" element={<ScreensPage />}></Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

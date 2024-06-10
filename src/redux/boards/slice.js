@@ -5,7 +5,6 @@ import {
   deleteBoard,
   addBoard,
   editBoard,
-  moveBoard,
 } from "./operations";
 import { logOut } from "../auth/operations";
 
@@ -83,15 +82,6 @@ const boardSlice = createSlice({
         state.loading = false;
         state.error = true;
       })
-      .addCase(moveBoard.pending, (state) => {
-        state.loading = true;
-        state.error = false;
-      })
-      .addCase(moveBoard.fulfilled, (state, action) => {})
-      .addCase(moveBoard.rejected, (state) => {
-        state.loading = false;
-        state.error = true;
-      })
       .addCase(logOut.fulfilled, (state) => {
         state.items = [];
         state.loading = false;
@@ -99,4 +89,4 @@ const boardSlice = createSlice({
       }),
 });
 
-export const taskReducer = boardSlice.reducer;
+export const boardReducer = boardSlice.reducer;
