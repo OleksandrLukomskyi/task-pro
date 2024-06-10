@@ -4,37 +4,7 @@ import RegisterForm from "../../components/RegisterForm";
 import { Box, Tabs, Tab } from "@mui/material";
 import css from "./AuthPage.module.css";
 
-// import { makeStyles } from "@mui/system";
-
-// const useStyles = makeStyles((theme) => ({
-//   container: {
-//     width: "100%",
-//     height: "100vh",
-//     backgroundColor: theme.palette.background.default,
-//     display: "flex",
-//     justifyContent: "center",
-//     alignItems: "center",
-//   },
-//   button: {
-//     fontSize: "16px",
-//     padding: "8px 16px",
-//     [theme.breakpoints.up(375)]: {
-//       fontSize: "20px",
-//       padding: "10px 20px",
-//     },
-//     [theme.breakpoints.up(768)]: {
-//       fontSize: "24px",
-//       padding: "15px 30px",
-//     },
-//     [theme.breakpoints.up(1440)]: {
-//       fontSize: "28px",
-//       padding: "20px 40px",
-//     },
-//   },
-// }));
-
 const AuthPage = () => {
-  // const classes = useStyles(); //makeStyles
   const { id } = useParams();
   const navigate = useNavigate();
 
