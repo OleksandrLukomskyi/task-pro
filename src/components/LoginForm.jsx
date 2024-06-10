@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { TextField, Button, Box } from "@mui/material";
+import { TextField, Button, Box, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -76,7 +76,18 @@ const LoginForm = () => {
         error={!!errors.password}
         helperText={errors.password?.message}
       />
-      <Button type="submit" variant="contained" color="primary" fullWidth>
+      {error && (
+        <Typography color="error" variant="body2" margin="normal">
+          {error}
+        </Typography>
+      )}
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        fullWidth
+        style={{ textTransform: "capitalize" }}
+      >
         Log In Now
       </Button>
     </Box>

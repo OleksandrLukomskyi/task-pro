@@ -12,13 +12,14 @@ export const registerUser = async (data) => {
     );
 
     if (!response.ok) {
-      throw new Error("Registration failed");
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Registration failed");
     }
 
     const result = await response.json();
     return result;
   } catch (error) {
-    console.error("Error:", error);
+    console.error("Error:", error.message);
     throw error;
   }
 };
