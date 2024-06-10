@@ -4,7 +4,7 @@ import RegisterForm from "../../components/RegisterForm";
 import { Box, Tabs, Tab } from "@mui/material";
 import css from "./AuthPage.module.css";
 
-// import { makeStyles } from "@mui/styles";
+// import { makeStyles } from "@mui/system";
 
 // const useStyles = makeStyles((theme) => ({
 //   container: {
