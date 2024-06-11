@@ -116,6 +116,7 @@ const LoginForm = () => {
         color="primary"
         style={{ textTransform: "capitalize" }}
         disabled={loading}
+        fullWidth
       >
         Log In Now
       </Button>

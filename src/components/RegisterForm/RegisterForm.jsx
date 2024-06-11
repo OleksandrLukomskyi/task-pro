@@ -69,7 +69,6 @@ const RegisterForm = () => {
           const userId = result.payload._id;
           console.log("User ID:", userId);
           console.log("authToken:", result.payload.token);
-
           // Сохраняем токен аутентификации в локальном хранилище после регистрации
           // localStorage.setItem("authToken", result.payload.token);
           navigate("/home");
@@ -92,8 +91,6 @@ const RegisterForm = () => {
       justifyContent="center"
       height="100vh"
       borderRadius={8}
-      // style={{ color: "var(--text-color)" }}
-      style={{ color: "red" }}
     >
       <TextField
         {...registerField("userName")}
@@ -152,6 +149,7 @@ const RegisterForm = () => {
         color="primary"
         style={{ textTransform: "capitalize" }}
         disabled={loading}
+        fullWidth
       >
         Register Now
       </Button>

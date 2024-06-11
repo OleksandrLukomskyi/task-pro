@@ -13,7 +13,10 @@ const AuthPage = () => {
   };
 
   return (
-    <Box className={css.containerl}>
+    <Box
+      className={css.containerl}
+      // sx={{ background: "grey", color: "red" }}
+    >
       <Tabs value={id} onChange={handleChange}>
         <Tab
           className={css.tabLabel}
@@ -21,7 +24,8 @@ const AuthPage = () => {
           value="register"
           component={Link}
           to="/auth/register"
-          // style={{ textTransform: "capitalize" }}
+          style={{ color: "red" }}
+          // style={{ color: "var(--text-color-star-white)" }}
         />
         <Tab
           className={css.tabLabel}
