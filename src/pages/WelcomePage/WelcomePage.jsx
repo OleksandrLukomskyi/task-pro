@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import img from "../../img/Image 1.png";
 import sprite from "../../img/sprite.svg"
 import css from "./WelcomePage.module.css";
