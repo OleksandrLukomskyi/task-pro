@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+// src/components/Sidebar/CreateBoardModal.js
+import { useState } from 'react';
 import { Modal, Button, TextInput, Label, Radio } from 'flowbite-react';
 
 const CreateBoardModal = ({ show, onClose, onCreate }) => {

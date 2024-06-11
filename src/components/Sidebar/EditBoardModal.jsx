@@ -1,3 +1,47 @@
+// import React, { useState } from 'react';
+// import { Modal, Button, Label, TextInput } from 'flowbite-react';
+
+// const EditBoardModal = ({ board, onSave, onClose, onDelete }) => {
+//   const [title, setTitle] = useState(board.title);
+
+//   const handleSave = () => {
+//     onSave({ ...board, title });
+//     onClose();
+//   };
+
+//   const handleDelete = () => {
+//     onDelete(board.id);
+//     onClose();
+//   };
+
+//   return (
+//     <Modal show={true} onClose={onClose}>
+//       <Modal.Header>Edit Board</Modal.Header>
+//       <Modal.Body>
+//         <form className="space-y-6">
+//           <div>
+//             <Label htmlFor="title" value="Title" />
+//             <TextInput
+//               id="title"
+//               type="text"
+//               value={title}
+//               onChange={(e) => setTitle(e.target.value)}
+//               required
+//             />
+//           </div>
+//         </form>
+//       </Modal.Body>
+//       <Modal.Footer>
+//         <Button onClick={handleSave}>Save Changes</Button>
+//         <Button color="failure" onClick={handleDelete}>Delete</Button>
+//       </Modal.Footer>
+//     </Modal>
+//   );
+// };
+
+// export default EditBoardModal;
+
+
 import React, { useState } from 'react';
 import { Modal, Button, Label, TextInput } from 'flowbite-react';
 

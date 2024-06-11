@@ -1,3 +1,4 @@
+// src/components/LogoComponent.js
 import React from 'react';
 import { ReactComponent as Logo } from '../logo.svg'; 
 

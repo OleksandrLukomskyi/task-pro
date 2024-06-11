@@ -16,10 +16,10 @@ export default function WelcomePage() {
       </p>
       <div>
         <Btn type="button">
-          <Link to="auth/register">Registration</Link>
+          <Link to="../auth/register">Registration</Link>
         </Btn>
         <Btn type="button">
-          <Link to="auth/login">Log in</Link>
+          <Link to="../auth/login">Log in</Link>
         </Btn>
       </div>
     </div>

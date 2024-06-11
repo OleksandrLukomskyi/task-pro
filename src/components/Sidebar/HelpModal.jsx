@@ -1,3 +1,4 @@
+// src/components/HelpModal.js
 import React, { useState } from 'react';
 import { Modal, Button, Label, TextInput, Textarea } from 'flowbite-react';
 
@@ -8,7 +9,7 @@ const HelpModal = () => {
 
   const handleSend = () => {
     if (email.trim() && comment.trim()) {
-      // отправка запроса на сервер для отправки сообщения
+      // Відправка запиту на сервер для відправлення повідомлення
       console.log('Sending help request:', { email, comment });
       setShowModal(false);
       setEmail('');
