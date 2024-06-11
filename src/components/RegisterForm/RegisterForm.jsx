@@ -10,10 +10,14 @@ import {
   InputAdornment,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { register } from "../redux/auth/operations";
-import { selectLoading, selectError } from "../redux/auth/selectors";
+import { register } from "../../redux/auth/operations";
+import {
+  selectLoading,
+  selectError,
+  selectIsLoggedIn,
+} from "../../redux/auth/selectors";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
@@ -28,16 +32,12 @@ const RegisterForm = () => {
   const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (values, actions) => {
-    dispatch(register(values));
-    actions.resetForm();
-  };
-
-  // об'єкт налаштування useForm Деструктуризація
+  // об'єкт конфігурації параметрів хука useForm
   const {
-    register: registerField, // Перейменовання функції register на registerField, щоб уникнути конфлікту імен з іншими частинами коду.
+    register: registerField, // Перейменовання функції еєстрації кожного поля у формі - register, щоб уникнути конфлікту імен з операцією
     // Функція - обробляє подання форми, приймає два аргументи: onSubmit (функцію, яка буде викликана після валідації форми) і actions (додаткові дії з формою).
     handleSubmit,
     formState: { errors }, //  Витягує об'єкт errors зі стану форми, який містить всі помилки валідації форми.
@@ -49,42 +49,43 @@ const RegisterForm = () => {
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
-  onSubmit = { handleSubmit };
-  const onSubmit = async (data) => {
-    console.log("Data:", data);
-    // Виконання асинхронного запиту для реєстрації
-    try {
-      // localStorage.setItem("authToken", " ");
-      const result = await dispatch(register(data));
 
-      console.log("Registration successful result:", result);
-      if (result.error.message == "Rejected") {
-        console.log(result.payload.response.data.message);
-      }
-
-      // ескпорт user id  з  result
-      const userId = result.payload._id;
-
-      console.log("User ID:", userId);
-      console.log("authToken:", result.payload.token);
-      // Після успішної реєстрації автоматично логінізувати користувача
-
-      // Сохраняем токен аутентификации в локальном хранилище после регистрации
-      localStorage.setItem("authToken", result.payload.token);
-      if (error) {
-      }
-      // і перенаправити на /home або /
+  // Після успішної реєстрації автоматично логінізувати користувача
+  useEffect(() => {
+    if (isLoggedIn) {
       navigate("/home");
-      reset(); // Очищаємо поля форми після успішної реєстрації
-    } catch (error) {
-      console.error("Registration failed:", error.message);
     }
+  }, [isLoggedIn, navigate]);
+
+  const onSubmit = (data) => {
+    // Виконання запиту для реєстрації
+    dispatch(register(data))
+      .then((result) => {
+        if (result.error && result.error.message == "Rejected") {
+          console.log(result.payload.response.data.message);
+        } else {
+          console.log("Registration successful result:", result);
+          // ескпорт user id  з  result
+          const userId = result.payload._id;
+          console.log("User ID:", userId);
+          console.log("authToken:", result.payload.token);
+
+          // Сохраняем токен аутентификации в локальном хранилище после регистрации
+          // localStorage.setItem("authToken", result.payload.token);
+          navigate("/home");
+          reset(); // Очищаємо поля форми після успішної реєстрації
+        }
+      })
+      .catch((error) => {
+        console.error("Registration failed:", error.message);
+      });
   };
 
   return (
     <Box
       component="form"
       onSubmit={handleSubmit(onSubmit)}
+      // onSubmit={handleSubmit}
       display="flex"
       flexDirection="column"
       alignItems="center"
@@ -103,7 +104,6 @@ const RegisterForm = () => {
         error={!!errors.name}
         helperText={errors.name?.message}
         autoComplete="username"
-        style={{ color: "red" }}
       />
       <TextField
         {...registerField("email")}
