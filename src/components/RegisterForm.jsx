@@ -30,23 +30,26 @@ const RegisterForm = () => {
   const error = useSelector(selectError);
   const [showPassword, setShowPassword] = useState(false);
 
-  const {
-    register: registerField,
-    handleSubmit = (values, actions) => {
-      dispatch(register(values));
+  const handleSubmit = (values, actions) => {
+    dispatch(register(values));
+    actions.resetForm();
+  };
 
-      actions.resetForm();
-    },
-    formState: { errors },
-    reset,
+  // об'єкт налаштування useForm Деструктуризація
+  const {
+    register: registerField, // Перейменовання функції register на registerField, щоб уникнути конфлікту імен з іншими частинами коду.
+    // Функція - обробляє подання форми, приймає два аргументи: onSubmit (функцію, яка буде викликана після валідації форми) і actions (додаткові дії з формою).
+    handleSubmit,
+    formState: { errors }, //  Витягує об'єкт errors зі стану форми, який містить всі помилки валідації форми.
+    reset, // скидає форму до початкового стану
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema), // Використовує yupResolver для інтеграції схеми валідації yup з react-hook-form.
   });
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
-
+  onSubmit = { handleSubmit };
   const onSubmit = async (data) => {
     console.log("Data:", data);
     // Виконання асинхронного запиту для реєстрації
@@ -54,7 +57,10 @@ const RegisterForm = () => {
       // localStorage.setItem("authToken", " ");
       const result = await dispatch(register(data));
 
-      console.log("Registration successful:", result);
+      console.log("Registration successful result:", result);
+      if (result.error.message == "Rejected") {
+        console.log(result.payload.response.data.message);
+      }
 
       // ескпорт user id  з  result
       const userId = result.payload._id;
@@ -65,7 +71,8 @@ const RegisterForm = () => {
 
       // Сохраняем токен аутентификации в локальном хранилище после регистрации
       localStorage.setItem("authToken", result.payload.token);
-
+      if (error) {
+      }
       // і перенаправити на /home або /
       navigate("/home");
       reset(); // Очищаємо поля форми після успішної реєстрації
@@ -136,7 +143,7 @@ const RegisterForm = () => {
       />
       {error && (
         <Typography color="error" variant="body2" marginTop="normal">
-          {error}
+          {error.message}
         </Typography>
       )}
       <Button
