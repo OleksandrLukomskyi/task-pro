@@ -1,0 +1,51 @@
+/* 0-374px */
+.container {
+  height: 100vh;
+  width: 320px;
+  background-color: grey;
+  background-color: grey;
+  padding: 24px !important;
+  border-radius: 8px;
+}
+.tabLabel {
+  /* text-transform: capitalize !important;
+  color: red !important; */
+}
+.button {
+  text-transform: capitalize;
+  color: var(--btn-color);
+}
+
+/* mobile 375px + */
+@media screen and (min-width: 375px) {
+  .container {
+    max-width: 335px;
+  }
+}
+/* tablet 768px + */
+@media screen and (min-width: 768px) {
+  .container {
+    width: 424px;
+    padding: 40px;
+  }
+}
+
+/* desktop 1440px + */
+@media screen and (min-width: 1440px) {
+  .container {
+    width: 424px;
+    padding: 40px;
+  }
+}
+
+/* Точки перелому:
+- гумова від 320 - mobile
+- mobile: верстка гумова, стає адаптивною з 375px;
+- tablet: з 768px;
+- desktop: з 1440px */
+
+/* кольори для сторінок WelcomePage та AuthPage*/
+/* --background: linear-gradient(180deg, rgba(196, 196, 196, 0) 25%, #BEDBB0 92.19%);
+      --text-color-start: #161616;
+      --text-color-star-white: #FFFFFF;
+      --btn-color: #BEDBB0; */
