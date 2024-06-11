@@ -5,8 +5,8 @@ import { PrivateRoute } from "../PrivateRoute.jsx";
 import { RestrictedRoute } from "../RestrictedRoute.jsx";
 
 import Layout from "../Layout/Layout.jsx";
-import LoginForm from "../LoginForm.jsx";
-import RegisterForm from "../RegisterForm.jsx";
+import LoginForm from "../LoginForm/LoginForm.jsx";
+import RegisterForm from "../RegisterForm/RegisterForm.jsx";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 const AuthPage = lazy(() => import("../../pages/AuthPage/AuthPage.jsx"));
@@ -20,7 +20,7 @@ const NotFoundPage = lazy(() => import("../../pages/NotFound/NotFound.jsx"));
 
 export default function App() {
   return (
-    <Layout >
+    <Layout>
       <Suspense fallback={"LOADING"}>
         <Routes>
           <Route path="/" element={<Navigate to="/welcome" />} />
