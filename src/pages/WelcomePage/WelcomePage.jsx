@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import TestRedux from "../../redux/TestRedux/TestRedux";
 import Btn from "../../components/Btn/Btn.jsx";
 import img from "../../img/Image 1.png";
 import css from "./WelcomePage.module.css";
@@ -22,6 +23,7 @@ export default function WelcomePage() {
           <Link to="auth/login">Log in</Link>
         </Btn>
       </div>
+      <TestRedux />
     </div>
   );
 }

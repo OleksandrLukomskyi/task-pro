@@ -24,7 +24,7 @@ const authSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        // state.token = action.payload.token;
+        state.token = action.payload.token;
         state.loading = false;
       })
       .addCase(register.rejected, (state) => {
@@ -52,7 +52,7 @@ const authSlice = createSlice({
       })
       .addCase(editUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
+        // state.token = action.payload.token;
         state.loading = false;
       })
       .addCase(editUser.rejected, (state) => {

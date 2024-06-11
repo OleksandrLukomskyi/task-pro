@@ -32,6 +32,7 @@ export const createColumn = createAsyncThunk(
   async (newColumn, thunkAPI) => {
     try {
       const response = await axios.post("/api/columns/", newColumn);
+      console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -53,7 +54,7 @@ export const deleteColumn = createAsyncThunk(
 
 export const editColumn = createAsyncThunk(
   "columns/updateColumn",
-  async (editColumn, thunkAPI) => {
+  async ({ columnId, editColumn }, thunkAPI) => {
     try {
       const response = await axios.put(`/api/columns/${columnId}`, editColumn);
       return response.data;
