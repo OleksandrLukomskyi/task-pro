@@ -20,9 +20,11 @@ export default function WelcomePage() {
         Pro - Don't wait, start achieving your goals now!
       </p>
       <div className={css.wrapperBtn}>
+      <Link to="/auth/register">
         <button className={css.btnRegister} type="button" id='register'>
-          <Link to="/auth/register">Registration</Link>
+          Registration
         </button>
+        </Link>
         <button className={css.btnLogin} type="button" id='login'>
           <Link to="/auth/login">Log in</Link>
         </button>
