@@ -15,7 +15,7 @@ export const addCard = createAsyncThunk(
 
 export const editCard = createAsyncThunk(
   "cards/updateCard",
-  async (editCard, thunkAPI) => {
+  async ({ cardId, editCard }, thunkAPI) => {
     try {
       const response = await axios.put(`/api/cards/${cardId}`, editCard);
       return response.data;

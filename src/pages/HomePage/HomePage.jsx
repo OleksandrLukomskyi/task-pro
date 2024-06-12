@@ -1,9 +1,5 @@
-import React from 'react';
+import { react } from "react";
 
 export default function HomePage() {
-    return (
-
-        <p>Hello on HomePagePage</p>       
-      
-    )
+  return <p>Hello on HomePagePage</p>;
 }

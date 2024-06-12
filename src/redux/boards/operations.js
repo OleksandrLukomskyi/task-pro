@@ -51,7 +51,7 @@ export const addBoard = createAsyncThunk(
 
 export const editBoard = createAsyncThunk(
   "boards/updateBoard",
-  async (editBoard, thunkAPI) => {
+  async ({ boardId, editBoard }, thunkAPI) => {
     try {
       const response = await axios.put(`/api/boards/${boardId}`, editBoard);
       return response.data;
