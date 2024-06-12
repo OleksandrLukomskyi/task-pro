@@ -1,5 +1,11 @@
 import { Suspense, lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
+// -------------------------------------------------------------
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { refreshUser } from "../../redux/auth/operations";
+import { selectIsRefreshing } from "../../redux/auth/selectors";
+// --------------------------------------------------------------
 
 import { PrivateRoute } from "../PrivateRoute.jsx";
 import { RestrictedRoute } from "../RestrictedRoute.jsx";
@@ -19,7 +25,20 @@ const ScreensPage = lazy(() =>
 const NotFoundPage = lazy(() => import("../../pages/NotFound/NotFound.jsx"));
 
 export default function App() {
-  return (
+  // ------------------------------------------------------
+  const isRefreshing = useSelector(selectIsRefreshing);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+  // ----------------------------------------------------
+
+  // ---------------------------------------
+  return isRefreshing ? (
+    <p>Please wait</p>
+  ) : (
+    // -----------------------------------
     <Layout>
       <Suspense fallback={"LOADING"}>
         <Routes>
