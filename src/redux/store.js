@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { filtersReducer } from "./filters/slice";
 import { authReducer } from "./auth/slice";
 import { boardReducer } from "./boards/slice";
+import { columnReducer } from "./columns/slice";
 import {
   persistStore,
   persistReducer,
@@ -27,6 +28,7 @@ export const store = configureStore({
     auth: persistedAuthReducer,
     boards: boardReducer,
     filters: filtersReducer,
+    columns: columnReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

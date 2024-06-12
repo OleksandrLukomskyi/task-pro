@@ -1,5 +1,5 @@
-export default function Btn({children}) {
+export default function Btn({children, onClick}) {
     return (
-        <button>{children}</button>
+        <button onClick={onClick}>{children}</button>
     )
 }
