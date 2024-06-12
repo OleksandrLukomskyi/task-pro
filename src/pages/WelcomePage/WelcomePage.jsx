@@ -19,6 +19,7 @@ export default function WelcomePage() {
         Supercharge your productivity and take control of your tasks with Task
         Pro - Don't wait, start achieving your goals now!
       </p>
+
       <div className={css.wrapperBtn}>
       <Link to="/auth/register">
         <button className={css.btnRegister} type="button" id='register'>
@@ -28,6 +29,7 @@ export default function WelcomePage() {
         <button className={css.btnLogin} type="button" id='login'>
           <Link to="/auth/login">Log in</Link>
         </button>
+
       </div>
     </div>
   );
