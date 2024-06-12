@@ -90,3 +90,4 @@ const columnSlice = createSlice({
 });
 
 export const columnReducer = columnSlice.reducer;
+export { createColumn, fetchColumns, getColumn, deleteColumn, editColumn };
