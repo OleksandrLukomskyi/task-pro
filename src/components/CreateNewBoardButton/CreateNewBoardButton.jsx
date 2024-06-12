@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import CreateBoardModal from '../CreateBoardModal/CreateBoardModal';
 import axios from 'axios';
 import styles from './CreateNewBoardButton.module.css';
@@ -9,7 +9,7 @@ const CreateNewBoardButton = ({ onBoardCreated }) => {
   const handleCreateBoard = async (newBoard) => {
     try {
       const response = await axios.post('https://project-back-codewave1-rqmw.onrender.com/api/boards', newBoard);
-      onBoardCreated(response.data);  // Notify parent component about the new board
+      onBoardCreated(response.data); // Notify parent component about the new board
       setShowCreateModal(false);
     } catch (error) {
       console.error('Error creating new board:', error);
@@ -33,4 +33,3 @@ const CreateNewBoardButton = ({ onBoardCreated }) => {
 };
 
 export default CreateNewBoardButton;
-

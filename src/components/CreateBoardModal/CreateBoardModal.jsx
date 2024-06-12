@@ -1,11 +1,27 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
+import Modal from 'react-modal';
 import styles from './CreateBoardModal.module.css';
 
-const CreateBoardModal = ({ show, onClose, onCreate }) => {
+import background1 from '../path/to/background1.jpg';
+import background2 from '../path/to/background2.jpg';
+
+const icons = [
+  { id: 'icon-computer', title: 'Computer' },
+  { id: 'icon-phone', title: 'Phone' },
+  // Добавьте другие иконки
+];
+
+const backgrounds = [
+  { id: 'none', title: 'Без фона' },
+  { id: 'background1', title: 'Красный', image: background1 },
+  { id: 'background2', title: 'Синий', image: background2 },
+  // Добавьте другие фоны
+];
+
+const CreateBoardModal = ({ isOpen, onClose, onCreate }) => {
   const [title, setTitle] = useState('');
-  const [icon, setIcon] = useState(0);
-  const [background, setBackground] = useState('');
+  const [selectedIcon, setSelectedIcon] = useState(icons[0].id);
+  const [selectedBackground, setSelectedBackground] = useState(backgrounds[0].id);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -16,17 +32,15 @@ const CreateBoardModal = ({ show, onClose, onCreate }) => {
 
     const newBoard = {
       title,
-      icon,
-      background,
+      icon: selectedIcon,
+      background: selectedBackground,
     };
 
     await onCreate(newBoard);
   };
 
-  if (!show) return null;
-
   return (
-    <div className={styles.modal}>
+    <Modal isOpen={isOpen} onRequestClose={onClose} className={styles.modal} contentLabel="Create New Board">
       <div className={styles.modalContent}>
         <h2>Create New Board</h2>
         <form onSubmit={handleSubmit} className={styles.form}>
@@ -37,12 +51,48 @@ const CreateBoardModal = ({ show, onClose, onCreate }) => {
             placeholder="Title"
             className={styles.input}
           />
-          {/* Add more form fields for icons and backgrounds */}
+          
+          <div className={styles.icons}>
+            <h3>Choose Icon:</h3>
+            {icons.map((icon) => (
+              <label key={icon.id} className={styles.radioLabel}>
+                <input
+                  type="radio"
+                  value={icon.id}
+                  checked={selectedIcon === icon.id}
+                  onChange={() => setSelectedIcon(icon.id)}
+                />
+                <svg className={styles.icon}>
+                  <use xlinkHref={`#${icon.id}`} />
+                </svg>
+                {icon.title}
+              </label>
+            ))}
+          </div>
+          
+          <div className={styles.backgrounds}>
+            <h3>Choose Background:</h3>
+            {backgrounds.map((background) => (
+              <label key={background.id} className={styles.radioLabel}>
+                <input
+                  type="radio"
+                  value={background.id}
+                  checked={selectedBackground === background.id}
+                  onChange={() => setSelectedBackground(background.id)}
+                />
+                {background.id !== 'none' && (
+                  <img src={background.image} alt={background.title} className={styles.backgroundImage} />
+                )}
+                {background.title}
+              </label>
+            ))}
+          </div>
+          
           <button type="submit" className={styles.createButton}>Create</button>
           <button type="button" onClick={onClose} className={styles.closeButton}>Close</button>
         </form>
       </div>
-    </div>
+    </Modal>
   );
 };
 
