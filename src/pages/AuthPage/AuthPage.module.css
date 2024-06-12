@@ -1,21 +1,60 @@
-/* 0-374px */
+/* Загальні стилі */
 .container {
-  height: 100vh;
-  width: 320px;
-  background-color: grey;
-  background-color: grey;
+  width: 90%;
+  /* background-color: #1f1f1f; */
+  color: var(--text-color-star-white);
+  margin: 0 auto; /* Центрування контейнера горизонтально*/
+  text-transform: capitalize;
   padding: 24px !important;
   border-radius: 8px;
-}
-.tabLabel {
-  /* text-transform: capitalize !important;
-  color: red !important; */
-}
-.button {
-  text-transform: capitalize;
-  color: var(--btn-color);
+  box-sizing: border-box; /* Враховує padding і border у ширині та висоті елементу */
+  display: flex;
+  flex-direction: column;
+  justify-content: start; /* Центрування в контейнері горизонтально */
+  /* align-items: center; Центрування в контейнері вертикально */
+  /* min-height: 80vh;  */
 }
 
+.customFlexContainer {
+  /* background-color: green; */
+  padding-top: 0px;
+  margin-top: 0px;
+  border: "solid 1px red";
+}
+.customTabs .MuiTabs-flexContainer {
+  background-color: green; /* Изменение цвета фона контейнера вкладок */
+}
+
+.customTabs {
+  /* display: flex;
+  flex-direction: row; */
+  /* gap: 14px; */
+  /* padding: 0; */
+}
+/* через css не застосовується */
+
+/* .customTabs .MuiTab-root {
+  color: #ffffff; 
+  opacity: 30%;
+  text-transform: capitalize;
+}
+.customTabs .Mui-selected {
+  opacity: 100%;
+}
+.customTabs .MuiTabs-indicator {
+  display: none;
+} */
+
+/* .button {
+  text-transform: capitalize;
+  color: var(--btn-color);
+} */
+
+@media (min-width: 320px) and (max-width: 374px) {
+  .container {
+    width: 95%;
+  }
+}
 /* mobile 375px + */
 @media screen and (min-width: 375px) {
   .container {
@@ -45,7 +84,11 @@
 - desktop: з 1440px */
 
 /* кольори для сторінок WelcomePage та AuthPage*/
-/* --background: linear-gradient(180deg, rgba(196, 196, 196, 0) 25%, #BEDBB0 92.19%);
+
+/* кольори для сторінок WelcomePage та AuthPage*/
+/*       
+      --background-start: linear-gradient(180deg, rgba(196, 196, 196, 0) 25%, #BEDBB0 92.19%);
       --text-color-start: #161616;
-      --text-color-star-white: #FFFFFF;
-      --btn-color: #BEDBB0; */
+      --text-color-start-white: #FFFFFF;
+      --btn-color: #BEDBB0;
+} */

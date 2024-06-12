@@ -9,17 +9,14 @@ import {
   IconButton,
   InputAdornment,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../redux/auth/operations";
-import {
-  selectLoading,
-  selectError,
-  selectIsLoggedIn,
-} from "../../redux/auth/selectors";
+import { selectLoading, selectError } from "../../redux/auth/selectors";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { unwrapResult } from "@reduxjs/toolkit";
 
 const schema = yup.object().shape({
   userName: yup.string().min(2).max(32).required(),
@@ -28,16 +25,14 @@ const schema = yup.object().shape({
 });
 
 const RegisterForm = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
-  const error = useSelector(selectError);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const ifError = useSelector(selectError);
   const [showPassword, setShowPassword] = useState(false);
 
   // об'єкт конфігурації параметрів хука useForm
   const {
-    register: registerField, // Перейменовання функції еєстрації кожного поля у формі - register, щоб уникнути конфлікту імен з операцією
+    register: registerField, // Перейменовання функції реєстрації полів форми - register, щоб уникнути конфлікту імен з операцією
     // Функція - обробляє подання форми, приймає два аргументи: onSubmit (функцію, яка буде викликана після валідації форми) і actions (додаткові дії з формою).
     handleSubmit,
     formState: { errors }, //  Витягує об'єкт errors зі стану форми, який містить всі помилки валідації форми.
@@ -46,37 +41,21 @@ const RegisterForm = () => {
     resolver: yupResolver(schema), // Використовує yupResolver для інтеграції схеми валідації yup з react-hook-form.
   });
 
+  // обробник відображення паролю
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
-  // Після успішної реєстрації автоматично логінізувати користувача
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate("/home");
-    }
-  }, [isLoggedIn, navigate]);
-
   const onSubmit = (data) => {
-    // Виконання запиту для реєстрації
+    // Виконання запиту реєстрації user
     dispatch(register(data))
       .then((result) => {
-        if (result.error && result.error.message == "Rejected") {
-          console.log(result.payload.response.data.message);
-        } else {
-          console.log("Registration successful result:", result);
-          // ескпорт user id  з  result
-          const userId = result.payload._id;
-          console.log("User ID:", userId);
-          console.log("authToken:", result.payload.token);
-          // Сохраняем токен аутентификации в локальном хранилище после регистрации
-          // localStorage.setItem("authToken", result.payload.token);
-          navigate("/home");
-          reset(); // Очищаємо поля форми після успішної реєстрації
+        if (register.fulfilled.match(result)) {
+          reset(); // скидаємо форму if fulfilled
         }
       })
       .catch((error) => {
-        console.error("Registration failed:", error.message);
+        console.log("Registration failed:", error.message);
       });
   };
 
@@ -84,7 +63,6 @@ const RegisterForm = () => {
     <Box
       component="form"
       onSubmit={handleSubmit(onSubmit)}
-      // onSubmit={handleSubmit}
       display="flex"
       flexDirection="column"
       alignItems="center"
@@ -138,9 +116,9 @@ const RegisterForm = () => {
           ),
         }}
       />
-      {error && (
+      {ifError && (
         <Typography color="error" variant="body2" marginTop="normal">
-          {error.message}
+          {"Email in use"}
         </Typography>
       )}
       <Button
