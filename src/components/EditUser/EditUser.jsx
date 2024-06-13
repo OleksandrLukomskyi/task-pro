@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editUser } from "redux/auth/operations";
+import { editUser } from "../../redux/auth/operations";
+import sprite from "../../assets/icons/Sprite.svg";
 
 const EditUser = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
@@ -50,20 +51,22 @@ const EditUser = ({ isOpen, onClose }) => {
           />
           {avatarFile ? (
             <img
-              width="32px"
-              height="32px"
+              width="68px"
+              height="79px"
               src={URL.createObjectURL(avatarFile)}
               alt="user"
             />
           ) : (
-            <img width="32px" height="32px" src={user.avatarURL} alt="user" />
+            <img width="68px" height="79px" src={user.avatarURL} alt="user" />
           )}
           <button
             type="button"
             onClick={() => document.getElementById("avatarInput").click()}
             className="plusButton"
           >
-            +
+            <svg width="24px" height="24px">
+              <use href={sprite + "#icon-plus"}></use>
+            </svg>
           </button>
         </div>
         <form onSubmit={handleSubmit}>

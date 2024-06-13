@@ -1,6 +1,5 @@
 import React from 'react';
-import { ReactComponent as Logo } from '../../assets/logo.svg'; // Убедитесь, что путь к SVG правильный
-import styles from './LogoComponent.module.css';
+import { ReactComponent as Logo } from '../../assets/logo.svg'; 
 
 const LogoComponent = () => (
   <div className={styles.logoContainer}>
