@@ -1,41 +1,85 @@
-/* 0-374px */
-.container {
-  height: 100vh;
-  width: 320px;
-  background-color: grey;
-  background-color: grey;
-  padding: 24px !important;
+/* Загальні стилі */
+
+.customContainer {
+  /* box-sizing: border-box; */
+  width: 90%;
+  background-color: #1f1f1f;
+  margin: 40px auto;
+  padding: 24px;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: start; */
+  /* Центрування в контейнері вертикально */
+  /* align-items: center; */
+  height: 363px;
+  /* height: auto; Висота за змістом */
 }
-.tabLabel {
-  /* text-transform: capitalize !important;
-  color: red !important; */
+.customFlexContainer {
+  /* display: flex;
+  flex-direction: row; */
+  /* padding: 0px !important; */
+  /* background-color: gray; */
 }
-.button {
-  text-transform: capitalize;
-  color: var(--btn-color);
+.customTabs {
+  /* border: solid 1px green; */
+  display: flex;
+  flex-direction: row;
+  padding: 0px !important;
+  /* padding: 0; */
+  /* text-transform: capitalize; */
+  /* color: #ffffff; */
+  /* min-height: 30px; */
+  /* height: 30px; */
 }
 
-/* mobile 375px + */
+.customTabWrapper {
+  /* color: white; */
+  /* border: solid 1px green; */
+  /* background-color: gray !important; */
+}
+.customTabTextColorInherit {
+  color: white;
+}
+
+.customTab {
+  color: #ffffff !important;
+  opacity: 0.3;
+  text-transform: capitalize !important;
+  padding: 0 !important;
+}
+
+.customSelectedTab {
+  color: #ffffff;
+  opacity: 1;
+}
+.customTabsIndicator {
+  display: none;
+}
+
+/* гумова від 320px - mobile */
+@media (min-width: 320px) and (max-width: 374px) {
+  .container {
+    width: 95%;
+  }
+}
+/* стає адаптивною з mobile 375px + */
 @media screen and (min-width: 375px) {
   .container {
-    max-width: 335px;
+    width: 335px;
   }
 }
 /* tablet 768px + */
 @media screen and (min-width: 768px) {
   .container {
     width: 424px;
+    height: 395px;
     padding: 40px;
   }
 }
 
 /* desktop 1440px + */
 @media screen and (min-width: 1440px) {
-  .container {
-    width: 424px;
-    padding: 40px;
-  }
 }
 
 /* Точки перелому:
@@ -45,7 +89,11 @@
 - desktop: з 1440px */
 
 /* кольори для сторінок WelcomePage та AuthPage*/
-/* --background: linear-gradient(180deg, rgba(196, 196, 196, 0) 25%, #BEDBB0 92.19%);
+
+/* кольори для сторінок WelcomePage та AuthPage*/
+/*       
+      --background-start: linear-gradient(180deg, rgba(196, 196, 196, 0) 25%, #BEDBB0 92.19%);
       --text-color-start: #161616;
-      --text-color-star-white: #FFFFFF;
-      --btn-color: #BEDBB0; */
+      --text-color-start-white: #FFFFFF;
+      --btn-color: #BEDBB0;
+} */

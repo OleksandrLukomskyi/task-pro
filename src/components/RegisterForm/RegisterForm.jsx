@@ -9,17 +9,15 @@ import {
   IconButton,
   InputAdornment,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { register } from "../../redux/auth/operations";
-import {
-  selectLoading,
-  selectError,
-  selectIsLoggedIn,
-} from "../../redux/auth/selectors";
+import { selectLoading, selectError } from "../../redux/auth/selectors";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import css from "./RegisterForm.module.css";
+import ErrorBoundary from "..//ErrorBoundary.jsx";
 
 const schema = yup.object().shape({
   userName: yup.string().min(2).max(32).required(),
@@ -27,17 +25,38 @@ const schema = yup.object().shape({
   password: yup.string().min(8).max(64).required(),
 });
 
-const RegisterForm = () => {
-  const navigate = useNavigate();
+const inputsThemeRegForm = {
+  "& .MuiOutlinedInput-notchedOutline": {
+    borderColor: "var(--text-color-start-white)",
+    opacity: 0.3,
+  },
+  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+    borderColor: "var(--text-color-start-white)",
+    opacity: 1,
+  },
+  "& .MuiInputLabel-outlined.Mui-focused": {
+    borderColor: "var(--text-color-start-white)",
+    opacity: 1,
+  },
+
+  "& .MuiInputLabel-root": {
+    color: "var(--text-color-start-white)",
+    opacity: 0.3,
+  },
+  "& .MuiInputBase-input": {
+    color: "var(--text-color-start-white)",
+  },
+};
+
+export const RegisterForm = () => {
   const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
-  const error = useSelector(selectError);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const ifError = useSelector(selectError);
   const [showPassword, setShowPassword] = useState(false);
 
   // об'єкт конфігурації параметрів хука useForm
   const {
-    register: registerField, // Перейменовання функції еєстрації кожного поля у формі - register, щоб уникнути конфлікту імен з операцією
+    register: registerField, // Перейменовання функції реєстрації полів форми - register, щоб уникнути конфлікту імен з операцією
     // Функція - обробляє подання форми, приймає два аргументи: onSubmit (функцію, яка буде викликана після валідації форми) і actions (додаткові дії з формою).
     handleSubmit,
     formState: { errors }, //  Витягує об'єкт errors зі стану форми, який містить всі помилки валідації форми.
@@ -46,91 +65,74 @@ const RegisterForm = () => {
     resolver: yupResolver(schema), // Використовує yupResolver для інтеграції схеми валідації yup з react-hook-form.
   });
 
+  // обробник відображення паролю
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
-  // Після успішної реєстрації автоматично логінізувати користувача
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate("/home");
-    }
-  }, [isLoggedIn, navigate]);
-
   const onSubmit = (data) => {
-    // Виконання запиту для реєстрації
+    // Виконання запиту реєстрації user
     dispatch(register(data))
       .then((result) => {
-        if (result.error && result.error.message == "Rejected") {
-          console.log(result.payload.response.data.message);
-        } else {
-          console.log("Registration successful result:", result);
-          // ескпорт user id  з  result
-          const userId = result.payload._id;
-          console.log("User ID:", userId);
-          console.log("authToken:", result.payload.token);
-          // Сохраняем токен аутентификации в локальном хранилище после регистрации
-          // localStorage.setItem("authToken", result.payload.token);
-          navigate("/home");
-          reset(); // Очищаємо поля форми після успішної реєстрації
+        if (register.fulfilled.match(result)) {
+          reset(); // скидаємо форму if fulfilled
         }
       })
       .catch((error) => {
-        console.error("Registration failed:", error.message);
+        console.log("Registration failed:", error.message);
       });
   };
 
   return (
     <Box
+      className={css.customBox}
       component="form"
       onSubmit={handleSubmit(onSubmit)}
-      // onSubmit={handleSubmit}
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      height="100vh"
-      borderRadius={8}
     >
       <TextField
+        className={css.customTextField}
         {...registerField("userName")}
         label="Enter your name"
         variant="outlined"
-        margin="normal"
+        // margin="normal"
         fullWidth
         error={!!errors.name}
         helperText={errors.name?.message}
         autoComplete="username"
+        sx={inputsThemeRegForm}
       />
       <TextField
+        className={css.customTextField}
         {...registerField("email")}
         label="Enter your email"
         variant="outlined"
-        margin="normal"
+        // margin="normal"
         fullWidth
         error={!!errors.email}
         helperText={errors.email?.message}
         autoComplete="email"
+        sx={inputsThemeRegForm}
       />
       <TextField
+        className={css.customTextField}
         {...registerField("password")}
         label="Create a password"
         type={showPassword ? "text" : "password"}
         variant="outlined"
-        margin="normal"
+        marginBottom={24}
         fullWidth
         error={!!errors.password}
         helperText={errors.password?.message}
         autoComplete="current-password"
-        InputLabelProps={{ style: { color: "var(--text-color)" } }}
+        sx={inputsThemeRegForm}
         InputProps={{
-          style: { color: "var(--text-color)" },
+          style: { color: "var(--text-color-start-white)" },
           endAdornment: (
             <InputAdornment position="end">
               <IconButton
                 onClick={handleClickShowPassword}
                 edge="end"
-                style={{ color: "var(--text-color)" }}
+                style={{ color: "var(--text-color-start-white)", opacity: 0.3 }}
               >
                 {showPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>
@@ -138,12 +140,13 @@ const RegisterForm = () => {
           ),
         }}
       />
-      {error && (
+      {ifError && (
         <Typography color="error" variant="body2" marginTop="normal">
-          {error.message}
+          {"Email in use"}
         </Typography>
       )}
       <Button
+        className={css.customButton}
         type="submit"
         variant="contained"
         color="primary"
@@ -157,4 +160,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default { RegisterForm };

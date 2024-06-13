@@ -16,6 +16,7 @@ import { logIn } from "../../redux/auth/operations";
 import { selectLoading, selectError } from "../../redux/auth/selectors";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import inputTheme from "./LoginForm";
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
