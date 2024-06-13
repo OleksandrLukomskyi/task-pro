@@ -1,17 +1,18 @@
+import CopySideBar from "../../components/CopySideBar/CopySideBar";
 import { react } from "react";
+import css from "./HomePage.module.css";
 
 export default function HomePage() {
+  return (
+    <div>
+      <p>Hello on HomePagePage</p>
 
-    return (
-
-        <div>
-
-           <p>Hello on HomePagePage</p> 
-
-        </div>
-              
-      
-    )
+      <div className={css.container}>
+        <CopySideBar />
+        {/* <TestLogOut /> */}
+      </div>
+    </div>
+  );
 }
 
 // import React from 'react'
@@ -24,4 +25,3 @@ export default function HomePage() {
 //     <Sidebar />
 //   </React.StrictMode>,
 // )
-
