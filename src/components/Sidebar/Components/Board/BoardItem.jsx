@@ -1,31 +1,3 @@
-// import React from 'react';
-
-// const BoardItem = ({ board, onDelete, onEdit }) => {
-//   const handleDelete = () => {
-//     onDelete(board.id);
-//   };
-
-//   const handleEdit = () => {
-//     const updatedTitle = prompt('Enter updated title:', board.title);
-//     if (updatedTitle) {
-//       onEdit(board.id, { ...board, title: updatedTitle });
-//     }
-//   };
-
-//   return (
-//     <div className="board-item">
-//       <h3>{board.title}</h3>
-//       <div className="board-actions">
-//         <button onClick={handleEdit}>Edit</button>
-//         <button onClick={handleDelete}>Delete</button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default BoardItem;
-
-
 import React from 'react';
 import axios from 'axios';
 
