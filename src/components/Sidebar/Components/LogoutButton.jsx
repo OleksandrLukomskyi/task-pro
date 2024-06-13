@@ -31,7 +31,7 @@ import axios from 'axios';
 const LogoutButton = () => {
   const handleLogout = async () => {
     try {
-      await axios.post('/api/logout');
+      await axios.post('https://project-back-codewave1-rqmw.onrender.com/users/logout');
       window.location.href = '/welcome';
     } catch (error) {
       console.error('Failed to logout', error);
