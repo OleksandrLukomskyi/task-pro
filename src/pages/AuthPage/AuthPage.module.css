@@ -1,80 +1,85 @@
 /* Загальні стилі */
-.container {
+
+.customContainer {
+  /* box-sizing: border-box; */
   width: 90%;
-  /* background-color: #1f1f1f; */
-  color: var(--text-color-star-white);
-  margin: 0 auto; /* Центрування контейнера горизонтально*/
-  text-transform: capitalize;
-  padding: 24px !important;
+  background-color: #1f1f1f;
+  margin: 40px auto;
+  padding: 24px;
   border-radius: 8px;
-  box-sizing: border-box; /* Враховує padding і border у ширині та висоті елементу */
   display: flex;
   flex-direction: column;
-  justify-content: start; /* Центрування в контейнері горизонтально */
-  /* align-items: center; Центрування в контейнері вертикально */
-  /* min-height: 80vh;  */
+  /* justify-content: start; */
+  /* Центрування в контейнері вертикально */
+  /* align-items: center; */
+  height: 363px;
+  /* height: auto; Висота за змістом */
 }
-
 .customFlexContainer {
-  /* background-color: green; */
-  padding-top: 0px;
-  margin-top: 0px;
-  border: "solid 1px red";
-}
-.customTabs .MuiTabs-flexContainer {
-  background-color: green; /* Изменение цвета фона контейнера вкладок */
-}
-
-.customTabs {
   /* display: flex;
   flex-direction: row; */
-  /* gap: 14px; */
+  /* padding: 0px !important; */
+  /* background-color: gray; */
+}
+.customTabs {
+  /* border: solid 1px green; */
+  display: flex;
+  flex-direction: row;
+  padding: 0px !important;
   /* padding: 0; */
+  /* text-transform: capitalize; */
+  /* color: #ffffff; */
+  /* min-height: 30px; */
+  /* height: 30px; */
 }
-/* через css не застосовується */
 
-/* .customTabs .MuiTab-root {
-  color: #ffffff; 
-  opacity: 30%;
-  text-transform: capitalize;
+.customTabWrapper {
+  /* color: white; */
+  /* border: solid 1px green; */
+  /* background-color: gray !important; */
 }
-.customTabs .Mui-selected {
-  opacity: 100%;
+.customTabTextColorInherit {
+  color: white;
 }
-.customTabs .MuiTabs-indicator {
+
+.customTab {
+  color: #ffffff !important;
+  opacity: 0.3;
+  text-transform: capitalize !important;
+  padding: 0 !important;
+}
+
+.customSelectedTab {
+  color: #ffffff;
+  opacity: 1;
+}
+.customTabsIndicator {
   display: none;
-} */
+}
 
-/* .button {
-  text-transform: capitalize;
-  color: var(--btn-color);
-} */
-
+/* гумова від 320px - mobile */
 @media (min-width: 320px) and (max-width: 374px) {
   .container {
     width: 95%;
   }
 }
-/* mobile 375px + */
+/* стає адаптивною з mobile 375px + */
 @media screen and (min-width: 375px) {
   .container {
-    max-width: 335px;
+    width: 335px;
   }
 }
 /* tablet 768px + */
 @media screen and (min-width: 768px) {
   .container {
     width: 424px;
+    height: 395px;
     padding: 40px;
   }
 }
 
 /* desktop 1440px + */
 @media screen and (min-width: 1440px) {
-  .container {
-    width: 424px;
-    padding: 40px;
-  }
 }
 
 /* Точки перелому:

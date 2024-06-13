@@ -16,7 +16,8 @@ import { register } from "../../redux/auth/operations";
 import { selectLoading, selectError } from "../../redux/auth/selectors";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { unwrapResult } from "@reduxjs/toolkit";
+import css from "./RegisterForm.module.css";
+import ErrorBoundary from "..//ErrorBoundary.jsx";
 
 const schema = yup.object().shape({
   userName: yup.string().min(2).max(32).required(),
@@ -24,7 +25,30 @@ const schema = yup.object().shape({
   password: yup.string().min(8).max(64).required(),
 });
 
-const RegisterForm = () => {
+const inputsThemeRegForm = {
+  "& .MuiOutlinedInput-notchedOutline": {
+    borderColor: "var(--text-color-start-white)",
+    opacity: 0.3,
+  },
+  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+    borderColor: "var(--text-color-start-white)",
+    opacity: 1,
+  },
+  "& .MuiInputLabel-outlined.Mui-focused": {
+    borderColor: "var(--text-color-start-white)",
+    opacity: 1,
+  },
+
+  "& .MuiInputLabel-root": {
+    color: "var(--text-color-start-white)",
+    opacity: 0.3,
+  },
+  "& .MuiInputBase-input": {
+    color: "var(--text-color-start-white)",
+  },
+};
+
+export const RegisterForm = () => {
   const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
   const ifError = useSelector(selectError);
@@ -61,54 +85,54 @@ const RegisterForm = () => {
 
   return (
     <Box
+      className={css.customBox}
       component="form"
       onSubmit={handleSubmit(onSubmit)}
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      height="100vh"
-      borderRadius={8}
     >
       <TextField
+        className={css.customTextField}
         {...registerField("userName")}
         label="Enter your name"
         variant="outlined"
-        margin="normal"
+        // margin="normal"
         fullWidth
         error={!!errors.name}
         helperText={errors.name?.message}
         autoComplete="username"
+        sx={inputsThemeRegForm}
       />
       <TextField
+        className={css.customTextField}
         {...registerField("email")}
         label="Enter your email"
         variant="outlined"
-        margin="normal"
+        // margin="normal"
         fullWidth
         error={!!errors.email}
         helperText={errors.email?.message}
         autoComplete="email"
+        sx={inputsThemeRegForm}
       />
       <TextField
+        className={css.customTextField}
         {...registerField("password")}
         label="Create a password"
         type={showPassword ? "text" : "password"}
         variant="outlined"
-        margin="normal"
+        marginBottom={24}
         fullWidth
         error={!!errors.password}
         helperText={errors.password?.message}
         autoComplete="current-password"
-        InputLabelProps={{ style: { color: "var(--text-color)" } }}
+        sx={inputsThemeRegForm}
         InputProps={{
-          style: { color: "var(--text-color)" },
+          style: { color: "var(--text-color-start-white)" },
           endAdornment: (
             <InputAdornment position="end">
               <IconButton
                 onClick={handleClickShowPassword}
                 edge="end"
-                style={{ color: "var(--text-color)" }}
+                style={{ color: "var(--text-color-start-white)", opacity: 0.3 }}
               >
                 {showPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>
@@ -122,6 +146,7 @@ const RegisterForm = () => {
         </Typography>
       )}
       <Button
+        className={css.customButton}
         type="submit"
         variant="contained"
         color="primary"
@@ -135,4 +160,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default { RegisterForm };
