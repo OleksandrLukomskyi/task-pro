@@ -1,5 +1,7 @@
-import EditUser from "components/EditUser/EditUser";
+import EditUser from "../EditUser/EditUser";
 import { useState } from "react";
+import css from "./Header.module.css";
+// import Navigation from "../Navigation/Navigation";
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,10 +17,10 @@ const Header = () => {
   // const [isOpen, setOpen] = useState(false);
   // const close = () => {
   //   setOpen(false);
-  // }
+  // };
 
   return (
-    <header>
+    <header className={css.header}>
       <button
         type="button"
         // onClick={() => setOpen(!isOpen)}
@@ -26,6 +28,7 @@ const Header = () => {
       >
         menu
       </button>
+      {/* {isOpen && <Navigation close={close} />} */}
       <div>
         <button
           type="button"
