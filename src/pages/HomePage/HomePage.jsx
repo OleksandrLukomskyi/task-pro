@@ -1,6 +1,7 @@
-import React from 'react';
+import { react } from "react";
 
 export default function HomePage() {
+
     return (
 
         <div>
@@ -23,3 +24,4 @@ export default function HomePage() {
 //     <Sidebar />
 //   </React.StrictMode>,
 // )
+

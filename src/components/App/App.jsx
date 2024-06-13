@@ -1,5 +1,12 @@
 import { Suspense, lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
+// -------------------------------------------------------------
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { refreshUser } from "../../redux/auth/operations";
+import { selectIsRefreshing } from "../../redux/auth/selectors";
+// --------------------------------------------------------------
+import TestLogOut from "../TestLogOut/TestLogOut.jsx"
 
 import { PrivateRoute } from "../PrivateRoute.jsx";
 import { RestrictedRoute } from "../RestrictedRoute.jsx";
@@ -7,6 +14,7 @@ import { RestrictedRoute } from "../RestrictedRoute.jsx";
 import Layout from "../Layout/Layout.jsx";
 import LoginForm from "../LoginForm/LoginForm.jsx";
 import RegisterForm from "../RegisterForm/RegisterForm.jsx";
+
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 const AuthPage = lazy(() => import("../../pages/AuthPage/AuthPage.jsx"));
@@ -19,7 +27,20 @@ const ScreensPage = lazy(() =>
 const NotFoundPage = lazy(() => import("../../pages/NotFound/NotFound.jsx"));
 
 export default function App() {
-  return (
+  
+  const isRefreshing = useSelector(selectIsRefreshing);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+  
+
+  
+  return isRefreshing ? (
+    <div><p>Please wait</p><TestLogOut/></div>
+  ) : (
+   
     <Layout>
       <Suspense fallback={"LOADING"}>
         <Routes>
