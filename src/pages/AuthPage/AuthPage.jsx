@@ -1,6 +1,6 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import LoginForm from "../../components/LoginForm/LoginForm";
-import RegisterForm from "../../components/RegisterForm/RegisterForm";
+import { RegisterForm } from "../../components/RegisterForm/RegisterForm";
 import { Box, Tabs, Tab } from "@mui/material";
 import css from "./AuthPage.module.css";
 
@@ -13,27 +13,39 @@ const AuthPage = () => {
   };
 
   return (
-    <Box
-      className={css.containerl}
-      // sx={{ background: "grey", color: "red" }}
-    >
-      <Tabs value={id} onChange={handleChange}>
+    <Box className={css.customContainer}>
+      <Tabs
+        classes={{
+          root: css.customTabs,
+          flexContainer: css.customFlexContainer,
+          indicator: css.customTabsIndicator,
+        }}
+        value={id}
+        onChange={handleChange}
+      >
         <Tab
-          className={css.tabLabel}
           label="Registration"
           value="register"
           component={Link}
           to="/auth/register"
-          style={{ color: "red" }}
-          // style={{ color: "var(--text-color-star-white)" }}
+          classes={{
+            root: css.customTab,
+            selected: css.customSelectedTab,
+            wrapper: css.customTabWrapper,
+            textColorInherit: css.customTabTextColorInherit,
+          }}
         />
         <Tab
-          className={css.tabLabel}
           label="Log In"
           value="login"
           component={Link}
           to="/auth/login"
-          // style={{ textTransform: "capitalize" }}
+          classes={{
+            root: css.customTab,
+            selected: css.customSelectedTab,
+            wrapper: css.customTabWrapper,
+            textColorInherit: css.customTabTextColorInherit,
+          }}
         />
       </Tabs>
       {id === "login" && <LoginForm />}
