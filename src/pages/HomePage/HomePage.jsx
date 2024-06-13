@@ -1,17 +1,13 @@
+import LogoutButton from "../../components/Sidebar/Components/LogoutButton.jsx";
 import { react } from "react";
 
 export default function HomePage() {
-
-    return (
-
-        <div>
-
-           <p>Hello on HomePagePage</p> 
-
-        </div>
-              
-      
-    )
+  return (
+    <div>
+      <p>Hello on HomePagePage</p>
+      <LogoutButton />
+    </div>
+  );
 }
 
 // import React from 'react'
@@ -24,4 +20,3 @@ export default function HomePage() {
 //     <Sidebar />
 //   </React.StrictMode>,
 // )
-
