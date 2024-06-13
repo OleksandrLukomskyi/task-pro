@@ -32,7 +32,7 @@ import axios from 'axios';
 const BoardItem = ({ board, onDelete, onEdit }) => {
   const handleDelete = async () => {
     try {
-      await axios.delete(`https://your-backend-url/api/boards/${board.id}`);
+      await axios.delete(`https://project-back-codewave1-rqmw.onrender.com/api/boards/${board.id}`);
       onDelete(board.id);
     } catch (error) {
       console.error('Failed to delete the board:', error);
