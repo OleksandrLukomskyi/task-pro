@@ -1,23 +1,21 @@
 import css from "./CopyColumnList.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchColumns } from "../../redux/columns/operations";
-import { CopyColumnItem } from "../CopyColumnItem/CopyColumnItem";
+import CopyColumnItem from "../../components/CopyColumnItem/CopyColumnItem";
+import { selectColumns } from "../../redux/columns/selectors";
 
-export default function CopyColumnList({ boardId }) {
+export default function CopyColumnList() {
   const columns = useSelector(selectColumns);
+  console.log(columns);
 
   return (
     <div>
+      {"*****************************************************************"}
       <ul className={css.columnList}>
         {columns.map((item) => {
           return (
-            //   кнопка з назвою дошки
-            <li className={css.columnItem} key={item.id}>
-              <CopyColumnItem
-                id={item.id}
-                title={item.title}
-                boardId={boardId}
-              />
+            <li className={css.columnItem} key={item._id}>
+              <CopyColumnItem id={item._id} boardId={item.board} />
             </li>
           );
         })}

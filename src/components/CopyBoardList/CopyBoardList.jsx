@@ -6,18 +6,18 @@ export default function BoardList({ handleRender }) {
   const boards = useSelector(selectBoard);
 
   // console.log(boards);
-  console.log(boards.boards);
+  console.log(boards);
 
   return (
     <div className={css.container}>
       <ul className={css.boardList}>
         {boards.map((item) => {
           return (
-            <li className={css.boardItem} key={item.id}>
+            <li className={css.boardItem} key={item._id}>
               <button
-                id={item.id}
+                title={item.title}
                 type="button"
-                onClick={() => handleRender(id)}
+                onClick={() => handleRender(item.title, item._id)}
               >
                 {item.title}
               </button>
