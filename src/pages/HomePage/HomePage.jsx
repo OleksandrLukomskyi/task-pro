@@ -1,4 +1,5 @@
 import CopySideBar from "../../components/CopySideBar/CopySideBar";
+import LogoutButton from "../../components/Sidebar/Components/LogoutButton.jsx";
 import { react } from "react";
 import css from "./HomePage.module.css";
 
@@ -11,6 +12,8 @@ export default function HomePage() {
         <CopySideBar />
         {/* <TestLogOut /> */}
       </div>
+
+      <LogoutButton />
     </div>
   );
 }
