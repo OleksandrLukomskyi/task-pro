@@ -1,11 +1,11 @@
 import { react } from "react";
-import Sidebare from "../../components/Sidebar/Components/Sidebar.jsx";
+
 
 export default function HomePage() {
   return (
     <div>
       <p>Hello on HomePagePage</p>
-      <Sidebare />
+    
     </div>
   );
 }
