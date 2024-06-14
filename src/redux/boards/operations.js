@@ -6,7 +6,8 @@ export const fetchBoards = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get("/api/boards/");
-      return response.data;
+      console.log(response.data.boards);
+      return response.data.boards;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }

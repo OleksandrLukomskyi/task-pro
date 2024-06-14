@@ -27,6 +27,9 @@ export const register = createAsyncThunk(
 
       return response.data;
     } catch (error) {
+      if (error.response.status === 409) {
+        alert("Email in use");
+      }
       return thunkAPI.rejectWithValue(error);
     }
   }
