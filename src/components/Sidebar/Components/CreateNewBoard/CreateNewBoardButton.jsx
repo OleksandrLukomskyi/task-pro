@@ -75,7 +75,7 @@
 // export default CreateNewBoardButton;
 
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import CreateNewBoardModal from './CreateNewBoardModal'; // Импорт модального окна
 
 const CreateNewBoardButton = () => {

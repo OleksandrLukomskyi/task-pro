@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import BoardItem from './BoardItem';
 
 const BoardList = ({ boards, onDelete, onEdit }) => {
@@ -6,10 +6,12 @@ const BoardList = ({ boards, onDelete, onEdit }) => {
     return <div>Loading...</div>;
   }
 
+  
+
   return (
     <div className="board-list">
       {boards.map(board => (
-        <BoardItem key={board.id} board={board} onDelete={onDelete} onEdit={onEdit} />
+        <BoardItem key={board._id} board={board} onDelete={onDelete} onEdit={onEdit} />
       ))}
     </div>
   );
