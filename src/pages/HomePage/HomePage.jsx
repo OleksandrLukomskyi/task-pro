@@ -1,11 +1,29 @@
+
 import LogoutButton from "../../components/Sidebar/Components/LogoutButton.jsx";
+
+
+
+import CopySideBar from "../../components/CopySideBar/CopySideBar";
+import LogoutButton from "../../components/Sidebar/Components/LogoutButton.jsx";
+
+
 import { react } from "react";
 
 export default function HomePage() {
   return (
     <div>
       <p>Hello on HomePagePage</p>
+
+      <TestLogOut />
+
+      <div className={css.container}>
+        <CopySideBar />
+        <CopyBoardItem />
+      </div>
+
       <LogoutButton />
+
+
     </div>
   );
 }
