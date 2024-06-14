@@ -1,8 +1,7 @@
 /* Загальні стилі */
-
 .customContainer {
-  /* box-sizing: border-box; */
-  width: 90%;
+  /* box-sizing: border-box !important; */
+  /* width: 90%; */
   background-color: #1f1f1f;
   margin: 40px auto;
   padding: 24px;
@@ -12,8 +11,10 @@
   /* justify-content: start; */
   /* Центрування в контейнері вертикально */
   /* align-items: center; */
-  height: 363px;
+  /* height: 363px; */
   /* height: auto; Висота за змістом */
+  /* width: 100%; */
+  /* min-width: 250px; */
 }
 .customFlexContainer {
   /* display: flex;
@@ -58,22 +59,24 @@
 }
 
 /* гумова від 320px - mobile */
-@media (min-width: 320px) and (max-width: 374px) {
-  .container {
-    width: 95%;
+@media screen and (min-width: 320px) {
+  .customContainer {
+    min-width: 250px;
+    /* min-width: 80%; */
   }
 }
+
 /* стає адаптивною з mobile 375px + */
 @media screen and (min-width: 375px) {
-  .container {
+  .customContainer {
     width: 335px;
   }
 }
 /* tablet 768px + */
 @media screen and (min-width: 768px) {
-  .container {
+  .customContainer {
     width: 424px;
-    height: 395px;
+    /* height: 395px; */
     padding: 40px;
   }
 }

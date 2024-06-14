@@ -17,7 +17,7 @@ import { selectLoading, selectError } from "../../redux/auth/selectors";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import css from "./RegisterForm.module.css";
-import ErrorBoundary from "..//ErrorBoundary.jsx";
+// import ErrorBoundary from "..//ErrorBoundary.jsx";
 
 const schema = yup.object().shape({
   userName: yup.string().min(2).max(32).required(),
