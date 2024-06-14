@@ -10,7 +10,7 @@ import Btn from "../Btn/Btn";
 import Modal from "react-modal";
 import Column from "../Column/Column";
 import css from "./MainDashboard.module.css";
-import AddCard from "./cards/AddCard";
+import AddCard from "../card/AddCard";
 
 Modal.setAppElement("#root");
 
@@ -19,6 +19,8 @@ export default function MainDashboard() {
   const [newColumnTitle, setNewColumnTitle] = useState("");
   const dispatch = useDispatch();
   const columns = useSelector((state) => state.columns.items);
+  const boardId = useSelector((state) => state.bordId.id);
+  const id = "666b2cec72f2dcf6bb1959e8";
 
   const handleAddColumn = () => {
     if (newColumnTitle.trim()) {
@@ -49,7 +51,6 @@ export default function MainDashboard() {
             onDelete={handleDeleteColumn}
             onEdit={handleEditColumn}
           />
-          <AddCard columnId={column.id} onAddCard={handleAddCard} />
         </div>
       ))}
 
@@ -59,6 +60,7 @@ export default function MainDashboard() {
         </svg>
         Add another column
       </Btn>
+      <AddCard columnId={id} boardId={boardId} onAddCard={handleAddCard} />
 
       <Modal
         isOpen={isModalOpen}
