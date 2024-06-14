@@ -1,70 +1,41 @@
-// // src/components/LogoutButton.js
 // import React from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { logout } from '../redux/auth/authActions';
 
 // const LogoutButton = () => {
-//   const handleLogout = async () => {
-//     try {
-//       // Відправка запиту на сервер для виходу з системи
-//       await fetch('https://project-back-codewave1-rqmw.onrender.com/users/logout', {
-//         method: 'POST', 
-//       });
-//       // Перенаправлення користувача на WelcomePage 
-//       window.location.href = '/welcome';
-//     } catch (error) {
-//       console.error('Failed to logout:', error);
-//     }
+//   const dispatch = useDispatch();
+//   const { isLoggingOut, logoutError } = useSelector((state) => state.auth);
+
+//   const handleLogout = () => {
+//     dispatch(logout());
 //   };
 
 //   return (
-//     <div className="logout-button">
-//       <button onClick={handleLogout}>Logout</button>
+//     <div>
+//       <button onClick={handleLogout} disabled={isLoggingOut}>
+//         {isLoggingOut ? 'Logging out...' : 'Logout'}
+//       </button>
+//       {logoutError && <p>Error: {logoutError}</p>}
 //     </div>
 //   );
 // };
 
 // export default LogoutButton;
 
-
+// src/components/LogoutButton.jsx
 import React from 'react';
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { logOut } from '../../../redux/boards/operations';
 
 const LogoutButton = () => {
+  const dispatch = useDispatch();
+
   const handleLogout = async () => {
-    try {
-      await axios.post('https://project-back-codewave1-rqmw.onrender.com/users/logout');
-      window.location.href = '/welcome';
-    } catch (error) {
-      console.error('Failed to logout', error);
-    }
+    await dispatch(logOut());
+    window.location.href = '/welcome';
   };
 
-  return (
-    <button onClick={handleLogout}>Logout</button>
-  );
+  return <button onClick={handleLogout}>Logout</button>;
 };
 
 export default LogoutButton;
-
-
-// import React from 'react';
-// import axios from 'axios';
-// import Button from '@mui/material/Button';
-
-// const LogoutButton = () => {
-//   const handleLogout = async () => {
-//     try {
-//       await axios.post('https://project-back-codewave1-rqmw.onrender.com/users/logout');
-//       window.location.href = '/welcome';
-//     } catch (error) {
-//       console.error('Failed to logout', error);
-//     }
-//   };
-
-//   return (
-//     <Button variant="contained" color="secondary" onClick={handleLogout} sx={{ marginTop: 2 }}>
-//       Logout
-//     </Button>
-//   );
-// };
-
-// export default LogoutButton;
