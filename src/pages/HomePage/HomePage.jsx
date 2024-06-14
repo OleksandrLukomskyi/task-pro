@@ -33,3 +33,17 @@ export default function HomePage() {
 //     <Sidebar />
 //   </React.StrictMode>,
 // )
+
+// import React from 'react';
+// import Sidebar from '../../components/Sidebar/Components/Sidebar.jsx';
+
+// const HomePage = () => {
+//   return (
+//     <div className="home-page">
+//       <Sidebar />
+//       {/* Здесь вы можете добавить другие компоненты для главной страницы */}
+//     </div>
+//   );
+// };
+
+// export default HomePage;
