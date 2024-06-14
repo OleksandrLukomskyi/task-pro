@@ -31,7 +31,7 @@ import axios from 'axios';
 const LogoutButton = () => {
   const handleLogout = async () => {
     try {
-      await axios.post('/api/logout');
+      await axios.post('https://project-back-codewave1-rqmw.onrender.com/users/logout');
       window.location.href = '/welcome';
     } catch (error) {
       console.error('Failed to logout', error);
@@ -44,3 +44,27 @@ const LogoutButton = () => {
 };
 
 export default LogoutButton;
+
+
+// import React from 'react';
+// import axios from 'axios';
+// import Button from '@mui/material/Button';
+
+// const LogoutButton = () => {
+//   const handleLogout = async () => {
+//     try {
+//       await axios.post('https://project-back-codewave1-rqmw.onrender.com/users/logout');
+//       window.location.href = '/welcome';
+//     } catch (error) {
+//       console.error('Failed to logout', error);
+//     }
+//   };
+
+//   return (
+//     <Button variant="contained" color="secondary" onClick={handleLogout} sx={{ marginTop: 2 }}>
+//       Logout
+//     </Button>
+//   );
+// };
+
+// export default LogoutButton;
