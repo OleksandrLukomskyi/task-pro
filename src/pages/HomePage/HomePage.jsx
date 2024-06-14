@@ -1,5 +1,8 @@
+
+
 import CopySideBar from "../../components/CopySideBar/CopySideBar";
 import LogoutButton from "../../components/Sidebar/Components/LogoutButton.jsx";
+
 import { react } from "react";
 import css from "./HomePage.module.css";
 import { createColumn } from "../../redux/columns/operations";
@@ -7,10 +10,14 @@ import { useSelector, useDispatch } from "react-redux";
 import CopyBoardItem from "../../components/CopyBoardItem/CopyBoardItem";
 import TestLogOut from "../../components/TestLogOut/TestLogOut";
 
+
 export default function HomePage() {
   return (
     <div>
       <p>Hello on HomePagePage</p>
+
+    
+
       <TestLogOut />
 
       <div className={css.container}>
@@ -19,6 +26,7 @@ export default function HomePage() {
       </div>
 
       <LogoutButton />
+
     </div>
   );
 }

@@ -1,70 +1,140 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import BoardList from './Board/BoardList.jsx';
-import CreateNewBoardModal from './CreateNewBoard/CreateNewBoardModal.jsx';
-import CreateNewBoardButton from './CreateNewBoard/CreateNewBoardButton.jsx';
-import LogoutButton from './LogoutButton.jsx';
-import './Sidebar.css';
+// import LogoComponent from '../../logoComponent/LogoComponent.jsx'
+import BoardList from './Board/BoardList';
+import CreateNewBoardButton from './CreateNewBoard/CreateNewBoardButton';
+import CreateNewBoardModal from './CreateNewBoard/CreateNewBoardModal';
+import HelpModal from './HelpModal/HelpModal';
+import LogoutButton from './LogoutButton';
+import './HelpModal/HelpModal.jsx';
 
-
-function Sidebare() {
-  const [boards, setBoards] = useState([]);
+function Sidebare () {
+  const [boards, setBoards] = useState([]); // Ініціалізація як порожній масив
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
 
   useEffect(() => {
-    const fetchBoards = async () => {
-      try {
-        const response = await axios.get('https://project-back-codewave1-rqmw.onrender.com/api/boards');
+    // Fetch boards from the API
+    axios.get('https://project-back-codewave1-rqmw.onrender.com/api/boards')
+      .then(response => {
         setBoards(response.data);
-      } catch (error) {
-        console.error('Failed to fetch boards:', error);
-      }
-    };
-
-    fetchBoards();
+      })
+      .catch(error => {
+        console.error('Error fetching boards:', error);
+      });
   }, []);
 
-  const handleDeleteBoard = async (id) => {
-    try {
-      await axios.delete(`https://project-back-codewave1-rqmw.onrender.com/api/boards/${id}`);
-      setBoards(boards.filter((board) => board.id !== id));
-    } catch (error) {
-      console.error('Failed to delete the board:', error);
-    }
+  const handleDeleteBoard = (id) => {
+    // Implement delete board functionality
+    setBoards(boards.filter(board => board.id !== id));
   };
 
-  const handleEditBoard = async (id, updatedBoard) => {
-    try {
-      const response = await axios.put(`https://project-back-codewave1-rqmw.onrender.com/api/boards/${id}`, updatedBoard);
-      setBoards(boards.map((board) => (board.id === id ? response.data : board)));
-    } catch (error) {
-      console.error('Failed to update the board:', error);
-    }
+  const handleEditBoard = (id, updatedBoard) => {
+    // Implement edit board functionality
+    setBoards(boards.map(board => (board.id === id ? updatedBoard : board)));
   };
 
-  const handleCreateBoard = async (newBoard) => {
-    try {
-      const response = await axios.post('https://project-back-codewave1-rqmw.onrender.com/api/boards', newBoard);
-      setBoards([...boards, response.data]);
-      setIsModalOpen(false); // Закрываем модальное окно после успешного создания доски
-    } catch (error) {
-      console.error('Failed to create new board:', error);
-    }
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const openHelpModal = () => {
+    setIsHelpModalOpen(true);
+  };
+
+  const closeHelpModal = () => {
+    setIsHelpModalOpen(false);
   };
 
   return (
-    <>
-      <div>
-
-     
+    <div className='sidebar'>
+      {/* <LogoComponent/> */}
       <h1>Task Pro</h1>
-      <CreateNewBoardButton onCreate={() => setIsModalOpen(true)} />
+      <CreateNewBoardButton onOpen={openModal} />
       <BoardList boards={boards} onDelete={handleDeleteBoard} onEdit={handleEditBoard} />
-      {isModalOpen && <CreateNewBoardModal show={isModalOpen} onClose={() => setIsModalOpen(false)} onCreate={handleCreateBoard} />}
+      <CreateNewBoardModal show={isModalOpen} onClose={closeModal} />
+      <button onClick={openHelpModal}>Need Help</button>
+      <HelpModal show={isHelpModalOpen} onClose={closeHelpModal} />
       <LogoutButton />
-      </div>
-    </>
+    </div>
   );
 }
 
 export default Sidebare;
+
+
+// import { useState, useEffect } from 'react';
+// import axios from 'axios';
+// import BoardList from './Board/BoardList.jsx';
+// import CreateNewBoardButton from './CreateNewBoard/CreateNewBoardButton.jsx';
+// import CreateNewBoardModal from './CreateNewBoard/CreateNewBoardModal.jsx';
+// import HelpModal from './HelpModal/HelpModal.jsx';
+// import LogoutButton from './LogoutButton.jsx';
+// // import BoardsConsoleLogger from '../Components/Board/BoardsConsoleLoger.jsx'
+// import Box from '@mui/material/Box';
+// import Button from '@mui/material/Button';
+// import Typography from '@mui/material/Typography';
+
+// function Sidebar() {
+//   const [boards, setBoards] = useState([]);
+//   const [isModalOpen, setIsModalOpen] = useState(false);
+//   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+
+//   useEffect(() => {
+//     // Fetch boards from the API
+//     axios.get('https://project-back-codewave1-rqmw.onrender.com/api/boards')
+//       .then(response => {
+//         setBoards(response.data);
+//       })
+//       .catch(error => {
+//         console.error('Error fetching boards:', error);
+//       });
+//   }, []);
+
+//   const handleDeleteBoard = (id) => {
+//     setBoards(boards.filter(board => board.id !== id));
+//   };
+
+//   const handleEditBoard = (id, updatedBoard) => {
+//     setBoards(boards.map(board => (board.id === id ? updatedBoard : board)));
+//   };
+
+//   const openModal = () => {
+//     setIsModalOpen(true);
+//   };
+
+//   const closeModal = () => {
+//     setIsModalOpen(false);
+//   };
+
+//   const openHelpModal = () => {
+//     setIsHelpModalOpen(true);
+//   };
+
+//   const closeHelpModal = () => {
+//     setIsHelpModalOpen(false);
+//   };
+
+//   return (
+//     <Box className='sidebar' sx={{ padding: 2 }}>
+//       <Typography variant="h4" component="h1" gutterBottom>
+//         Task Pro
+//       </Typography>
+//       <CreateNewBoardButton onOpen={openModal} />
+//       <BoardList boards={boards} onDelete={handleDeleteBoard} onEdit={handleEditBoard} />
+//       <CreateNewBoardModal show={isModalOpen} onClose={closeModal} />
+//       <Button variant="contained" onClick={openHelpModal} sx={{ marginTop: 2 }}>
+//         Need Help
+//       </Button>
+//       <HelpModal show={isHelpModalOpen} onClose={closeHelpModal} />
+//       <LogoutButton />
+//       {/* <BoardsConsoleLogger/> */}
+//     </Box>
+//   );
+// }
+
+// export default Sidebar;
