@@ -4,53 +4,23 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* background-color: #ffffff; */
   gap: 14px;
 }
-.customBox .MuiBox-root {
-  color: #ffffff; /* Цвет текста */
-}
-
-/* инпуты */
-.customTextField .MuiInputBase-input {
-  color: #ffffff; /* Цвет текста */
-}
-
-.customTextField .MuiOutlinedInput-notchedOutline {
-  border-color: #ffffff; /* Цвет рамки */
-}
-
-.customTextField .MuiInputLabel-root {
-  color: #ffffff; /* Цвет лейбла */
-}
-/* активные инпуты */
-.customTextField
-  .MuiOutlinedInput-root.Mui-focused
-  .MuiOutlinedInput-notchedOutline {
-  border-color: var(--text-color-start-white) !important;
-}
-
-.customTextField .MuiInputLabel-root.Mui-focused {
-  color: var(--text-color-start-white) !important;
-}
-
-.customTextField .MuiInputBase-input.Mui-focused {
-  color: var(--text-color-start-white) !important;
-  opacity: 1;
-}
-
 /* кнопка  Register Now*/
 .customButton {
   margin-top: 10px !important;
   color: var(--text-color-start) !important;
   background-color: var(--btn-color) !important;
 }
-.customButton:hover {
-  background-color: blue !important;
+/* desktop 1440px + */
+@media screen and (min-width: 1440px) {
+  .customButton:hover,
+  .customButton:focus {
+    background-color: #9dc888 !important;
+  }
 }
 
-/* кольори для сторінок WelcomePage та AuthPage*/
-/*       
+/* кольори для сторінок WelcomePage та AuthPage    
       --background-start: linear-gradient(180deg, rgba(196, 196, 196, 0) 25%, #BEDBB0 92.19%);
       --text-color-start: #161616;
       --text-color-start-white: #FFFFFF;

@@ -17,36 +17,13 @@ import { selectLoading, selectError } from "../../redux/auth/selectors";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import css from "./RegisterForm.module.css";
-// import ErrorBoundary from "..//ErrorBoundary.jsx";
+import inputFormTheme from "../../theme/inputFormTheme";
 
 const schema = yup.object().shape({
   userName: yup.string().min(2).max(32).required(),
   email: yup.string().email().required(),
   password: yup.string().min(8).max(64).required(),
 });
-
-const inputsThemeRegForm = {
-  "& .MuiOutlinedInput-notchedOutline": {
-    borderColor: "var(--text-color-start-white)",
-    opacity: 0.3,
-  },
-  "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-    borderColor: "var(--text-color-start-white)",
-    opacity: 1,
-  },
-  "& .MuiInputLabel-outlined.Mui-focused": {
-    borderColor: "var(--text-color-start-white)",
-    opacity: 1,
-  },
-
-  "& .MuiInputLabel-root": {
-    color: "var(--text-color-start-white)",
-    opacity: 0.3,
-  },
-  "& .MuiInputBase-input": {
-    color: "var(--text-color-start-white)",
-  },
-};
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -56,7 +33,7 @@ export const RegisterForm = () => {
 
   // об'єкт конфігурації параметрів хука useForm
   const {
-    register: registerField, // Перейменовання функції реєстрації полів форми - register, щоб уникнути конфлікту імен з операцією
+    register: registerField, // rename функції реєстрації полів форми - register, щоб уникнути конфлікту імен з операцією register
     // Функція - обробляє подання форми, приймає два аргументи: onSubmit (функцію, яка буде викликана після валідації форми) і actions (додаткові дії з формою).
     handleSubmit,
     formState: { errors }, //  Витягує об'єкт errors зі стану форми, який містить всі помилки валідації форми.
@@ -75,11 +52,11 @@ export const RegisterForm = () => {
     dispatch(register(data))
       .then((result) => {
         if (register.fulfilled.match(result)) {
-          reset(); // скидаємо форму if fulfilled
+          reset(); // скидаємо форму
         }
       })
       .catch((error) => {
-        console.log("Registration failed:", error.message);
+        console.error("Registration failed:", error.message);
       });
   };
 
@@ -94,24 +71,22 @@ export const RegisterForm = () => {
         {...registerField("userName")}
         label="Enter your name"
         variant="outlined"
-        // margin="normal"
         fullWidth
         error={!!errors.name}
         helperText={errors.name?.message}
         autoComplete="username"
-        sx={inputsThemeRegForm}
+        sx={inputFormTheme}
       />
       <TextField
         className={css.customTextField}
         {...registerField("email")}
         label="Enter your email"
         variant="outlined"
-        // margin="normal"
         fullWidth
         error={!!errors.email}
         helperText={errors.email?.message}
         autoComplete="email"
-        sx={inputsThemeRegForm}
+        sx={inputFormTheme}
       />
       <TextField
         className={css.customTextField}
@@ -119,20 +94,18 @@ export const RegisterForm = () => {
         label="Create a password"
         type={showPassword ? "text" : "password"}
         variant="outlined"
-        marginBottom={24}
         fullWidth
         error={!!errors.password}
         helperText={errors.password?.message}
         autoComplete="current-password"
-        sx={inputsThemeRegForm}
+        sx={inputFormTheme}
         InputProps={{
-          style: { color: "var(--text-color-start-white)" },
           endAdornment: (
             <InputAdornment position="end">
               <IconButton
                 onClick={handleClickShowPassword}
                 edge="end"
-                style={{ color: "var(--text-color-start-white)", opacity: 0.3 }}
+                style={{ color: "var(--text-color-start-white)", opacity: 0.4 }}
               >
                 {showPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>
@@ -149,7 +122,6 @@ export const RegisterForm = () => {
         className={css.customButton}
         type="submit"
         variant="contained"
-        color="primary"
         style={{ textTransform: "capitalize" }}
         disabled={loading}
         fullWidth
