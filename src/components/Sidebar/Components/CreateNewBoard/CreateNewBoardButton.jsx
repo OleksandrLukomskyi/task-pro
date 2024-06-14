@@ -95,7 +95,7 @@ const CreateNewBoardButton = () => {
     <div>
       {/* Кнопка для открытия модального окна */}
       <button onClick={openModal}>
-        Create New Board
+        + Create New Board
       </button>
       {/* Модальное окно */}
       <CreateNewBoardModal show={isModalOpen} onClose={closeModal} />

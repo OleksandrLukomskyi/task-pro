@@ -259,6 +259,72 @@
 // export default Sidebar;
 
 
+// import React, { useEffect, useState } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { fetchBoards, deleteBoard, editBoard } from '../../../redux/boards/operations';
+// import BoardList from './Board/BoardList';
+// import CreateNewBoardButton from './CreateNewBoard/CreateNewBoardButton';
+// import CreateNewBoardModal from './CreateNewBoard/CreateNewBoardModal';
+// import HelpModal from './HelpModal/HelpModal';
+// import LogoutButton from './LogoutButton';
+
+// function Sidebar() {
+//   const dispatch = useDispatch();
+//   const boards = useSelector((state) => state.boards.items);
+//   const isLoading = useSelector((state) => state.boards.loading);
+//   const error = useSelector((state) => state.boards.error);
+//   const [isModalOpen, setIsModalOpen] = useState(false);
+//   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+
+//   useEffect(() => {
+//     dispatch(fetchBoards());
+//   }, [dispatch]);
+
+//   const handleDeleteBoard = (id) => {
+//     dispatch(deleteBoard(id));
+//   };
+
+//   const handleEditBoard = (id, updatedBoard) => {
+//     dispatch(editBoard({ id, ...updatedBoard }));
+//   };
+
+//   const openModal = () => {
+//     setIsModalOpen(true);
+//   };
+
+//   const closeModal = () => {
+//     setIsModalOpen(false);
+//   };
+
+//   const openHelpModal = () => {
+//     setIsHelpModalOpen(true);
+//   };
+
+//   const closeHelpModal = () => {
+//     setIsHelpModalOpen(false);
+//   };
+
+//   return (
+//     <div className="sidebar">
+//       <h1>Task Pro</h1>
+//       <CreateNewBoardButton onOpen={openModal} />
+//       {isLoading ? (
+//         <p>Loading...</p>
+//       ) : error ? (
+//         <p>Error fetching boards</p>
+//       ) : (
+//         <BoardList boards={boards} onDelete={handleDeleteBoard} onEdit={handleEditBoard} />
+//       )}
+//       <CreateNewBoardModal show={isModalOpen} onClose={closeModal} />
+//       <button onClick={openHelpModal}>Need Help</button>
+//       <HelpModal show={isHelpModalOpen} onClose={closeHelpModal} />
+//       <LogoutButton />
+//     </div>
+//   );
+// }
+
+// export default Sidebar;
+
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBoards, deleteBoard, editBoard } from '../../../redux/boards/operations';
@@ -267,6 +333,7 @@ import CreateNewBoardButton from './CreateNewBoard/CreateNewBoardButton';
 import CreateNewBoardModal from './CreateNewBoard/CreateNewBoardModal';
 import HelpModal from './HelpModal/HelpModal';
 import LogoutButton from './LogoutButton';
+import Btn from '../../Btn/Btn.jsx'; // Импортируем компонент Btn
 
 function Sidebar() {
   const dispatch = useDispatch();
@@ -285,7 +352,7 @@ function Sidebar() {
   };
 
   const handleEditBoard = (id, updatedBoard) => {
-    dispatch(editBoard({ id, ...updatedBoard }));
+    dispatch(editBoard({ id, updatedBoard }));
   };
 
   const openModal = () => {
@@ -316,7 +383,7 @@ function Sidebar() {
         <BoardList boards={boards} onDelete={handleDeleteBoard} onEdit={handleEditBoard} />
       )}
       <CreateNewBoardModal show={isModalOpen} onClose={closeModal} />
-      <button onClick={openHelpModal}>Need Help</button>
+      <Btn onClick={openHelpModal}>Need Help</Btn>
       <HelpModal show={isHelpModalOpen} onClose={closeHelpModal} />
       <LogoutButton />
     </div>
@@ -324,4 +391,3 @@ function Sidebar() {
 }
 
 export default Sidebar;
-
