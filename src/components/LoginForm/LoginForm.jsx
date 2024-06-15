@@ -29,10 +29,11 @@ const LoginForm = () => {
   const loading = useSelector(selectLoading);
   const ifError = useSelector(selectError);
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   // об'єкт конфігурації параметрів хука useForm
   const {
-    register,
+    register: registerField,
     handleSubmit,
     formState: { errors },
     reset,
@@ -48,11 +49,14 @@ const LoginForm = () => {
     // Виконання запиту для login
     dispatch(logIn(data))
       .then((result) => {
-        if (register.fulfilled.match(result)) {
+        if (logIn.fulfilled.match(result)) {
           reset(); // скидаємо форму
+        } else if (logIn.rejected.match(result)) {
+          setErrorMessage(result.payload.message || "Login failed");
         }
       })
       .catch((error) => {
+        setErrorMessage(error.message);
         console.error("Login failed:", error.message);
       });
   };
@@ -65,7 +69,7 @@ const LoginForm = () => {
     >
       <TextField
         className={css.customTextField}
-        {...register("email")}
+        {...registerField("email")}
         label="Enter your email"
         variant="outlined"
         fullWidth
@@ -76,7 +80,7 @@ const LoginForm = () => {
       />
       <TextField
         className={css.customTextField}
-        {...register("password")}
+        {...registerField("password")}
         label="Confirm a password"
         type={showPassword ? "text" : "password"}
         variant="outlined"
@@ -101,7 +105,7 @@ const LoginForm = () => {
       />
       {ifError && (
         <Typography color="error" variant="body2" marginTop="normal">
-          {"Invalid email or password"}
+          {"Invalid email or password: " + errorMessage}
         </Typography>
       )}
       <Button
