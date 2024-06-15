@@ -19,7 +19,7 @@ const cardSlice = createSlice({
         state.loading = false;
         state.items.push(action.payload);
       })
-      .addCase(addCard, rejected, (state) => {
+      .addCase(addCard.rejected, (state) => {
         state.loading = false;
         state.error = true;
       })
@@ -71,3 +71,4 @@ const cardSlice = createSlice({
 });
 
 export const cardReducer = cardSlice.reducer;
+export { addCard, editCard, deleteCard };
