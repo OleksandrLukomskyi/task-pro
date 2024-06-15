@@ -30,6 +30,7 @@ export const RegisterForm = () => {
   const loading = useSelector(selectLoading);
   const ifError = useSelector(selectError);
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   // об'єкт конфігурації параметрів хука useForm
   const {
@@ -53,9 +54,12 @@ export const RegisterForm = () => {
       .then((result) => {
         if (register.fulfilled.match(result)) {
           reset(); // скидаємо форму
+        } else if (register.rejected.match(result)) {
+          setErrorMessage(result.payload.message || "Registration failed");
         }
       })
       .catch((error) => {
+        setErrorMessage(error.message);
         console.error("Registration failed:", error.message);
       });
   };
@@ -114,8 +118,8 @@ export const RegisterForm = () => {
         }}
       />
       {ifError && (
-        <Typography color="error" variant="body2" marginTop="normal">
-          {"Email in use"}
+        <Typography color="error" variant="body2">
+          {errorMessage}
         </Typography>
       )}
       <Button

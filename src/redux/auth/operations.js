@@ -27,10 +27,11 @@ export const register = createAsyncThunk(
 
       return response.data;
     } catch (error) {
+      const errorMessage = error.response?.data || error.message;
       if (error.response.status === 409) {
         alert("Email in use");
       }
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue({ message: errorMessage });
     }
   }
 );
@@ -43,7 +44,8 @@ export const logIn = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      const errorMessage = error.response?.data || error.message;
+      return thunkAPI.rejectWithValue({ message: errorMessage });
     }
   }
 );
