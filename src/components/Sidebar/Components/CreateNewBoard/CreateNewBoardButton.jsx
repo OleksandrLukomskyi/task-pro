@@ -75,7 +75,7 @@
 // export default CreateNewBoardButton;
 
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import CreateNewBoardModal from './CreateNewBoardModal'; // Импорт модального окна
 
 const CreateNewBoardButton = () => {
@@ -95,7 +95,7 @@ const CreateNewBoardButton = () => {
     <div>
       {/* Кнопка для открытия модального окна */}
       <button onClick={openModal}>
-        Create New Board
+        + Create New Board
       </button>
       {/* Модальное окно */}
       <CreateNewBoardModal show={isModalOpen} onClose={closeModal} />
