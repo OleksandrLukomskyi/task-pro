@@ -12,7 +12,7 @@
 
 
       /* кольори для сторінок WelcomePage та AuthPage*/
-      --background-start: linear-gradient(180deg, rgba(196, 196, 196, 0) 25%, #BEDBB0 92.19%);
+      --background: linear-gradient(180deg, rgba(196, 196, 196, 0) 25%, #BEDBB0 92.19%);
       --text-color-start: #161616;
       --text-color-start-white: #FFFFFF;
       --btn-color: #BEDBB0;
@@ -116,4 +116,5 @@ img {
 
 body {
   background: var(--background);
+  height: 100vh;
 }
