@@ -1,11 +1,14 @@
 .columnItem {
   background-color: blue;
-  width: 400px;
+  width: 200px;
   border: 1px solid #000;
   border-radius: 4px;
 }
 
 .columnList {
+  padding: 10px;
   display: flex;
   column-gap: 20px;
+  flex-wrap: wrap;
+  font-size: 10px;
 }

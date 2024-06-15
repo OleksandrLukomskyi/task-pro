@@ -72,11 +72,12 @@ const boardSlice = createSlice({
         state.error = false;
       })
       .addCase(editBoard.fulfilled, (state, action) => {
+        console.log(action.payload.board);
         const boardIndex = state.items.findIndex(
           (item) => item.id === action.payload.id
         );
         // -1 ??????????? -------------------------------------------------
-        state.items[boardIndex] = action.payload;
+        state.items[boardIndex] = action.payload.board;
       })
       .addCase(editBoard.rejected, (state) => {
         state.loading = false;

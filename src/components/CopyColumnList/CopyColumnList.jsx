@@ -15,7 +15,11 @@ export default function CopyColumnList() {
         {columns.map((item) => {
           return (
             <li className={css.columnItem} key={item._id}>
-              <CopyColumnItem id={item._id} boardId={item.board} />
+              <CopyColumnItem
+                id={item._id}
+                boardId={item.board}
+                title={item.title}
+              />
             </li>
           );
         })}

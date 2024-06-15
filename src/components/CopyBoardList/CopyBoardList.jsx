@@ -1,12 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
 import css from "./CopyBoardList.module.css";
 import { selectBoard } from "../../redux/boards/selectors";
+import { getBoard } from "../../redux/boards/operations";
 
 export default function BoardList({ handleRender }) {
   const boards = useSelector(selectBoard);
-
-  // console.log(boards);
-  console.log(boards);
+  const dispatch = useDispatch();
 
   return (
     <div className={css.container}>

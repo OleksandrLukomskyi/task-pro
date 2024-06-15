@@ -1,15 +1,16 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Field, Form, Formik } from "formik";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import css from "./CopySideBar.module.css";
 import CopyBoardList from "../../components/CopyBoardList/CopyBoardList";
 import { fetchBoards } from "../../redux/boards/operations";
-import { getBoard } from "../../redux/boards/operations";
+import { getBoard, deleteBoard } from "../../redux/boards/operations";
 import { createColumn } from "../../redux/columns/operations";
 import CopyAddBoard from "../../components/CopyAddBoard/CopyAddBoard";
 
 export default function CopySideBar() {
   const dispatch = useDispatch();
+  let [oneBoardId, setoneBoardId] = useState("");
 
   useEffect(() => {
     dispatch(fetchBoards());
@@ -19,9 +20,12 @@ export default function CopySideBar() {
   let idBoard = "";
   const handleRender = (title, boardId) => {
     console.log(`boardId ${title}: ${boardId}`);
+    // return { boardtitle: title, boardsId: boardId };
     idBoard = boardId;
-    // dispatch(createColumn());
+    setoneBoardId((oneBoardId = idBoard));
   };
+
+  console.log(oneBoardId);
 
   const handleColumnSubmit = (evt) => {
     evt.preventDefault();
@@ -36,11 +40,23 @@ export default function CopySideBar() {
     form.reset();
   };
 
+  const handleDeleteBoard = () => {
+    dispatch(deleteBoard(oneBoardId));
+  };
+
   return (
     <div className={css.container}>
-      <CopyAddBoard />
+      <CopyAddBoard editBoardId={oneBoardId} />
       {"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"}
       <CopyBoardList handleRender={handleRender} />
+      {"##################"}
+
+      <div>
+        <button type="button" onClick={handleDeleteBoard}>
+          DELETE BOARD
+        </button>
+      </div>
+
       {"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"}
       <div>
         {"Перед створенням колонки оберіть Board (test-2) вище"}
