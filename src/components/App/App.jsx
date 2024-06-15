@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { refreshUser } from "../../redux/auth/operations";
 import { selectIsRefreshing } from "../../redux/auth/selectors";
 // --------------------------------------------------------------
-import TestLogOut from "../TestLogOut/TestLogOut.jsx";
+
 
 import { PrivateRoute } from "../PrivateRoute.jsx";
 import { RestrictedRoute } from "../RestrictedRoute.jsx";
@@ -36,7 +36,7 @@ export default function App() {
   return isRefreshing ? (
     <div>
       <p>Please wait</p>
-      <TestLogOut />
+    
     </div>
   ) : (
     <Layout>
