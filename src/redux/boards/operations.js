@@ -19,7 +19,7 @@ export const getBoard = createAsyncThunk(
   async (boardId, thunkAPI) => {
     try {
       const response = await axios.get(`/api/boards/${boardId}`);
-      return response.data;
+      return response.data.boards;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
