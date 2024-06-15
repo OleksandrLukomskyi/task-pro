@@ -1,4 +1,6 @@
-export const selectColumns = (state) => state.columns.items;
+
+
+export const selectColumnsData = (state) => state.columns.items;
 
 export const selectLoading = (state) => state.columns.loading;
 

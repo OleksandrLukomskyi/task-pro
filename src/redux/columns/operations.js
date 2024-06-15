@@ -1,64 +1,93 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+// --------------------------------------------------------
 export const fetchColumns = createAsyncThunk(
   "columns/fetchAll",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("/api/columns/");
+      const response = await axios.get("https://project-back-codewave1-rqmw.onrender.com/api/columns/");
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue({
+        message: error.message,
+        code: error.code,
+      });
     }
   }
 );
 
-// --------------------------------------------------------
+// ---------------------------------------------------------
 export const getColumn = createAsyncThunk(
   "columns/getColumn",
   async (columnId, thunkAPI) => {
     try {
-      const response = await axios.get(`/api/columns/${columnId}`);
+      const response = await axios.get(`https://project-back-codewave1-rqmw.onrender.com/api/columns/${columnId}`);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue({
+        message: error.message,
+        code: error.code,
+      });
     }
   }
 );
-// ---------------------------------------------------------
 
+// ---------------------------------------------------------
 export const createColumn = createAsyncThunk(
   "columns/createColumn",
   async (newColumn, thunkAPI) => {
+    const token = thunkAPI.getState().auth.token;
+    console.log("Token being sent:", token); 
     try {
-      const response = await axios.post("/api/columns/", newColumn);
+      const response = await axios.post("https://project-back-codewave1-rqmw.onrender.com/api/columns/", newColumn, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue({
+        message: error.message,
+        code: error.code,
+      });
     }
   }
 );
 
+// ---------------------------------------------------------
 export const deleteColumn = createAsyncThunk(
   "columns/deleteColumn",
   async (columnId, thunkAPI) => {
+    const token = thunkAPI.getState().auth.token;
     try {
-      const response = await axios.delete(`/api/columns/${columnId}`);
+      const response = await axios.delete(`https://project-back-codewave1-rqmw.onrender.com/api/columns/${columnId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue({
+        message: error.message,
+        code: error.code,
+      });
     }
   }
 );
 
+// ---------------------------------------------------------
 export const editColumn = createAsyncThunk(
   "columns/updateColumn",
   async ({ columnId, editColumn }, thunkAPI) => {
     try {
-      const response = await axios.put(`/api/columns/${columnId}`, editColumn);
+      const response = await axios.put(`https://project-back-codewave1-rqmw.onrender.com/api/columns/${columnId}`, editColumn);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue({
+        message: error.message,
+        code: error.code,
+      });
     }
   }
 );

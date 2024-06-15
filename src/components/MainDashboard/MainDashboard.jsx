@@ -1,78 +1,94 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { createColumn, deleteColumn, editColumn } from "../../redux/columns/slice";
-import Btn from "../Btn/Btn";
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { createColumn, fetchColumns } from '../../redux/columns/slice';
 import Modal from 'react-modal';
-import Column from "../Column/Column";
-import css from "./MainDashboard.module.css"
+import Column from '../Column/Column';
+import css from './MainDashboard.module.css';
+import { selectColumnsData, selectLoading, selectError } from "../../redux/columns/selectors";
+import toast, { Toaster } from 'react-hot-toast';
 
 
 Modal.setAppElement('#root');
 
-export default function MainDashboard()  {
-
+export default function MainDashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newColumnTitle, setNewColumnTitle] = useState('');
   const dispatch = useDispatch();
-  const columns = useSelector(state => state.columns.items);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
+  const currentBoardId = '666b2baa72f2dcf6bb1959d1';
+  const columnsData = useSelector(selectColumnsData);
+ 
 
+  
+  useEffect(() => {
+    
+   dispatch(fetchColumns());
+
+  }, [dispatch]);
+
+ 
 
   const handleAddColumn = () => {
-    if(newColumnTitle.trim()) {
-        dispatch(createColumn({ title: newColumnTitle }));
-        setNewColumnTitle("");
+    if (newColumnTitle.trim() && currentBoardId) {
+      dispatch(createColumn({ title: newColumnTitle, boardId: currentBoardId }))
+        .then(() => {
+          toast.success('Column created successfully!');
+        })
+        .catch(() => {
+          toast.error('Failed to create column. Please try again.');
+        });
+        setNewColumnTitle('');
         setIsModalOpen(false);
+    } else {
+      console.log('Board ID is missing or invalid');
     }
   };
 
-  const handleDeleteColumn = (_id) => {
-     dispatch(deleteColumn(_id))
-  };
-
-  const handleEditColumn = (_id, title) => {
-    dispatch(editColumn({_id, title}))
-  };
- 
-    return (
-        <div>
-
-            {columns.map((column => (
+  
+  return (
+    <div className={css.mainDashboard}>
+      {loading && <p>Loading...</p>}
+      <Toaster/>
+      {error && <p>Error loading columns: {error.message}</p>}
+      <ul>
+        {columnsData.map((column, index) => (
+          <li key={index}>
             <Column
-            key={column.id}
-            column={column}
-            onDelete={handleDeleteColumn}
-            onEdit={handleEditColumn}
+              column={column}
             />
-            )))}
+          </li>
+        ))}
+      </ul>
+      
+      <button onClick={() => setIsModalOpen(true)}> <svg className={css.icon_plus}>
+          <use xlinkHref="#icon-plus" />
+        </svg> Add another column  </button>
 
-            <Btn onClick={() => setIsModalOpen(true)}> <svg className={css.icon_plus}>
-            <use xlinkHref="#icon-plus" />
-              </svg> Add another column </Btn>
-
-            <Modal
-            isOpen={isModalOpen}
-            onRequestClose={() => setIsModalOpen(false)}
-            contentLabel="Add Column"
-            >
-                <h2>Add Column</h2>
-                <form
-                onSubmit={(e) => {
-                    e.preventDefault();
-                    handleAddColumn();
-                }}>
-
-                <input
-                type="text"
-                value={newColumnTitle}
-                onChange={(e) => {
-                    setNewColumnTitle(e.target.value)
-                }}
-                placeholder="Column title"
-                />
-               <button type="submit">Add</button>
-                </form>
-                <button onClick={() => setIsModalOpen(false)}>Close</button>
-            </Modal>
-        </div>
-    )
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+        contentLabel="Add Column"
+      >
+        <h2>Add Column</h2>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleAddColumn();
+          }}
+        >
+          <input
+            type="text"
+            value={newColumnTitle}
+            onChange={(e) => setNewColumnTitle(e.target.value)}
+            placeholder="Column title"
+          />
+          <button type="submit">Add</button>
+        </form>
+        <button onClick={() => setIsModalOpen(false)}>Close</button>
+      </Modal>
+    </div>
+  );
 }
+
+
