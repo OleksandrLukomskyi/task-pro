@@ -6,7 +6,7 @@ export default function AddCard({ columnId, boardId, onAddCard }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [cardTitle, setCardTitle] = useState("");
   const [cardDescription, setCardDescription] = useState("");
-  const [cardPriority, setCardPriority] = useState("low");
+  const [cardPriority, setCardPriority] = useState("Low");
   const [cardDeadline, setCardDeadline] = useState("");
 
   const handleAddCard = () => {
@@ -21,7 +21,7 @@ export default function AddCard({ columnId, boardId, onAddCard }) {
       });
       setCardTitle("");
       setCardDescription("");
-      setCardPriority("low");
+      setCardPriority(" Low");
       setCardDeadline("");
       setIsModalOpen(false);
     } else {
@@ -64,9 +64,9 @@ export default function AddCard({ columnId, boardId, onAddCard }) {
               onChange={(e) => setCardPriority(e.target.value)}
               required
             >
-              <option value="low">Low</option>
-              <option value="medium">Medium</option>
-              <option value="high">High</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
             </select>
           </label>
           <label>

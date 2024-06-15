@@ -19,8 +19,8 @@ export default function MainDashboard() {
   const [newColumnTitle, setNewColumnTitle] = useState("");
   const dispatch = useDispatch();
   const columns = useSelector((state) => state.columns.items);
-  const boardId = useSelector((state) => state.bordId.id);
-  const id = "666b2cec72f2dcf6bb1959e8";
+  const currentBoardId = "666daa29d58498a7b239faa4";
+  const columnId = "666daa46d58498a7b239faa7";
 
   const handleAddColumn = () => {
     if (newColumnTitle.trim()) {
@@ -60,7 +60,11 @@ export default function MainDashboard() {
         </svg>
         Add another column
       </Btn>
-      <AddCard columnId={id} boardId={boardId} onAddCard={handleAddCard} />
+      <AddCard
+        columnId={columnId}
+        boardId={currentBoardId}
+        onAddCard={handleAddCard}
+      />
 
       <Modal
         isOpen={isModalOpen}
