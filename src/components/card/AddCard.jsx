@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Modal from "react-modal";
 import css from "./AddCard.module.css";
-
 export default function AddCard({ columnId, boardId, onAddCard }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [cardTitle, setCardTitle] = useState("");
@@ -21,7 +20,7 @@ export default function AddCard({ columnId, boardId, onAddCard }) {
       });
       setCardTitle("");
       setCardDescription("");
-      setCardPriority(" Low");
+      setCardPriority("Low");
       setCardDeadline("");
       setIsModalOpen(false);
     } else {
@@ -59,15 +58,52 @@ export default function AddCard({ columnId, boardId, onAddCard }) {
           />
           <label>
             Priority:
-            <select
-              value={cardPriority}
-              onChange={(e) => setCardPriority(e.target.value)}
-              required
-            >
-              <option value="Low">Low</option>
-              <option value="Medium">Medium</option>
-              <option value="High">High</option>
-            </select>
+            <div>
+              <label>
+                <input
+                  type="radio"
+                  value="Low"
+                  checked={cardPriority === "Low"}
+                  onChange={(e) => setCardPriority(e.target.value)}
+                />
+                <span className={css.radioLabel} style={{ color: "#E09CB5" }}>
+                  Low
+                </span>
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="Medium"
+                  checked={cardPriority === "Medium"}
+                  onChange={(e) => setCardPriority(e.target.value)}
+                />
+                <span className={css.radioLabel} style={{ color: "#BEDBB0" }}>
+                  Medium
+                </span>
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="High"
+                  checked={cardPriority === "High"}
+                  onChange={(e) => setCardPriority(e.target.value)}
+                />
+                <span className={css.radioLabel} style={{ color: "#8FA1D0" }}>
+                  High
+                </span>
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="Critical"
+                  checked={cardPriority === "Critical"}
+                  onChange={(e) => setCardPriority(e.target.value)}
+                />
+                <span className={css.radioLabel} style={{ color: "#000000" }}>
+                  Critical
+                </span>
+              </label>
+            </div>
           </label>
           <label>
             Deadline:
