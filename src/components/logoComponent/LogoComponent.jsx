@@ -1,5 +1,6 @@
 import React from 'react';
-import { ReactComponent as Logo } from '../../assets/logo.svg'; 
+import { ReactComponent as Logo } from '../../assets/icons/logo.png';
+import styles from './LogoComponent.module.css'; // Подключаем стили, если необходимо
 
 const LogoComponent = () => (
   <div className={styles.logoContainer}>
@@ -9,3 +10,4 @@ const LogoComponent = () => (
 );
 
 export default LogoComponent;
+

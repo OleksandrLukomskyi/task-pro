@@ -42,16 +42,30 @@ export default function App() {
     <Layout>
       <Suspense fallback={"LOADING"}>
         <Routes>
-          <Route path="/" element={<Navigate to="/welcome" />} />
-          <Route path="/welcome" element={<WelcomePage />} />
+          <Route
+            path="/welcome"
+            element={
+              <RestrictedRoute component={<WelcomePage />}></RestrictedRoute>
+            }
+          />
           <Route
             path="/auth/:id"
             element={
               <RestrictedRoute component={<AuthPage />}></RestrictedRoute>
             }
           >
-            <Route path="login" element={<LoginForm />} />
-            <Route path="register" element={<RegisterForm />} />
+            <Route
+              path="login"
+              element={
+                <RestrictedRoute component={<LoginForm />}></RestrictedRoute>
+              }
+            />
+            <Route
+              path="register"
+              element={
+                <RestrictedRoute component={<RegisterForm />}></RestrictedRoute>
+              }
+            />
           </Route>
           <Route
             path="/home"

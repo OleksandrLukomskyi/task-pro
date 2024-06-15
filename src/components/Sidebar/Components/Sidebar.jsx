@@ -1,70 +1,64 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import BoardList from './Board/BoardList.jsx';
-import CreateNewBoardModal from './CreateNewBoard/CreateNewBoardModal.jsx';
-import CreateNewBoardButton from './CreateNewBoard/CreateNewBoardButton.jsx';
-import LogoutButton from './LogoutButton.jsx';
-import './Sidebar.css';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBoards } from '../../../redux/boards/operations';
+import BoardList from './Board/BoardList';
+import CreateNewBoardButton from './CreateNewBoard/CreateNewBoardButton';
+import CreateNewBoardModal from './CreateNewBoard/CreateNewBoardModal';
+import HelpModal from './HelpModal/HelpModal';
+import LogoutButton from './LogoutButton';
 
-
-function Sidebare() {
-  const [boards, setBoards] = useState([]);
+const Sidebar = () => {
+  const dispatch = useDispatch();
+  const boards = useSelector((state) => state.boards.items);
+  const isLoading = useSelector((state) => state.boards.loading);
+  const error = useSelector((state) => state.boards.error);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
 
   useEffect(() => {
-    const fetchBoards = async () => {
-      try {
-        const response = await axios.get('https://project-back-codewave1-rqmw.onrender.com/api/boards');
-        setBoards(response.data);
-      } catch (error) {
-        console.error('Failed to fetch boards:', error);
-      }
-    };
+    dispatch(fetchBoards());
+  }, [dispatch]);
 
-    fetchBoards();
-  }, []);
-
-  const handleDeleteBoard = async (id) => {
-    try {
-      await axios.delete(`https://project-back-codewave1-rqmw.onrender.com/api/boards/${id}`);
-      setBoards(boards.filter((board) => board.id !== id));
-    } catch (error) {
-      console.error('Failed to delete the board:', error);
+  // UseEffect to update boards list after a new board is created
+  useEffect(() => {
+    if (!isModalOpen) {
+      dispatch(fetchBoards());
     }
+  }, [isModalOpen, dispatch]);
+
+  const openModal = () => {
+    setIsModalOpen(true);
   };
 
-  const handleEditBoard = async (id, updatedBoard) => {
-    try {
-      const response = await axios.put(`https://project-back-codewave1-rqmw.onrender.com/api/boards/${id}`, updatedBoard);
-      setBoards(boards.map((board) => (board.id === id ? response.data : board)));
-    } catch (error) {
-      console.error('Failed to update the board:', error);
-    }
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
-  const handleCreateBoard = async (newBoard) => {
-    try {
-      const response = await axios.post('https://project-back-codewave1-rqmw.onrender.com/api/boards', newBoard);
-      setBoards([...boards, response.data]);
-      setIsModalOpen(false); // Закрываем модальное окно после успешного создания доски
-    } catch (error) {
-      console.error('Failed to create new board:', error);
-    }
+  const openHelpModal = () => {
+    setIsHelpModalOpen(true);
+  };
+
+  const closeHelpModal = () => {
+    setIsHelpModalOpen(false);
   };
 
   return (
-    <>
-      <div>
-
-     
+    <div className="sidebar">
       <h1>Task Pro</h1>
-      <CreateNewBoardButton onCreate={() => setIsModalOpen(true)} />
-      <BoardList boards={boards} onDelete={handleDeleteBoard} onEdit={handleEditBoard} />
-      {isModalOpen && <CreateNewBoardModal show={isModalOpen} onClose={() => setIsModalOpen(false)} onCreate={handleCreateBoard} />}
+      <CreateNewBoardButton onOpen={openModal} />
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p>Error fetching boards</p>
+      ) : (
+        <BoardList boards={boards} />
+      )}
+      <CreateNewBoardModal show={isModalOpen} onClose={closeModal} />
+      <button onClick={openHelpModal}>Need Help</button>
+      <HelpModal show={isHelpModalOpen} onClose={closeHelpModal} />
       <LogoutButton />
-      </div>
-    </>
+    </div>
   );
-}
+};
 
-export default Sidebare;
+export default Sidebar;

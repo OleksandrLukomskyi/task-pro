@@ -1,22 +1,31 @@
 import { react } from "react";
+// import CopySideBar from "../../components/CopySideBar/CopySideBar";
+import LogoutButton from "../../components/Sidebar/Components/LogoutButton.jsx";
+// import CopyBoardItem from "../../components/CopyBoardItem/CopyBoardItem.jsx";
+import Sidebar  from '../../components/Sidebar/Components/Sidebar.jsx';
 
 export default function HomePage() {
+  return (
+    <div>
+      <p>Hello on HomePagePage</p>
 
-    return (
+      {/* <TestLogOut /> */}
 
-        <div>
+      {/* <div className={css.container}> */}
+        {/* <CopySideBar /> */}
+        {/* <CopyBoardItem /> */}
+      {/* </div> */}
 
-           <p>Hello on HomePagePage</p> 
+      <LogoutButton />
 
-        </div>
-              
-      
-    )
+       {/* <Sidebar/> */}
+    </div>
+  );
 }
 
 // import React from 'react'
 // import ReactDOM from 'react-dom/client'
-// import Sidebar from './Components/Sidebar.jsx'
+// import Sidebar from '../../components/Sidebar/Components/Sidebar.jsx'
 // import './index.css'
 
 // ReactDOM.createRoot(document.getElementById('root')).render(
@@ -25,3 +34,16 @@ export default function HomePage() {
 //   </React.StrictMode>,
 // )
 
+// import React from 'react';
+// import Sidebar from '../../components/Sidebar/Components/Sidebar.jsx';
+
+// const HomePage = () => {
+//   return (
+//     <div className="home-page">
+//       <Sidebar />
+//       {/* Здесь вы можете добавить другие компоненты для главной страницы */}
+//     </div>
+//   );
+// };
+
+// export default HomePage;
