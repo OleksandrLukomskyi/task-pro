@@ -31,6 +31,7 @@
   --text-input-color-active: #FFFFFF;
   --color-icons-no-active: #FFFFFF80;
   --color-icons-active: #FFFFFF;
+  --btnAddColum: #FFFFFF;
 
   --color-plus-no-active: #BEDBB0;
   --color-plus-active: #9DC888;
@@ -49,6 +50,7 @@
   --text-input-color-active: #161616;
   --color-icons-no-active: #16161680;
   --color-icons-active: #161616;
+  --btnAddColum: #161616;
 
   --color-plus-no-active: #BEDBB0;
   --color-plus-active: #9DC888;
@@ -67,6 +69,7 @@
   --text-input-color-active: #161616;
   --color-icons-no-active: #16161680;
   --color-icons-active: #161616;
+  --btnAddColum: #5255BC;
 
   --color-plus-no-active:#B8BCFD;
   --color-plus-active: #979CEA;
