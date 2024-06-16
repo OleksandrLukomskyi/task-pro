@@ -461,7 +461,6 @@ import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import Box from '@mui/material/Box';
 import SvgIcon from '@mui/material/SvgIcon';
 import EditBoardModal from './EditBoardModal';
 import Sprite from '../../../../assets/icons/Sprite.svg'; // Импорт спрайта
@@ -511,9 +510,9 @@ const BoardItem = ({ board }) => {
             component="div"
             sx={{ flexGrow: 1 }}
             onClick={handleClick}
-            style={{ cursor: 'pointer', }} // Белый цвет текста на черной доске
+            style={{ cursor: 'pointer' }} // Белый цвет текста на черной доске
             >
-          >
+          
             {board.title}
           </Typography>
           <CardActions>
