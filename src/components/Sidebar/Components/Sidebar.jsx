@@ -4,8 +4,9 @@ import { fetchBoards } from '../../../redux/boards/operations';
 import BoardList from './Board/BoardList';
 import CreateNewBoardButton from './CreateNewBoard/CreateNewBoardButton';
 import CreateNewBoardModal from './CreateNewBoard/CreateNewBoardModal';
-import HelpModal from './HelpModal/HelpModal';
+import HelpBox from './Help/HelpBox';
 import LogoutButton from './LogoutButton';
+import css from './Sidebar.module.css'
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -55,10 +56,9 @@ const Sidebar = () => {
       ) : (
         <BoardList boards={boards} />
       )}
-      <CreateNewBoardModal show={isModalOpen} onClose={closeModal} />
+      <CreateNewBoardModal  show={isModalOpen} onClose={closeModal} />
       </li>
-    <li><button onClick={openHelpModal}>Need Help</button>
-    <HelpModal show={isHelpModalOpen} onClose={closeHelpModal} /></li>
+    <li className={css.helpBox}><HelpBox/></li>
     <li> <LogoutButton /></li>
   </ul>
      
