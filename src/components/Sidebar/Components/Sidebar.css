@@ -1,4 +1,4 @@
-#root {
+/* #root {
   max-width: 350px;
   margin: 0 auto;
   padding: 2rem;
@@ -42,6 +42,7 @@
 }
 
 .sidebar {
+  max-width: 350px;
   display: flex;
   flex-direction: column;
   align-items: center; /* Выравнивание по центру по горизонтали */
@@ -60,5 +61,5 @@
 
 .sidebar .logout-button {
   margin-top: auto; /* Чтобы кнопка выхода располагалась внизу */
-}
+} */
 

@@ -8,16 +8,33 @@ import { fetchBoards } from "../../redux/boards/operations";
 import { selectBoard } from "../../redux/boards/selectors";
 import { selectCards } from "../../redux/cards/selectors";
 import { selectColumnsData } from "../../redux/columns/selectors";
-import { userThema, help } from "../../redux/auth/operations";
-import { selectThema, selectUser } from "../../redux/auth/selectors";
+// import { userThema, help } from "../../redux/auth/operations";
+import { selectUser } from "../../redux/auth/selectors";
+import { editThema } from "../../redux/thema/operations";
 
 export default function BoardItem() {
   const dispatch = useDispatch();
-  const [idBoard, setIdBoard] = useState("666b6be207902b2daa80d559");
 
   useEffect(() => {
     dispatch(fetchColumns());
   }, [dispatch]);
+
+  const [idBoard, setIdBoard] = useState("666b6be207902b2daa80d559");
+  // передаємо в стан id колонки
+  const [idColumn, setIdColumn] = useState("666e686edba6a962091c7f91");
+
+  //  отримуємо картки
+  const handleColumnClick = () => {
+    console.log(idColumn);
+    let id = idColumn;
+    dispatch(fetchCards(id));
+  };
+
+  // enum: ["dark", "light", "violet"],
+  const handleThemaClick = () => {
+    const them = { thema: "light" };
+    dispatch(editThema(them));
+  };
 
   const handleClick = () => {
     console.log(idBoard);
@@ -25,11 +42,9 @@ export default function BoardItem() {
     dispatch(fetchColumns(id));
   };
 
-  const thema = useSelector(selectThema);
   const cards = useSelector(selectCards);
   const user = useSelector(selectUser);
   const columns = useSelector(selectColumnsData);
-  console.log(columns);
 
   return (
     <div className={css.container}>
@@ -38,6 +53,17 @@ export default function BoardItem() {
       <div>
         <button type="button" onClick={handleClick}>
           REQUEST
+        </button>
+      </div>
+      <div>
+        <button type="button" onClick={handleThemaClick}>
+          REQUEST THEMA
+        </button>
+      </div>
+
+      <div>
+        <button type="button" onClick={handleColumnClick}>
+          GET CARDS
         </button>
       </div>
     </div>
