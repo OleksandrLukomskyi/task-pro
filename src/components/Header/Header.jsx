@@ -3,6 +3,7 @@ import { useState } from "react";
 import css from "./Header.module.css";
 import sprite from "../../assets/icons/Sprite.svg";
 import { Navigation } from "../Navigation/Navigation";
+import ChangeTheme from "../ChangeTheme/ChangeTheme";
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,7 +34,8 @@ const Header = () => {
         </svg>
       </button>
       {isOpen && <Navigation close={close} />}
-      <div>
+      <div className={css.userWrapper}>
+        <ChangeTheme/>
         <EditUser isOpen={isModalOpen} onClose={handleCloseModal} />
       </div>
     </header>

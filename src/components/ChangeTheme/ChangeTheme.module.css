@@ -1,0 +1,10 @@
+.selectes {
+    border: none;
+    background: none;
+    color: var(--text-input-color-active);
+}
+
+.select {
+    border: none;
+    background: var(--background);
+}

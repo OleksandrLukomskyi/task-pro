@@ -5,10 +5,10 @@
   align-items: center;
   gap: 10px;
   padding: 0;
-  color: #0000;
+  color: var(--text-input-color-active);
 }
 .userName {
-  color: black;
+  color: var(--text-input-color-active);
   font-size: 14px;
 }
 
