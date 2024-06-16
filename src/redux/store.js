@@ -3,6 +3,7 @@ import { filtersReducer } from "./filters/slice";
 import { authReducer } from "./auth/slice";
 import { boardReducer } from "./boards/slice";
 import { columnReducer } from "./columns/slice";
+import { cardReducer } from "./cards/slice";
 import {
   persistStore,
   persistReducer,
@@ -29,6 +30,7 @@ export const store = configureStore({
     boards: boardReducer,
     filters: filtersReducer,
     columns: columnReducer,
+    cards: cardReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

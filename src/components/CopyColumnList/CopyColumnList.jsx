@@ -6,7 +6,6 @@ import { selectColumns } from "../../redux/columns/selectors";
 
 export default function CopyColumnList() {
   const columns = useSelector(selectColumns);
-  console.log(columns);
 
   return (
     <div>

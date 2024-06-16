@@ -14,6 +14,8 @@ export default function CopyAddBoard({ editBoardId }) {
     actions.resetForm();
   };
 
+  console.log(editBoardId);
+
   const handleEditSubmit = (values, actions) => {
     const editObj = {
       boardId: editBoardId,
