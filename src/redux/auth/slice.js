@@ -5,7 +5,7 @@ import {
   editUser,
   logOut,
   refreshUser,
-  userThema,
+  // userThema,
 } from "./operations";
 
 const authSlice = createSlice({
@@ -86,19 +86,19 @@ const authSlice = createSlice({
         state.user = action.payload;
         state.isLoggedIn = true;
         state.isRefreshing = false;
-      })
-      .addCase(userThema.pending, (state) => {
-        state.loading = true;
-        state.error = false;
-      })
-      .addCase(userThema.fulfilled, (state, action) => {
-        state.thema = action.payload.thema;
-        state.loading = false;
-      })
-      .addCase(userThema.rejected, (state) => {
-        state.loading = false;
-        state.error = true;
       }),
+  // .addCase(userThema.pending, (state) => {
+  //   state.loading = true;
+  //   state.error = false;
+  // })
+  // .addCase(userThema.fulfilled, (state, action) => {
+  //   state.thema = action.payload.thema;
+  //   state.loading = false;
+  // })
+  // .addCase(userThema.rejected, (state) => {
+  //   state.loading = false;
+  //   state.error = true;
+  // })
 });
 
 export const authReducer = authSlice.reducer;

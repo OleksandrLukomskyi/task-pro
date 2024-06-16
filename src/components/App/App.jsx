@@ -7,13 +7,13 @@ import { refreshUser } from "../../redux/auth/operations";
 import { selectIsRefreshing } from "../../redux/auth/selectors";
 // --------------------------------------------------------------
 
-
 import { PrivateRoute } from "../PrivateRoute.jsx";
 import { RestrictedRoute } from "../RestrictedRoute.jsx";
 
 import Layout from "../Layout/Layout.jsx";
 import LoginForm from "../LoginForm/LoginForm.jsx";
 import RegisterForm from "../RegisterForm/RegisterForm.jsx";
+import { IsRefreshingComponent } from "../../components/IsRefreshingComponent/IsRefreshingComponent";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 const AuthPage = lazy(() => import("../../pages/AuthPage/AuthPage.jsx"));
@@ -35,12 +35,11 @@ export default function App() {
 
   return isRefreshing ? (
     <div>
-      <p>Please wait</p>
-    
+      <IsRefreshingComponent />
     </div>
   ) : (
     <Layout>
-      <Suspense fallback={"LOADING"}>
+      <Suspense fallback={<IsRefreshingComponent />}>
         <Routes>
           <Route
             path="/welcome"

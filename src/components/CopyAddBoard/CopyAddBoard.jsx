@@ -9,6 +9,8 @@ import {
 
 export default function CopyAddBoard({ editBoardId }) {
   const dispatch = useDispatch();
+
+  // створення дошки
   const handleNewSubmit = (values, actions) => {
     dispatch(addBoard(values));
     actions.resetForm();
@@ -16,6 +18,7 @@ export default function CopyAddBoard({ editBoardId }) {
 
   console.log(editBoardId);
 
+  // редагування дошки
   const handleEditSubmit = (values, actions) => {
     const editObj = {
       boardId: editBoardId,

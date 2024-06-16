@@ -4,6 +4,8 @@ import Sidebar from "../../components/Sidebar/Components/Sidebar.jsx";
 import Header from "../../components/Header/Header.jsx";
 import ScreensPage from "../../pages/ScreensPage/ScreensPage.jsx";
 import css from "./HomePage.module.css";
+// import CopySideBar from "../../components/CopySideBar/CopySideBar";
+// import CopyBoardItem from "../../components/CopyBoardItem/CopyBoardItem";
 
 export default function HomePage() {
   return (
@@ -19,8 +21,8 @@ export default function HomePage() {
       {/* <TestLogOut /> */}
 
       {/* <div className={css.container}> */}
-      {/* <CopySideBar /> */}
-      {/* <CopyBoardItem /> */}
+      {/* <CopySideBar />
+      <CopyBoardItem /> */}
       {/* </div> */}
 
       {/* <LogoutButton /> */}

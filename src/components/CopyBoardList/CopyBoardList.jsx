@@ -5,7 +5,7 @@ import { getBoard } from "../../redux/boards/operations";
 
 export default function BoardList({ handleRender }) {
   const boards = useSelector(selectBoard);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   return (
     <div className={css.container}>
@@ -16,6 +16,7 @@ export default function BoardList({ handleRender }) {
               <button
                 title={item.title}
                 type="button"
+                // При кліку передаємо id і title(якщо потрібен) у CopySideBar.jsx
                 onClick={() => handleRender(item.title, item._id)}
               >
                 {item.title}
