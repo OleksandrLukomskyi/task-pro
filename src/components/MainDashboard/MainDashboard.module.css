@@ -13,10 +13,10 @@
   margin-left: 20px;
   display: flex;
   flex-direction: row;
-  width: 334px;
   height: 56px;
-  background-color: #121212;
-  color: #ffffff;
+  padding: 14px 80px;
+  background-color: var(--color-column);
+  color: var(--text-color);
   border-radius: 10px;
   justify-content: center;
   align-items: center;
@@ -49,16 +49,29 @@
   fill: #ffffff;
 }
 
+.logoIconCard {
+  fill: none;
+  stroke: rgb(0, 0, 0);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 4;
+}
+
+.iconBackgroundCard {
+  fill: var(--color-icons-active);
+}
+
 \\\\\\\\\\\\\\\\\\ .modal {
-  border: #000;
+  border: var(--background);
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 350px;
   height: 220px;
-  background-color: #000; /* Темний фон модалки */
-  color: #000; /* Чорний текст */
+  background-color: var(--background); /* Темний фон модалки */
+  color: var(--background); /* Чорний текст */
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -96,8 +109,8 @@
 .modalButton {
   width: 300px;
   height: 50px;
-  background-color: #4caf50; /* Зелений фон кнопки */
-  color: #000; /* Чорний текст кнопки */
+  background-color: var(--btn-color); /* Зелений фон кнопки */
+  color: var(--text-color); /* Чорний текст кнопки */
   font-size: 1rem;
   border: none;
   border-radius: 4px;
@@ -106,7 +119,9 @@
 }
 
 .modalButton:hover {
-  background-color: #45a049; /* Зелений фон кнопки при наведенні */
+  background-color: var(
+    --btn-color-hover
+  ); /* Зелений фон кнопки при наведенні */
 }
 
 .closeButton {
@@ -130,7 +145,7 @@
 .modal {
   width: 350px;
   height: 221px;
-  background-color: #151515;
+  background-color: var(--modal-backgr);
   position: absolute;
 
   top: 50%;
@@ -139,6 +154,6 @@
 }
 
 /* .addModalInput {
-  background-color: #151515;
+  background-color: var(--background);
   border: var(--color-no-active-element);
 } */
