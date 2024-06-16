@@ -9,6 +9,7 @@ import { addCard } from "../../redux/cards/slice";
 import { selectCards } from "../../redux/cards/selectors";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import { IconButton } from "@mui/material";
 
 export default function Column({
   column: { _id, title },
@@ -91,7 +92,26 @@ export default function Column({
         </ul>
       </div>
       <div className={css.button_add_card}>
-        <button onClick={() => setIsAddCardModalOpen(true)}>
+        <button
+          className={css.btn_add_card}
+          onClick={() => setIsAddCardModalOpen(true)}
+        >
+          {/* <svg className={css.logoIconCard} viewBox="0 0 32 32">
+            <rect
+              className={css.iconBackgroundCard}
+              width="28"
+              height="28"
+              rx="6"
+              ry="6"
+            />
+            <use
+              href={sprite + "#icon-plus"}
+              x="7"
+              y="7"
+              width="14"
+              height="14"
+            />
+          </svg> */}
           Add another card
         </button>
       </div>
@@ -100,8 +120,9 @@ export default function Column({
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
         contentLabel="Add Column"
+        className={css.modal}
       >
-        <h2>Edit</h2>
+        <h2 className={css.titleModal}>Edit</h2>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -114,6 +135,7 @@ export default function Column({
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
             placeholder="Column title"
+            className={css.addModalInput}
           />
           <button type="submit">Add</button>
         </form>
