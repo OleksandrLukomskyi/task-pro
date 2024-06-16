@@ -9,6 +9,7 @@ import { addCard } from "../../redux/cards/slice";
 import { selectCards } from "../../redux/cards/selectors";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import { IconButton } from "@mui/material";
 
 export default function Column({
   column: { _id, title },
@@ -91,7 +92,13 @@ export default function Column({
         </ul>
       </div>
       <div className={css.button_add_card}>
-        <button onClick={() => setIsAddCardModalOpen(true)}>
+        <button
+          className={css.btn_add_card}
+          onClick={() => setIsAddCardModalOpen(true)}
+        >
+          {/* <svg className={css.icon}>
+            <use href="#icon-plus-b"></use>
+          </svg> */}
           Add another card
         </button>
       </div>
