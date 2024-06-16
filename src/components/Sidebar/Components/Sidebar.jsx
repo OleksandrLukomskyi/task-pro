@@ -61,11 +61,6 @@ const Sidebar = () => {
     <HelpModal show={isHelpModalOpen} onClose={closeHelpModal} /></li>
     <li> <LogoutButton /></li>
   </ul>
-      
-      
-    
-      
-      
      
     </div>
   );
