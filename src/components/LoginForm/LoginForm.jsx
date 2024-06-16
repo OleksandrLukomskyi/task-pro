@@ -9,13 +9,15 @@ import {
   IconButton,
   InputAdornment,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logIn } from "../../redux/auth/operations";
 import { selectLoading, selectError } from "../../redux/auth/selectors";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import css from "./LoginForm.module.css";
+import inputFormTheme from "../../theme/inputFormTheme";
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -23,20 +25,20 @@ const schema = yup.object().shape({
 });
 
 const LoginForm = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
-  const error = useSelector(selectError);
+  const ifError = useSelector(selectError);
   const [showPassword, setShowPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   // об'єкт конфігурації параметрів хука useForm
   const {
-    register, // функція реєстрації кожного поля у формі
-    handleSubmit, // обробник валідації форми, передає дані форми у метод обробки onSubmit
-    formState: { errors }, // Об'єкт з помилками валідації для кожного поля форми
+    register: registerField,
+    handleSubmit,
+    formState: { errors },
     reset,
   } = useForm({
-    resolver: yupResolver(schema), // використання схеми валідації Yup
+    resolver: yupResolver(schema),
   });
 
   const handleClickShowPassword = () => {
@@ -47,57 +49,53 @@ const LoginForm = () => {
     // Виконання запиту для login
     dispatch(logIn(data))
       .then((result) => {
-        if (result.error && result.error.message == "Rejected") {
-          console.log(result.payload.response.data.message);
-        } else {
-          // Если логин успешный, перенаправляем пользователя на страницу /home
-          navigate("/home");
-          reset();
+        if (logIn.fulfilled.match(result)) {
+          reset(); // скидаємо форму
+        } else if (logIn.rejected.match(result)) {
+          setErrorMessage(result.payload.message || "Login failed");
         }
       })
       .catch((error) => {
+        setErrorMessage(error.message);
         console.error("Login failed:", error.message);
       });
   };
 
   return (
     <Box
+      className={css.customBox}
       component="form"
       onSubmit={handleSubmit(onSubmit)}
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      height="100vh"
-      borderRadius={8}
     >
       <TextField
-        {...register("email")}
+        className={css.customTextField}
+        {...registerField("email")}
         label="Enter your email"
         variant="outlined"
-        margin="normal"
         fullWidth
         error={!!errors.email}
         helperText={errors.email?.message}
         autoComplete="email"
+        sx={inputFormTheme}
       />
       <TextField
-        {...register("password")}
+        className={css.customTextField}
+        {...registerField("password")}
         label="Confirm a password"
         type={showPassword ? "text" : "password"}
         variant="outlined"
-        margin="normal"
         fullWidth
         error={!!errors.password}
         helperText={errors.password?.message}
         autoComplete="current-password"
+        sx={inputFormTheme}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
               <IconButton
                 onClick={handleClickShowPassword}
                 edge="end"
-                style={{ color: "var(--text-color)" }}
+                style={{ color: "var(--btn-color)", opacity: 0.4 }}
               >
                 {showPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>
@@ -105,15 +103,15 @@ const LoginForm = () => {
           ),
         }}
       />
-      {error && (
-        <Typography color="error" variant="body2" margin="normal">
-          {error.message}
+      {ifError && (
+        <Typography color="error" variant="body2" marginTop="normal">
+          {"Invalid email or password: " + errorMessage}
         </Typography>
       )}
       <Button
+        className={css.customButton}
         type="submit"
         variant="contained"
-        color="primary"
         style={{ textTransform: "capitalize" }}
         disabled={loading}
         fullWidth

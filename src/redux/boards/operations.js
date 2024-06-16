@@ -6,7 +6,8 @@ export const fetchBoards = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get("/api/boards/");
-      return response.data;
+      console.log(response.data.boards);
+      return response.data.boards;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -18,7 +19,7 @@ export const getBoard = createAsyncThunk(
   async (boardId, thunkAPI) => {
     try {
       const response = await axios.get(`/api/boards/${boardId}`);
-      return response.data;
+      return response.data.boards;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }

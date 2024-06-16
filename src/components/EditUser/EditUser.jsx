@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { editUser } from "redux/auth/operations";
+import { editUser } from "../../redux/auth/operations";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
+import css from "./EditUser.module.css";
 
-const EditUser = ({ isOpen, onClose }) => {
+const EditUser = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [userName, setUserName] = useState(user.userName);
   const [email, setEmail] = useState(user.email);
   const [password, setPassword] = useState("");
@@ -26,74 +29,37 @@ const EditUser = ({ isOpen, onClose }) => {
     if (avatarFile) formData.append("avatar", avatarFile);
 
     await dispatch(editUser(formData));
-    onClose();
+    setIsModalOpen(false);
   };
 
-  if (!isOpen) {
-    return null;
-  }
-
   return (
-    <div className="modal">
-      <div className="modalContent">
-        <span className="close" onClick={onClose}>
-          X
-        </span>
-        <h2>Edit Profile</h2>
-        <div className="containerImg">
-          <input
-            type="file"
-            onChange={handleFileChange}
-            accept="image/*"
-            style={{ display: "none" }}
-            id="avatarInput"
-          />
-          {avatarFile ? (
-            <img
-              width="32px"
-              height="32px"
-              src={URL.createObjectURL(avatarFile)}
-              alt="user"
-            />
-          ) : (
-            <img width="32px" height="32px" src={user.avatarURL} alt="user" />
-          )}
-          <button
-            type="button"
-            onClick={() => document.getElementById("avatarInput").click()}
-            className="plusButton"
-          >
-            +
-          </button>
-        </div>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <input
-              type="text"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-              placeholder="Name"
-            />
-          </div>
-          <div>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-            />
-          </div>
-          <div>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-            />
-          </div>
-          <button type="submit">Send</button>
-        </form>
-      </div>
+    <div className={css.userInfoWrap}>
+      <button
+        type="button"
+        onClick={() => setIsModalOpen(true)}
+        className={css.editProfileButton}
+      >
+        <span className={css.userName}>{user.userName}</span>
+        <img
+          src={avatarFile ? URL.createObjectURL(avatarFile) : user.avatarURL}
+          alt="user avatar"
+          className={css.userAvatar}
+        />
+      </button>
+      <EditProfileModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        user={user}
+        handleFileChange={handleFileChange}
+        avatarFile={avatarFile}
+        handleSubmit={handleSubmit}
+        userName={userName}
+        setUserName={setUserName}
+        email={email}
+        setEmail={setEmail}
+        password={password}
+        setPassword={setPassword}
+      />
     </div>
   );
 };

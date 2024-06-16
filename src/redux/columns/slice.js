@@ -47,6 +47,7 @@ const columnSlice = createSlice({
       })
       .addCase(createColumn.fulfilled, (state, action) => {
         state.loading = false;
+        console.log(action.payload);
         state.items.push(action.payload);
       })
       .addCase(createColumn.rejected, (state) => {

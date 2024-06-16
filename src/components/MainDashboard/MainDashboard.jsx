@@ -1,3 +1,4 @@
+
 import { useState, useEffect  } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createColumn, fetchColumns } from '../../redux/columns/slice';
@@ -10,12 +11,15 @@ import axios from 'axios';
 import sprite from "../../assets/icons/Sprite.svg"
 
 
-Modal.setAppElement('#root');
+Modal.setAppElement("#root");
+
+
 
 export default function MainDashboard() {
   
+
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newColumnTitle, setNewColumnTitle] = useState('');
+  const [newColumnTitle, setNewColumnTitle] = useState("");
   const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
@@ -112,11 +116,6 @@ export default function MainDashboard() {
     setIsModalOpen(false);
   };
 
-
-  
-  
-
-  
   return (
     <div className={css.mainDashboard}>
       {loading && <p>Loading...</p>}
@@ -178,6 +177,7 @@ export default function MainDashboard() {
  
 
  
+
 
 
 

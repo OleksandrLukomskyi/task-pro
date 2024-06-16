@@ -1,19 +1,36 @@
-import { useState, createContext, useEffect } from "react"
+import {createContext, useEffect, useState } from "react";
+// модули для настройки темы Material-UI внутри ThemeProvider
+import {
+  ThemeProvider as MuiThemeProvider,
+  createTheme,
+} from "@mui/material/styles";
 
-// прописати логіку отримання теми з БД користувача
+// import CssBaseline from "@mui/material/CssBaseline";
+
 
 export const ThemeContext = createContext();
 
-export const ThemeProvider = ({children}) => {
-    const [theme, setTheme] = useState("light");
+export const ThemeProvider = ({ children }) => {
+  const [thema, setThema] = useState("");
 
-    useEffect(() => {
-        document.documentElement.setAttribute('data-theme', theme)
-    }, [theme]);
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", thema);
+  }, [thema]);
 
-    return (
-        <ThemeContext.Provider value={[theme, setTheme]}>
-            {children}
-        </ThemeContext.Provider>
-    )
-}
+  //  создание темы MUI
+  const muiTheme = createTheme({
+    // смена дефолтного шрифта MUI
+    typography: {
+      fontFamily: "Poppins, Arial, sans-serif",
+    },
+  });
+
+  return (
+    <ThemeContext.Provider value={[thema, setThema]}>
+      <MuiThemeProvider theme={muiTheme}>
+        {/* <CssBaseline /> */}
+        {children}
+      </MuiThemeProvider>
+    </ThemeContext.Provider>
+  );
+};

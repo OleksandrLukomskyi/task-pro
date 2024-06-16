@@ -27,7 +27,11 @@ export const register = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      const errorMessage = error.response?.data || error.message;
+      if (error.response.status === 409) {
+        alert("Email in use");
+      }
+      return thunkAPI.rejectWithValue({ message: errorMessage });
     }
   }
 );
@@ -40,7 +44,8 @@ export const logIn = createAsyncThunk(
       setAuthHeader(response.data.token);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      const errorMessage = error.response?.data || error.message;
+      return thunkAPI.rejectWithValue({ message: errorMessage });
     }
   }
 );
@@ -85,3 +90,25 @@ export const refreshUser = createAsyncThunk(
     },
   }
 );
+
+// ------------------------
+export const userThema = createAsyncThunk("auth/thema", async (_, thunkAPI) => {
+  try {
+    const response = await axios.patch("/users/thema");
+    setAuthHeader(response.data.token);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+  }
+});
+
+// ----------------------------
+export const help = createAsyncThunk("auth/support", async (_, thunkAPI) => {
+  try {
+    const response = await axios.post("/api/help/");
+    setAuthHeader(response.data.token);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+  }
+});

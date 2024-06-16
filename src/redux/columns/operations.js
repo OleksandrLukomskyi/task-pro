@@ -7,15 +7,9 @@ import axios from "axios";
 export const fetchColumns = createAsyncThunk(
   "columns/fetchAll",
   async (_, thunkAPI) => {
-    const token = thunkAPI.getState().auth.token;
     try {
-      const response = await axios.get("https://project-back-codewave1-rqmw.onrender.com/api/columns/" , {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      console.log(response.data)
-      return response.data;
+      const response = await axios.get("/api/columns/");
+      return response.data.columns;
     } catch (error) {
       return thunkAPI.rejectWithValue({
         message: error.message,
@@ -49,12 +43,9 @@ export const createColumn = createAsyncThunk(
     const token = thunkAPI.getState().auth.token;
     console.log("Token being sent:", token); 
     try {
-      const response = await axios.post("https://project-back-codewave1-rqmw.onrender.com/api/columns/", newColumn, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      return response.data;
+      const response = await axios.post("/api/columns/", newColumn);
+      console.log(response.data);
+      return response.data.column;
     } catch (error) {
       return thunkAPI.rejectWithValue({
         message: error.message,

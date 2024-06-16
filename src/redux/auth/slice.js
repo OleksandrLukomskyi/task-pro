@@ -1,5 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { register, logIn, editUser, logOut, refreshUser } from "./operations";
+import {
+  register,
+  logIn,
+  editUser,
+  logOut,
+  refreshUser,
+  userThema,
+} from "./operations";
 
 const authSlice = createSlice({
   name: "auth",
@@ -10,6 +17,7 @@ const authSlice = createSlice({
       avatarURL: null,
     },
     token: null,
+    thema: "light",
     isLoggedIn: false,
     isRefreshing: false,
     loading: false,
@@ -24,7 +32,7 @@ const authSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        // state.token = action.payload.token;
+        state.token = action.payload.token;
         state.isLoggedIn = true;
         state.loading = false;
       })
@@ -53,7 +61,7 @@ const authSlice = createSlice({
       })
       .addCase(editUser.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
+        // state.token = action.payload.token;
         state.loading = false;
       })
       .addCase(editUser.rejected, (state) => {
@@ -78,6 +86,18 @@ const authSlice = createSlice({
         state.user = action.payload;
         state.isLoggedIn = true;
         state.isRefreshing = false;
+      })
+      .addCase(userThema.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(userThema.fulfilled, (state, action) => {
+        state.thema = action.payload.thema;
+        state.loading = false;
+      })
+      .addCase(userThema.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
       }),
 });
 
