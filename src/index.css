@@ -46,7 +46,27 @@
   --btn-color-hover: #9dc888;
   --text-color-btn: #161616;
 
+
   --modal-backgr: #232323;
+
+/* Dark Theme */
+[data-theme='dark'] {
+  --background: #232323;
+  --background-header: #161616;
+  --text-color: #FFFFFF;
+  --color-no-active-element: #BEDBB0;
+  --color-hover-element: #9DC888;
+  --text-input-color-active: #FFFFFF;
+  --color-icons-no-active: #FFFFFF80;
+  --color-icons-active: #FFFFFF;
+  --btnAddColum: #FFFFFF;
+
+  --color-plus-no-active: #BEDBB0;
+  --color-plus-active: #9DC888;
+
+  --color-logout: #BEDBB0;
+  --color-logout-hover: #9DC888;
+
 }
 
 /* Light Theme*/
@@ -59,10 +79,14 @@
   --text-input-color-active: #161616;
   --color-icons-no-active: #16161680;
   --color-icons-active: #161616;
+
   --color-column: #ffffff;
 
   --color-icon-back: #161616;
   --color-icon-back-stroke: rgb(255, 255, 255);
+
+  --btnAddColum: #161616;
+
 
   --color-plus-no-active: #bedbb0;
   --color-plus-active: #9dc888;
@@ -87,10 +111,14 @@
   --text-input-color-active: #161616;
   --color-icons-no-active: #16161680;
   --color-icons-active: #161616;
+
   --color-column: #ffffff;
 
   --color-icon-back: #5255bc;
   --color-icon-back-stroke: rgb(255, 255, 255);
+
+  --btnAddColum: #5255BC;
+
 
   --color-plus-no-active: #b8bcfd;
   --color-plus-active: #979cea;
