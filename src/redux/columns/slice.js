@@ -22,8 +22,9 @@ const columnSlice = createSlice({
         state.error = false;
       })
       .addCase(fetchColumns.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.loading = false;
-        state.items =  action.payload;
+        state.items = action.payload;
       })
       .addCase(fetchColumns.rejected, (state) => {
         state.loading = false;
@@ -93,4 +94,3 @@ const columnSlice = createSlice({
 
 export const columnReducer = columnSlice.reducer;
 export { createColumn, fetchColumns, getColumn, deleteColumn, editColumn };
-
