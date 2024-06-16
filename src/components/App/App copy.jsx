@@ -7,6 +7,7 @@ import { refreshUser } from "../../redux/auth/operations";
 import { selectIsRefreshing } from "../../redux/auth/selectors";
 // --------------------------------------------------------------
 
+
 import { PrivateRoute } from "../PrivateRoute.jsx";
 import { RestrictedRoute } from "../RestrictedRoute.jsx";
 
@@ -35,30 +36,44 @@ export default function App() {
   return isRefreshing ? (
     <div>
       <p>Please wait</p>
+    
     </div>
   ) : (
     <Layout>
       <Suspense fallback={"LOADING"}>
         <Routes>
-          <Route path="/" element={<Navigate to="/welcome" />} />
-          <Route path="/welcome" element={<WelcomePage />} />
+          <Route
+            path="/welcome"
+            element={
+              <RestrictedRoute component={<WelcomePage />}></RestrictedRoute>
+            }
+          />
           <Route
             path="/auth/:id"
-            element={<RestrictedRoute component={<AuthPage />} />}
+            element={
+              <RestrictedRoute component={<AuthPage />}></RestrictedRoute>
+            }
           >
             <Route
               path="login"
-              element={<RestrictedRoute component={<LoginForm />} />}
+              element={
+                <RestrictedRoute component={<LoginForm />}></RestrictedRoute>
+              }
             />
             <Route
               path="register"
-              element={<RestrictedRoute component={<RegisterForm />} />}
+              element={
+                <RestrictedRoute component={<RegisterForm />}></RestrictedRoute>
+              }
             />
           </Route>
           <Route
             path="/home"
             element={
-              <PrivateRoute component={<HomePage />} redirectTo="/welcome" />
+              <PrivateRoute
+                component={<HomePage />}
+                redirectTo="/welcome"
+              ></PrivateRoute>
             }
           />
           <Route path="/home/:boardName" element={<ScreensPage />}></Route>
