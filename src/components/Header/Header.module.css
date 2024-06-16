@@ -1,6 +1,18 @@
 .header {
-  background-color: #232323;
+  background-color: var(--background);
   padding: 20px 18px;
   display: flex;
   justify-content: space-between;
+}
+
+.menuBtn {
+  background-color: transparent;
+  display: block;
+  border: none;
+}
+
+.menuIcon {
+  width: 24px;
+  height: 24px;
+  stroke: #000;
 }

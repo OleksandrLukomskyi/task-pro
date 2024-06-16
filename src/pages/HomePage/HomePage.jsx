@@ -3,10 +3,13 @@ import { react } from "react";
 import LogoutButton from "../../components/Sidebar/Components/LogoutButton.jsx";
 // import CopyBoardItem from "../../components/CopyBoardItem/CopyBoardItem.jsx";
 import Sidebar from "../../components/Sidebar/Components/Sidebar.jsx";
+// import Sidebar from "../../components/Sidebar/Components/Sidebar.jsx";
+// import Header from "../../components/Header/Header.jsx";
 
 export default function HomePage() {
   return (
     <div>
+      {/* <Header /> */}
       <p>Hello on HomePagePage</p>
 
       {/* <TestLogOut /> */}

@@ -89,3 +89,4 @@ const cardSlice = createSlice({
 });
 
 export const cardReducer = cardSlice.reducer;
+export { addCard, editCard, deleteCard };

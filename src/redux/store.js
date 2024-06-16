@@ -4,6 +4,8 @@ import { authReducer } from "./auth/slice";
 import { boardReducer } from "./boards/slice";
 import { columnReducer } from "./columns/slice";
 import { cardReducer } from "./cards/slice";
+import { themaReducer } from "./thema/slice";
+
 import {
   persistStore,
   persistReducer,
@@ -31,6 +33,7 @@ export const store = configureStore({
     filters: filtersReducer,
     columns: columnReducer,
     cards: cardReducer,
+    thema: themaReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
