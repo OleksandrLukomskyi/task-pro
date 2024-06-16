@@ -49,7 +49,7 @@
   --modal-backgr: #232323;
 }
 
-/* Light Theme*/
+/* Light Theme */
 [data-theme="light"] {
   --background: #f6f6f7;
   --background-header: #fcfcfc;
@@ -80,7 +80,7 @@
   --modal-backgr: #ffffff;
 }
 
-/* Violet Theme*/
+/* Violet Theme */
 [data-theme="violet"] {
   --background: #d6d8ff;
   --background-header: #ffffff;
