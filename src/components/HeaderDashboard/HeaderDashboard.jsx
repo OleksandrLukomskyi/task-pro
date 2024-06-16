@@ -1,20 +1,19 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Modal from 'react-modal';
+import Modal from "react-modal";
 import css from "./HeaderDashboard.module.css";
 
 export default function HeaderDashboard({ boardName }) {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const dispatch = useDispatch();
-  
-
-
-  
 
   return (
     <header className={css.headerDashboard}>
       <h1>{boardName}</h1>
-      <button onClick={() => setIsFilterModalOpen(true)} className={css.filterButton}>
+      <button
+        onClick={() => setIsFilterModalOpen(true)}
+        className={css.filterButton}
+      >
         <svg className={css.icon}>
           <use xlinkHref="#icon-filter" />
         </svg>
@@ -37,7 +36,9 @@ export default function HeaderDashboard({ boardName }) {
               onChange={(e) => handleBackgroundChange(e.target.value)}
             />
             {/* Інші елементи форми */}
-            <button type="button" onClick={() => setIsFilterModalOpen(false)}>Close</button>
+            <button type="button" onClick={() => setIsFilterModalOpen(false)}>
+              Close
+            </button>
           </form>
         </div>
       </Modal>
