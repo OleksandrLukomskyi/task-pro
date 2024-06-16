@@ -1,81 +1,114 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
 :root {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   line-height: 1.5;
   font-weight: 400;
 
-  --label--task-color: #FFFFFF4D;
-  --label-low-task-color: #8FA1D0;
-  --label-medium-task-color: #E09CB5;
-  --label-high-task-color: #BEDBB0;
+  --label--task-color: #ffffff4d;
+  --label-low-task-color: #8fa1d0;
+  --label-medium-task-color: #e09cb5;
+  --label-high-task-color: #bedbb0;
 
-
-      /* кольори для сторінок WelcomePage та AuthPage*/
-      --background: linear-gradient(180deg, rgba(196, 196, 196, 0) 25%, #BEDBB0 92.19%);
-      --text-color-start: #161616;
-      --text-color-start-white: #FFFFFF;
-      --btn-color: #BEDBB0;
+  /* кольори для сторінок WelcomePage та AuthPage*/
+  --background: linear-gradient(
+    180deg,
+    rgba(196, 196, 196, 0) 25%,
+    #bedbb0 92.19%
+  );
+  --text-color-start: #161616;
+  --text-color-start-white: #ffffff;
+  --btn-color: #bedbb0;
 }
-
-
-
 
 /* Dark Theme */
-[data-theme='dark'] {
+[data-theme="dark"] {
   --background: #232323;
   --background-header: #161616;
-  --text-color: #FFFFFF;
-  --color-no-active-element: #BEDBB0;
-  --color-hover-element: #9DC888;
-  --text-input-color-active: #FFFFFF;
-  --color-icons-no-active: #FFFFFF80;
-  --color-icons-active: #FFFFFF;
-  --btnAddColum: #FFFFFF;
+  --text-color: #ffffff;
+  --color-no-active-element: #bedbb0;
+  --color-hover-element: #9dc888;
+  --text-input-color-active: #ffffff;
+  --color-icons-no-active: #ffffff80;
+  --color-icons-active: #ffffff;
+  --color-column: #121212;
 
-  --color-plus-no-active: #BEDBB0;
-  --color-plus-active: #9DC888;
+  --color-icon-back: #ffffff;
+  --color-icon-back-stroke: rgb(0, 0, 0);
 
-  --color-logout: #BEDBB0;
-  --color-logout-hover: #9DC888;
+  --color-plus-no-active: #bedbb0;
+  --color-plus-active: #9dc888;
+
+  --color-logout: #bedbb0;
+  --color-logout-hover: #9dc888;
+
+  --btn-color: #bedbb0;
+  --btn-color-hover: #9dc888;
+  --text-color-btn: #161616;
+
+  --modal-backgr: #232323;
 }
 
-/* Light Theme*/
-[data-theme='light'] {
-  --background: #FDFDFD;
-  --background-header:  #FCFCFC ;
+/* Light Theme */
+[data-theme="light"] {
+  --background: #f6f6f7;
+  --background-header: #fcfcfc;
   --text-color: #161616;
-  --color-no-active-element: #BEDBB0;
-  --color-hover-element: #9DC888;
+  --color-no-active-element: #bedbb0;
+  --color-hover-element: #9dc888;
   --text-input-color-active: #161616;
   --color-icons-no-active: #16161680;
   --color-icons-active: #161616;
+
+  --color-column: #ffffff;
+
+  --color-icon-back: #161616;
+  --color-icon-back-stroke: rgb(255, 255, 255);
+
   --btnAddColum: #161616;
 
-  --color-plus-no-active: #BEDBB0;
-  --color-plus-active: #9DC888;
+  --color-plus-no-active: #bedbb0;
+  --color-plus-active: #9dc888;
 
-  --color-logout: #BEDBB0;
-  --color-logout-hover:#9DC888;
+  --color-logout: #bedbb0;
+  --color-logout-hover: #9dc888;
+
+  --btn-color: #bedbb0;
+  --btn-color-hover: #9dc888;
+  --text-color-btn: #161616;
+
+  --modal-backgr: #ffffff;
 }
 
-/* Violet Theme*/
-[data-theme='violet'] {
-  --background: #D6D8FF;
-  --background-header: #FFFFFF;
-  --text-color: #FFFFFF;
-  --color-no-active-element:#5255BC;
-  --color-hover-element: #7B7EDE;
+/* Violet Theme */
+[data-theme="violet"] {
+  --background: #d6d8ff;
+  --background-header: #ffffff;
+  --text-color: #161616;
+  --color-no-active-element: #5255bc;
+  --color-hover-element: #7b7ede;
   --text-input-color-active: #161616;
   --color-icons-no-active: #16161680;
   --color-icons-active: #161616;
-  --btnAddColum: #5255BC;
 
-  --color-plus-no-active:#B8BCFD;
-  --color-plus-active: #979CEA;
+  --color-column: #ffffff;
 
-  --color-logout: #FFFFFF;
-  --color-logout-hover: #B8BCFD;
+  --color-icon-back: #5255bc;
+  --color-icon-back-stroke: rgb(255, 255, 255);
+
+  --btnAddColum: #5255bc;
+
+  --color-plus-no-active: #b8bcfd;
+  --color-plus-active: #979cea;
+
+  --color-logout: #ffffff;
+  --color-logout-hover: #b8bcfd;
+
+  --btn-color: #5255bc;
+  --btn-color-hover: #7b7ede;
+  --text-color-btn: #ffffff;
+
+  --modal-backgr: #fcfcfc;
 }
 
 h1,
@@ -102,7 +135,6 @@ li {
   list-style: none;
 }
 
-
 a {
   color: currentColor;
   text-decoration: none;
@@ -118,7 +150,6 @@ img {
   max-width: 100%;
   height: auto;
 }
-
 
 body {
   background: var(--background);

@@ -1,17 +1,17 @@
-.column{
-    display: flex;
-    flex-direction: row;
-    width: 334px;
-    height: 56px;
-    background-color: #121212;
-    color: #FFFFFF;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    justify-content: space-between; 
-    align-items: center;
-    padding: 0 20px; 
-    gap: 10px;
-    
+
+.column {
+  display: flex;
+  flex-direction: row;
+  width: 334px;
+  height: 56px;
+  background-color: var(--color-column);
+  color: var(--text-color);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  gap: 10px;
 }
 
 .container_cards {
@@ -43,9 +43,19 @@
     justify-content: center; 
 }
 
-.column_title{
-   font-size: medium;
-   margin-right: auto;
+
+.card {
+  width: 334px;
+  height: 154px;
+  background-color: var(--color-column);
+  color: var(--text-color);
+  border-radius: 10px;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+>>>>>>> main
 }
 
 .logoIcon{
@@ -60,9 +70,27 @@
 }
 
 .deleteColumn {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0; 
-    width: auto; 
+
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: auto;
 }
+
+.btn_add_card {
+  background-color: var(--btn-color);
+  border: none;
+  border-radius: 8px;
+  width: 334px;
+  padding: 14px 89px;
+  color: var(--text-color-btn);
+}
+
+.btn_add_card:hover {
+  background-color: var(
+    --btn-color-hover
+  ); /* Зелений фон кнопки при наведенні */
+}
+
+/* modal edit */
