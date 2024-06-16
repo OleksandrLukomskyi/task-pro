@@ -11,6 +11,8 @@
 
 .sidebar {
   width: 260px;
+  height: 100vh;
+  background-color: black;
 }
 
 .header {

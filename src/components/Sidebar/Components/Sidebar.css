@@ -1,4 +1,4 @@
-/* #root {
+#root {
   max-width: 350px;
   margin: 0 auto;
   padding: 2rem;
@@ -45,11 +45,10 @@
   max-width: 350px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Выравнивание по центру по горизонтали */
+  align-items: center; 
   padding: 20px;
   background-color: #f8f9fa;
-  height: 100vh; /* Высота на весь экран */
-}
+  height: 100vh; 
 
 .sidebar h1 {
   margin-bottom: 20px;
@@ -60,6 +59,10 @@
 }
 
 .sidebar .logout-button {
-  margin-top: auto; /* Чтобы кнопка выхода располагалась внизу */
-} */
+  margin-top: auto; 
+} 
+ 
 
+.board-list {
+  background-color: black;
+}

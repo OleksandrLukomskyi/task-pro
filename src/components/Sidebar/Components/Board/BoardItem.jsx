@@ -466,6 +466,7 @@ import SvgIcon from '@mui/material/SvgIcon';
 import EditBoardModal from './EditBoardModal';
 import Sprite from '../../../../assets/icons/Sprite.svg'; // Импорт спрайта
 
+
 const BoardItem = ({ board }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -497,7 +498,9 @@ const BoardItem = ({ board }) => {
 
   return (
     <>
-      <Card key={board._id} variant="outlined" sx={{ mb: 2 }}>
+     <Card key={board._id} variant="outlined" sx={{ mb: 2,
+          backgroundColor: 'black',
+          color: 'white', }}>
         <CardContent sx={{ display: 'flex', alignItems: 'center' }}>
           <SvgIcon sx={{ mr: 2 }}>
             <svg width="24" height="24">
@@ -509,7 +512,8 @@ const BoardItem = ({ board }) => {
             component="div"
             sx={{ flexGrow: 1 }}
             onClick={handleClick}
-            style={{ cursor: 'pointer' }} // Добавить стиль курсора, чтобы указать, что элемент кликабельный
+            style={{ cursor: 'pointer', color: 'white' }} // Белый цвет текста на черной доске
+            >
           >
             {board.title}
           </Typography>

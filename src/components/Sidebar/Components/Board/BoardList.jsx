@@ -1,5 +1,6 @@
 import React from 'react';
 import BoardItem from './BoardItem';
+import styles from './BoardList.module.css'
 
 const BoardList = ({ boards, onDelete, onEdit }) => {
   if (!Array.isArray(boards)) {
@@ -9,7 +10,7 @@ const BoardList = ({ boards, onDelete, onEdit }) => {
   
 
   return (
-    <div className="board-list">
+    <div className={styles['board-list']}>
       {boards.map(board => (
         <BoardItem key={ board._id} board={board} onDelete={onDelete} onEdit={onEdit} />
       ))}
