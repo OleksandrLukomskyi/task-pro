@@ -1,8 +1,128 @@
-.icon_plus {
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-    stroke-width: 0;
-    stroke: currentColor;
-    fill: currentColor;
-  }
+.mainDashboard {
+  display: flex;
+  flex-direction: row;
+  width: 100%; 
+  overflow-x: auto; 
+  white-space: nowrap; 
+}
+
+.buttonAddColumn{
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    width: 334px;
+    height: 56px;
+    background-color: #121212;
+    color: #FFFFFF;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center; 
+    gap: 8px; 
+}
+
+.columns_list{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+
+}
+
+.logoIcon {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: rgb(0, 0, 0);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 4;
+}
+
+.iconBackground {
+  fill: #FFFFFF; 
+}
+
+
+
+
+
+
+
+\\\\\\\\\\\\\\\\\\
+
+.modal {
+  border: #000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: 220px;
+  background-color: #000; /* Темний фон модалки */
+  color: #000; /* Чорний текст */
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.modalTitle {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modalInput {
+  width: 300px;
+  height: 50px;
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modalButton {
+  width: 300px;
+  height: 50px;
+  background-color: #4CAF50; /* Зелений фон кнопки */
+  color: #000; /* Чорний текст кнопки */
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modalButton:hover {
+  background-color: #45a049; /* Зелений фон кнопки при наведенні */
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.closeButton svg {
+  width: 100%;
+  height: 100%;
+  fill: #fff; /* Білий колір іконки */
+}

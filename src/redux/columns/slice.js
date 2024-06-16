@@ -23,7 +23,7 @@ const columnSlice = createSlice({
       })
       .addCase(fetchColumns.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = action.payload;
+        state.items =  action.payload;
       })
       .addCase(fetchColumns.rejected, (state) => {
         state.loading = false;
@@ -61,7 +61,7 @@ const columnSlice = createSlice({
       .addCase(deleteColumn.fulfilled, (state, action) => {
         state.loading = false;
         state.items = state.items.filter(
-          (item) => item.id !== action.payload.id
+          (item) => item._id !== action.payload._id
         );
       })
       .addCase(deleteColumn.rejected, (state) => {
@@ -74,10 +74,11 @@ const columnSlice = createSlice({
       })
       .addCase(editColumn.fulfilled, (state, action) => {
         const columnIndex = state.items.findIndex(
-          (item) => item.id === action.payload.id
+          (item) => item._id === action.payload._id
         );
-        // -1 ??????????? ---------------------------------
-        state.items[columnIndex] = action.payload;
+        if (columnIndex !== -1) {
+          state.items[columnIndex] = action.payload;
+        }
       })
       .addCase(editColumn.rejected, (state) => {
         state.loading = false;
@@ -92,3 +93,4 @@ const columnSlice = createSlice({
 
 export const columnReducer = columnSlice.reducer;
 export { createColumn, fetchColumns, getColumn, deleteColumn, editColumn };
+
