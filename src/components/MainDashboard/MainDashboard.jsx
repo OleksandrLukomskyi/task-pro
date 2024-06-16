@@ -128,7 +128,7 @@ export default function MainDashboard() {
       {error && <p>Error loading columns: {error.message}</p>}
       <ul className={css.columns_list}>
         {columnsData.map((column, index) => (
-          <li key={index}>
+          <li className={css.item} key={index}>
             <Column
               column={column}
               onDeleteColumn={handleDeleteColumn}
