@@ -108,7 +108,7 @@ export default function Column({
         onRequestClose={() => setIsModalOpen(false)}
         contentLabel="Add Column"
       >
-        <h2>Edit</h2>
+        <h2 className={css.titleModal}>Edit</h2>
         <form
           onSubmit={(e) => {
             e.preventDefault();
