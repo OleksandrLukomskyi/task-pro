@@ -44,9 +44,11 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar">
-      <h1>Task Pro</h1>
-      <CreateNewBoardButton onOpen={openModal} />
-      {isLoading ? (
+
+<ul>
+    <li><h1>Task Pro</h1></li>
+    <li><CreateNewBoardButton onOpen={openModal} /></li>
+    <li>  {isLoading ? (
         <p>Loading...</p>
       ) : error ? (
         <p>Error fetching boards</p>
@@ -54,9 +56,17 @@ const Sidebar = () => {
         <BoardList boards={boards} />
       )}
       <CreateNewBoardModal show={isModalOpen} onClose={closeModal} />
-      <button onClick={openHelpModal}>Need Help</button>
-      <HelpModal show={isHelpModalOpen} onClose={closeHelpModal} />
-      <LogoutButton />
+      </li>
+    <li><button onClick={openHelpModal}>Need Help</button>
+    <HelpModal show={isHelpModalOpen} onClose={closeHelpModal} /></li>
+    <li> <LogoutButton /></li>
+  </ul>
+      
+      
+    
+      
+      
+     
     </div>
   );
 };

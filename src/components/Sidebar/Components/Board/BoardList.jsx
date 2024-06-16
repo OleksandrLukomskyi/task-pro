@@ -11,12 +11,12 @@ const BoardList = ({ boards, onDelete, onEdit }) => {
   return (
     <div className="board-list">
       {boards.map(board => (
-        <BoardItem key={board._id} board={board} onDelete={onDelete} onEdit={onEdit} />
+        <BoardItem key={ board._id} board={board} onDelete={onDelete} onEdit={onEdit} />
       ))}
     </div>
   );
 };
-
+// ({ boardId: board._id, board: updatedBoardData })
 export default BoardList;
 
 
