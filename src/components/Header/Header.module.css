@@ -5,19 +5,61 @@
   justify-content: space-between;
 }
 
-.menuBtn {
+@media screen and (min-width: 768px) {
+  .header {
+    padding: 18px 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .header {
+    display: flex;
+    padding: 18px 24px;
+    justify-content: flex-end;
+  }
+}
+
+.menuBurger {
   background-color: transparent;
   display: block;
   border: none;
+  width: 24px;
+  height: 24px;
+}
+
+@media screen and (min-width: 768px) {
+  .menuBurger {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .menuBurger {
+    display: none;
+  }
 }
 
 .menuIcon {
   width: 24px;
   height: 24px;
-  stroke: var(--text-input-color-active);;
+  stroke: var(--text-input-color-active);
+}
+
+@media screen and (min-width: 768px) {
+  .menuIcon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .menuIcon {
+    stroke: none;
+  }
 }
 
 .userWrapper {
   display: flex;
-  gap: 14px
+  gap: 14px;
 }

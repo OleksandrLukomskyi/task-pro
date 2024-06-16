@@ -24,7 +24,7 @@ const Header = () => {
   return (
     <header className={css.header}>
       <button
-        className={css.menuBtn}
+        className={css.menuBurger}
         type="button"
         onClick={() => setOpen(!isOpen)}
         aria-label="navigation"

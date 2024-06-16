@@ -1,7 +1,3 @@
-.userInfoWrap {
-  display: flex;
-  flex-direction: row;
-}
 .editProfileButton {
   border: none;
   background-color: transparent;
