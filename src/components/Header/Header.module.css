@@ -1,18 +1,60 @@
 .header {
   background-color: var(--background);
-  padding: 20px 18px;
+  padding: 14px 20px;
   display: flex;
   justify-content: space-between;
 }
 
-.menuBtn {
+@media screen and (min-width: 768px) {
+  .header {
+    padding: 18px 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .header {
+    display: flex;
+    padding: 18px 24px;
+    justify-content: flex-end;
+  }
+}
+
+.menuBurger {
   background-color: transparent;
   display: block;
   border: none;
+  width: 24px;
+  height: 24px;
+}
+
+@media screen and (min-width: 768px) {
+  .menuBurger {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .menuBurger {
+    display: none;
+  }
 }
 
 .menuIcon {
   width: 24px;
   height: 24px;
   stroke: #000;
+}
+
+@media screen and (min-width: 768px) {
+  .menuIcon {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .menuIcon {
+    stroke: none;
+  }
 }
