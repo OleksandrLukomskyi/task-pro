@@ -4,7 +4,7 @@
   width: 334px;
   height: 56px;
   background-color: var(--color-column);
-  color: var(----text-color);
+  color: var(--text-color);
   border-radius: 10px;
   margin-bottom: 10px;
   justify-content: space-between;
@@ -32,7 +32,7 @@
   width: 334px;
   height: 154px;
   background-color: var(--color-column);
-  color: var(----text-color);
+  color: var(--text-color);
   border-radius: 10px;
   text-align: center;
   justify-content: center;
@@ -71,6 +71,7 @@
   border-radius: 8px;
   width: 334px;
   padding: 14px 89px;
+  color: var(--text-color-btn);
 }
 
 .btn_add_card:hover {

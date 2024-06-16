@@ -38,7 +38,7 @@
   width: 28px;
   height: 28px;
   fill: none;
-  stroke: rgb(0, 0, 0);
+  stroke: var(--color-icon-back-stroke);
   stroke-width: 2.6;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -46,12 +46,12 @@
 }
 
 .iconBackground {
-  fill: #ffffff;
+  fill: var(--color-icon-back);
 }
 
 .logoIconCard {
   fill: none;
-  stroke: rgb(0, 0, 0);
+  stroke: var(--color-icon-back-stroke);
   stroke-width: 2.6;
   stroke-linecap: round;
   stroke-linejoin: round;
