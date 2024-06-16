@@ -8,7 +8,7 @@
 }
 h1 {
   font-size: 18px;
-  /* color: white; */
+  color: var(--text-color);
 }
 
 .filterButton {
@@ -16,7 +16,7 @@ h1 {
   align-items: center;
   gap: 8px;
   background-color: transparent;
-  color: white;
+  color: var(--text-color);
   border: none;
   padding: 8px 12px;
   cursor: pointer;
@@ -24,7 +24,7 @@ h1 {
 }
 
 .filterButton:hover {
-  color: #bedbb0;
+  color: var(--color-logout);
 }
 
 .icon {
@@ -75,7 +75,7 @@ h1 {
 
 .modal button {
   align-self: flex-end;
-  background-color: #007bff;
+  background-color: var(--color-logout);
   color: white;
   border: none;
   padding: 8px 12px;
@@ -84,5 +84,5 @@ h1 {
 }
 
 .modal button:hover {
-  background-color: #0056b3;
+  background-color: var(--color-logout-hover);
 }

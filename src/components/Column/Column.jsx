@@ -96,8 +96,21 @@ export default function Column({
           className={css.btn_add_card}
           onClick={() => setIsAddCardModalOpen(true)}
         >
-          {/* <svg className={css.icon}>
-            <use href="#icon-plus-b"></use>
+          {/* <svg className={css.logoIconCard} viewBox="0 0 32 32">
+            <rect
+              className={css.iconBackgroundCard}
+              width="28"
+              height="28"
+              rx="6"
+              ry="6"
+            />
+            <use
+              href={sprite + "#icon-plus"}
+              x="7"
+              y="7"
+              width="14"
+              height="14"
+            />
           </svg> */}
           Add another card
         </button>

@@ -3,8 +3,8 @@
   flex-direction: row;
   width: 334px;
   height: 56px;
-  background-color: #121212;
-  color: #ffffff;
+  background-color: var(--color-column);
+  color: var(--text-color);
   border-radius: 10px;
   margin-bottom: 10px;
   justify-content: space-between;
@@ -31,8 +31,8 @@
 .card {
   width: 334px;
   height: 154px;
-  background-color: #121212;
-  color: #ffffff;
+  background-color: var(--color-column);
+  color: var(--text-color);
   border-radius: 10px;
   text-align: center;
   justify-content: center;
@@ -66,15 +66,18 @@
 }
 
 .btn_add_card {
-  background-color: #bedbb0;
+  background-color: var(--btn-color);
   border: none;
   border-radius: 8px;
   width: 334px;
   padding: 14px 89px;
+  color: var(--text-color-btn);
 }
 
 .btn_add_card:hover {
-  background-color: #45a049; /* Зелений фон кнопки при наведенні */
+  background-color: var(
+    --btn-color-hover
+  ); /* Зелений фон кнопки при наведенні */
 }
 
 /* modal edit */
