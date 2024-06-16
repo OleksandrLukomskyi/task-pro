@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useSelector } from 'react';
 import MainDashboard from '../../components/MainDashboard/MainDashboard';
 import HeaderDashboard from '../../components/HeaderDashboard/HeaderDashboard';
+
 
 import css from './ScreensPage.module.css';
 
 export default function ScreensPage() {
     const [hasBoards, setHasBoards] = useState(true);
+   
 
     useEffect(() => {
         const checkBoards = async () => {

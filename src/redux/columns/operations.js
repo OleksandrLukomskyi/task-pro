@@ -1,12 +1,20 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+
+
 // --------------------------------------------------------
 export const fetchColumns = createAsyncThunk(
   "columns/fetchAll",
   async (_, thunkAPI) => {
+    const token = thunkAPI.getState().auth.token;
     try {
-      const response = await axios.get("https://project-back-codewave1-rqmw.onrender.com/api/columns/");
+      const response = await axios.get("https://project-back-codewave1-rqmw.onrender.com/api/columns/" , {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      console.log(response.data)
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({
@@ -21,6 +29,7 @@ export const fetchColumns = createAsyncThunk(
 export const getColumn = createAsyncThunk(
   "columns/getColumn",
   async (columnId, thunkAPI) => {
+
     try {
       const response = await axios.get(`https://project-back-codewave1-rqmw.onrender.com/api/columns/${columnId}`);
       return response.data;

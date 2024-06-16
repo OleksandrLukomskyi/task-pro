@@ -23,7 +23,7 @@ const columnSlice = createSlice({
       })
       .addCase(fetchColumns.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = Array.isArray(action.payload) ? action.payload : action.payload.columns || [];
+        state.items =  action.payload;
       })
       .addCase(fetchColumns.rejected, (state) => {
         state.loading = false;

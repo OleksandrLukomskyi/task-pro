@@ -6,6 +6,7 @@ import css from "./HeaderDashboard.module.css";
 export default function HeaderDashboard({ boardName }) {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
   const dispatch = useDispatch();
+  
 
 
   
@@ -24,17 +25,21 @@ export default function HeaderDashboard({ boardName }) {
         isOpen={isFilterModalOpen}
         onRequestClose={() => setIsFilterModalOpen(false)}
         contentLabel="Filters"
+        className={css.modal}
+        overlayClassName={css.overlay}
       >
-        <h2>Filters</h2>
-        <form>
-          {/* Форма для зміни фону та фільтрів */}
-          <input
-            type="color"
-            onChange={(e) => handleBackgroundChange(e.target.value)}
-          />
-          {/* Інші елементи форми */}
-          <button type="button" onClick={() => setIsFilterModalOpen(false)}>Close</button>
-        </form>
+        <div className={css.modalContent}>
+          <h2>Filters</h2>
+          <form>
+            {/* Форма для зміни фону та фільтрів */}
+            <input
+              type="color"
+              onChange={(e) => handleBackgroundChange(e.target.value)}
+            />
+            {/* Інші елементи форми */}
+            <button type="button" onClick={() => setIsFilterModalOpen(false)}>Close</button>
+          </form>
+        </div>
       </Modal>
     </header>
   );
