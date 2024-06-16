@@ -499,8 +499,7 @@ const BoardItem = ({ board }) => {
   return (
     <>
      <Card key={board._id} variant="outlined" sx={{ mb: 2,
-          backgroundColor: 'black',
-          color: 'white', }}>
+          }}>
         <CardContent sx={{ display: 'flex', alignItems: 'center' }}>
           <SvgIcon sx={{ mr: 2 }}>
             <svg width="24" height="24">
@@ -512,7 +511,7 @@ const BoardItem = ({ board }) => {
             component="div"
             sx={{ flexGrow: 1 }}
             onClick={handleClick}
-            style={{ cursor: 'pointer', color: 'white' }} // Белый цвет текста на черной доске
+            style={{ cursor: 'pointer', }} // Белый цвет текста на черной доске
             >
           >
             {board.title}
