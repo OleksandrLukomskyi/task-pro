@@ -1,5 +1,5 @@
 .header {
-  background-color: var(--background);
+  background-color: var(--background-header);
   padding: 20px 18px;
   display: flex;
   justify-content: space-between;
@@ -14,5 +14,10 @@
 .menuIcon {
   width: 24px;
   height: 24px;
-  stroke: #000;
+  stroke: var(--text-input-color-active);;
+}
+
+.userWrapper {
+  display: flex;
+  gap: 14px
 }
