@@ -141,7 +141,6 @@ export default function MainDashboard() {
         className={css.buttonAddColumn}
         onClick={() => setIsModalOpen(true)}
       >
-        {" "}
         <svg className={css.logoIcon} viewBox="0 0 32 32">
           <rect
             className={css.iconBackground}
@@ -157,8 +156,8 @@ export default function MainDashboard() {
             width="14"
             height="14"
           />
-        </svg>{" "}
-        Add another column{" "}
+        </svg>
+        Add another column
       </button>
 
       <Modal
