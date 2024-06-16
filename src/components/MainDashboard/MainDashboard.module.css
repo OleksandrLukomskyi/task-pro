@@ -5,6 +5,8 @@
   overflow-x: auto;
   white-space: nowrap;
   padding: 0 20px;
+
+  height: 668px;
 }
 
 .buttonAddColumn {
@@ -125,12 +127,18 @@
 }
 
 /* column modal */
-
-.columnModal {
+.modal {
   width: 350px;
   height: 221px;
+  background-color: #151515;
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.titleModal {
-  font-size: 18px;
-}
+/* .addModalInput {
+  background-color: #151515;
+  border: var(--color-no-active-element);
+} */

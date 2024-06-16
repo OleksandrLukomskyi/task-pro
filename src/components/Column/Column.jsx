@@ -107,6 +107,7 @@ export default function Column({
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
         contentLabel="Add Column"
+        className={css.modal}
       >
         <h2 className={css.titleModal}>Edit</h2>
         <form
@@ -121,6 +122,7 @@ export default function Column({
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
             placeholder="Column title"
+            className={css.addModalInput}
           />
           <button type="submit">Add</button>
         </form>
