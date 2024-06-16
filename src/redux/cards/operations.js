@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmFkZGZkMjRjMDhlZjlhOGRkNWE1MSIsImVtYWlsIjoibmVyb21heG9yNEBnbWFpbC5jb20iLCJpYXQiOjE3MTgzMTEwNjgsImV4cCI6MTcxOTE3NTA2OH0.z4foNcTpxZ_p5JmhyfGRCieDRFYgPd41Vyrkm3wCs4I";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmUwNjA3MzRjOWFlNjk2OGVlZTgyNCIsImVtYWlsIjoiYW5ueUBnbWFpbC5jb20iLCJpYXQiOjE3MTg0ODY3MjEsImV4cCI6MTcxOTM1MDcyMX0.SSKDFJDnvqkY1tUxZ3azbZWcmWqVC0gLtYSz4KRA4RA";
 
 export const addCard = createAsyncThunk(
   "cards/addCard",
