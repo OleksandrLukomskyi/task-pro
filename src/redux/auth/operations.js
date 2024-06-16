@@ -90,3 +90,25 @@ export const refreshUser = createAsyncThunk(
     },
   }
 );
+
+// ------------------------
+export const userThema = createAsyncThunk("auth/thema", async (_, thunkAPI) => {
+  try {
+    const response = await axios.patch("/users/thema");
+    setAuthHeader(response.data.token);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+  }
+});
+
+// ----------------------------
+export const help = createAsyncThunk("auth/support", async (_, thunkAPI) => {
+  try {
+    const response = await axios.post("/api/help/");
+    setAuthHeader(response.data.token);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error);
+  }
+});

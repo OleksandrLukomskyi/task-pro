@@ -49,11 +49,21 @@ export const moveCard = createAsyncThunk(
   "cards/moveCard",
   async (cardId, thunkAPI) => {
     try {
-      const response = await axios.delete(`/api/boards/${cardId}`);
-      const moveCard = response.data;
-      //   addCard в обрану колонку
+      const response = await axios.delete(`/api/cards/${cardId}`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const fetchCards = createAsyncThunk(
+  "cards/fetchCards",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get("/api/cards/");
       // return response.data;
-      // або putch і змінити id owner ???????
+      return response.data.cards;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }

@@ -2,6 +2,7 @@ import { react } from "react";
 // import CopySideBar from "../../components/CopySideBar/CopySideBar";
 import LogoutButton from "../../components/Sidebar/Components/LogoutButton.jsx";
 // import CopyBoardItem from "../../components/CopyBoardItem/CopyBoardItem.jsx";
+import Sidebar from "../../components/Sidebar/Components/Sidebar.jsx";
 // import Sidebar from "../../components/Sidebar/Components/Sidebar.jsx";
 // import Header from "../../components/Header/Header.jsx";
 
