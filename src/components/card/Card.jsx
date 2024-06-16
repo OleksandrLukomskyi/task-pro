@@ -2,20 +2,29 @@ import React from "react";
 import Btn from "../Btn/Btn.jsx";
 import EditCard from "./EditCard.jsx";
 import { useState } from "react";
-import { editCard, moveCard, deleteCard } from "../../redux/cards/slice";
-import { useDispatch } from "react-redux";
+import { editCard, moveCard, deleteCard, fetchCards } from "../../redux/cards/operations.js";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCards, selectLoading, selectError } from "../../redux/cards/selectors.js";
 
 export default function Card({ card, columns }) {
   const [isEditing, setIsEditing] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-
+  const [idColumn, setIdColumn] = useState("666daa46d58498a7b239faa7")
+  const cards = useSelector(selectCards);
+  console.log(cards);
   const dispatch = useDispatch();
 
+  const handleColumnClick = () => {
+    console.log(idColumn);
+    let id = idColumn;
+    dispatch(fetchCards(id));
+  }
 
+  handleColumnClick()
   const checkDeadline = (deadline) => {
     const today = new Date();
     const deadlineDay = new Date(deadline);
-    return today.toISOString() === deadlineDay.toISOString();
+    return today.toDateString() === deadlineDay.toDateString();
   };
   const isDeadlineDay = checkDeadline(card.deadline);
 

@@ -1,4 +1,5 @@
-
+import AddCard from "../card/AddCard";
+import Card from "../card/Card";
 import { useState } from 'react';
 import Modal from 'react-modal';
 import css from './Column.module.css';
@@ -49,6 +50,9 @@ export default function Column({ column: { _id, title }, onDeleteColumn, onEditC
             <li className={css.card}>Its card</li>
             <li className={css.card}>Its card</li>
             <li className={css.card}>Its card</li>
+            
+             <AddCard/>
+             <Card/>
           </ul>
     </div>
     
