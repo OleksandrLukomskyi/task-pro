@@ -48,8 +48,8 @@ const Sidebar = () => {
 
 <ul>
     <li><h1>Task Pro</h1></li>
-    <li><CreateNewBoardButton onOpen={openModal} /></li>
-    <li>  {isLoading ? (
+    <li className={css.createNewBoardButton}><CreateNewBoardButton onOpen={openModal} /></li>
+    <li className={css.boardList}>  {isLoading ? (
         <p>Loading...</p>
       ) : error ? (
         <p>Error fetching boards</p>

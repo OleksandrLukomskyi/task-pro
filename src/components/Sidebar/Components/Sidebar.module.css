@@ -48,7 +48,7 @@
   align-items: center; 
   padding: 20px;
   background-color: #f8f9fa;
-  height: 100vh; 
+  /* height: 100vh;  */
 }
 
 .sidebar h1 {
@@ -70,4 +70,9 @@
 
 .helpBox {
   max-width: 212px;
+  height: 272px;
+  margin-left: 24px;
+}
+.boardList {
+  /* height: 70px; */
 }

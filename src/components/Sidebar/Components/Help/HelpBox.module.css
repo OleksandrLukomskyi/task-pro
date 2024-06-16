@@ -8,8 +8,8 @@
 /* HelpBox.module.css */
 
 .helpBox {
-    width: 270px; 
-   padding-left: 24px;
+    width: 172px; 
+    margin: 24px;
     padding: 20px;
     background: var(--background);
     color: var(--text-color);
