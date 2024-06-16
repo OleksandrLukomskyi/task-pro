@@ -73,6 +73,6 @@
   padding: 14px 89px;
 }
 
-.btn_add_card {
+.btn_add_card:hover {
   background-color: #45a049; /* Зелений фон кнопки при наведенні */
 }
