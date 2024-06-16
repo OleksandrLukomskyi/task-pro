@@ -10,6 +10,7 @@ import CopyAddBoard from "../../components/CopyAddBoard/CopyAddBoard";
 
 export default function CopySideBar() {
   const dispatch = useDispatch();
+  // Ініціалізуємо стан для збереження id дошки
   let [oneBoardId, setoneBoardId] = useState("");
 
   useEffect(() => {
@@ -17,16 +18,17 @@ export default function CopySideBar() {
   }, [dispatch]);
 
   // title не потрібен (для прикладу передачі пропсів)
-  let idBoard = "";
+
   const handleRender = (title, boardId) => {
     console.log(`boardId ${title}: ${boardId}`);
-    // return { boardtitle: title, boardsId: boardId };
-    idBoard = boardId;
-    setoneBoardId((oneBoardId = idBoard));
+
+    // передаємо в стан id дошки
+    setoneBoardId((oneBoardId = boardId));
   };
 
   console.log(oneBoardId);
 
+  // функція сворення нової колонки (форма внизу файла)
   const handleColumnSubmit = (evt) => {
     evt.preventDefault();
     console.log(oneBoardId);
@@ -34,7 +36,6 @@ export default function CopySideBar() {
     const { formTitle } = form.elements;
     let newObj = {
       boardId: oneBoardId,
-      // boardId: "666b6be207902b2daa80d559",
       title: formTitle.value,
     };
 
@@ -42,12 +43,14 @@ export default function CopySideBar() {
     form.reset();
   };
 
+  // функція видалення дошки по id
   const handleDeleteBoard = () => {
     dispatch(deleteBoard(oneBoardId));
   };
 
   return (
     <div className={css.container}>
+      {/* передаємо id дошки для редагування */}
       <CopyAddBoard editBoardId={oneBoardId} />
       {"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"}
       <CopyBoardList handleRender={handleRender} />
@@ -62,6 +65,7 @@ export default function CopySideBar() {
       {"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"}
       <div>
         {"Перед створенням колонки оберіть Board (test-2) вище"}
+        {/* форма для створення колонки */}
         <form onSubmit={handleColumnSubmit}>
           <input type="text" name="formTitle" />
           <button type="submit">CREATE COLUMN</button>
