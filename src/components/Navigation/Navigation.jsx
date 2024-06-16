@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
-// import Sidebar from "../Sidebar/Components/Sidebar";
+import Sidebar from "../Sidebar/Components/Sidebar";
+import css from "./Navigation.module.css"
 
 const navigationRoot = document.getElementById("navigation-root");
 
@@ -19,8 +20,10 @@ export const Navigation = ({ close }) => {
   }, []);
 
   return createPortal(
-    <div onClick={closeNav}>
-      <div>{/* <Sidebar /> */}</div>
+    <div className={css.overlay} onClick={closeNav}>
+      <div className={css.box}>
+        <Sidebar />
+      </div>
     </div>,
     navigationRoot
   );
