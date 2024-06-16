@@ -1,20 +1,37 @@
-import { useContext } from "react"
-import { ThemeContext } from "../../providers/ThemeProvider"
+import { useDispatch, useSelector } from "react-redux";
 
+import { editThema } from "../../redux/thema/operations.js";
+import { useContext, useEffect } from "react";
+import { ThemeContext } from "../../providers/ThemeProvider.jsx";
+import { selectUserThema } from "../../redux/thema/selectors.js";
+
+import css from "./ChangeTheme.module.css"
 
 export default function ChangeTheme () {
-    const [theme, setTheme] = useContext(ThemeContext);
+    const dispatch = useDispatch();
+    const userThema = useSelector(selectUserThema);
+    const [thema, setThema] = useContext(ThemeContext);
 
-    const handleChangeTheme = (e) => {
-        setTheme(e)
-        // зберігати тему користувача в БД
-    };
+    useEffect(() => {
+        setThema(userThema)
+    }, [userThema])
+
+    const updateThema = async (e) => {
+        setThema(e);
+        try {
+            await dispatch(editThema({"thema": e}));
+        } catch (error) {
+            console.log(error);
+        }
+        
+    }
+    
 
     return (
-        <select defaultValue={theme} onChange={e => handleChangeTheme(e.target.value)}>
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-        <option value="violet">Violet</option>
+        <select defaultValue={userThema} onChange={e => updateThema(e.target.value)} className={css.selectes}>
+        <option className={css.select} value="light">Light</option>
+        <option className={css.select} value="dark">Dark</option>
+        <option className={css.select} value="violet">Violet</option>
       </select>
     )
 }

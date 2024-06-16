@@ -29,10 +29,12 @@ export default function CopySideBar() {
 
   const handleColumnSubmit = (evt) => {
     evt.preventDefault();
+    console.log(oneBoardId);
     const form = evt.target;
     const { formTitle } = form.elements;
     let newObj = {
-      boardId: idBoard,
+      boardId: oneBoardId,
+      // boardId: "666b6be207902b2daa80d559",
       title: formTitle.value,
     };
 

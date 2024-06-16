@@ -2,11 +2,10 @@ import css from "./CopyColumnList.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchColumns } from "../../redux/columns/operations";
 import CopyColumnItem from "../../components/CopyColumnItem/CopyColumnItem";
-import { selectColumns } from "../../redux/columns/selectors";
+import { selectColumnsData } from "../../redux/columns/selectors";
 
 export default function CopyColumnList() {
-  const columns = useSelector(selectColumns);
-  console.log(columns);
+  const columns = useSelector(selectColumnsData);
 
   return (
     <div>

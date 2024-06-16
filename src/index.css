@@ -12,7 +12,7 @@
 
 
       /* кольори для сторінок WelcomePage та AuthPage*/
-      --background-start: linear-gradient(180deg, rgba(196, 196, 196, 0) 25%, #BEDBB0 92.19%);
+      --background: linear-gradient(180deg, rgba(196, 196, 196, 0) 25%, #BEDBB0 92.19%);
       --text-color-start: #161616;
       --text-color-start-white: #FFFFFF;
       --btn-color: #BEDBB0;
@@ -24,6 +24,7 @@
 /* Dark Theme */
 [data-theme='dark'] {
   --background: #232323;
+  --background-header: #161616;
   --text-color: #FFFFFF;
   --color-no-active-element: #BEDBB0;
   --color-hover-element: #9DC888;
@@ -41,6 +42,7 @@
 /* Light Theme*/
 [data-theme='light'] {
   --background: #FDFDFD;
+  --background-header:  #FCFCFC ;
   --text-color: #161616;
   --color-no-active-element: #BEDBB0;
   --color-hover-element: #9DC888;
@@ -58,6 +60,7 @@
 /* Violet Theme*/
 [data-theme='violet'] {
   --background: #D6D8FF;
+  --background-header: #FFFFFF;
   --text-color: #FFFFFF;
   --color-no-active-element:#5255BC;
   --color-hover-element: #7B7EDE;
@@ -116,4 +119,5 @@ img {
 
 body {
   background: var(--background);
+  height: 100vh;
 }

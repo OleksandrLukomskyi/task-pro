@@ -9,3 +9,5 @@ export const selectIsRefreshing = (state) => state.auth.isRefreshing;
 export const selectLoading = (state) => state.auth.loading;
 
 export const selectError = (state) => state.auth.error;
+
+export const selectThema = (state) => state.auth.thema;
