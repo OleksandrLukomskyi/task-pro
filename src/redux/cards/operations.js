@@ -51,17 +51,55 @@ export const deleteCard = createAsyncThunk(
 );
 
 
+
+// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
 export const moveCard = createAsyncThunk(
   "cards/moveCard",
-  async (cardId, thunkAPI) => {
+  async ({ newColumnId, currentCardId, currentColumn }, thunkAPI) => {
+    let allCards = [];
     try {
-      const response = await axios.delete(`/api/cards/${cardId}`);
-      return response.data;
+      const response = await axios.get("/api/cards/", {
+        params: {
+          columnId: currentColumn,
+        },
+      });
+      allCards = response.data.cards;
+      const result = allCards.find((item) => item._id === currentCardId);
+
+      const editCard = {
+        title: result.title,
+        description: result.description,
+        priority: result.priority,
+        deadline: result.deadline,
+        columnId: newColumnId,
+        board: result.board,
+      };
+
+      const newResponse = await axios.put(`/api/cards/${result._id}`, editCard);
+      console.log(newResponse.data);
+      return newResponse.data;
+
+      // return response.data.cards;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
   }
 );
+// &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+// export const moveCard = createAsyncThunk(
+//   "cards/moveCard",
+//   async (_, thunkAPI) => {
+//     console.log("hello");
+//     try {
+//       const response = await axios.get("/api/cards/");
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error);
+//     }
+//   }
+// );
 
 export const fetchCards = createAsyncThunk(
   "cards/fetchCards",
