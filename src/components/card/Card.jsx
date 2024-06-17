@@ -8,7 +8,7 @@ import css from './Card.module.css';
 import {
   selectColumnsData
 } from "../../redux/columns/selectors.js";
-export default function Card({ id, columnId, title, description, priority, deadline }) {
+export default function Card({ id, columnId, boardId, title, description, priority, deadline }) {
   const [isEditing, setIsEditing] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 

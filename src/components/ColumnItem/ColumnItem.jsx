@@ -33,7 +33,7 @@ export default function ColumnItem({ id, boardId, title, owner }) {
     dispatch(fetchCards(id));
   }, [dispatch]);
   const cards = useSelector(selectCards);
-
+console.log(cards);
   const handleDeleteColumn = () => {
     dispatch(deleteColumn(idColumn));
   };
@@ -76,6 +76,7 @@ export default function ColumnItem({ id, boardId, title, owner }) {
       <p>{`column id: ${id}`}</p>
       <p>{`board id: ${boardId}`}</p>
       <p>{`owner: ${owner}`}</p>
+   
       <div className={css.cardsContainer}></div>
       <ul className={css.cardsList}>
         {cards.map((item) => {
@@ -84,8 +85,8 @@ export default function ColumnItem({ id, boardId, title, owner }) {
               {/* Компонент CARD */}
               <Card
                 id={item._id}
-                boardId={item.board}
-                columnId={item.column}
+                boardId={item.boardId}
+                columnId={item.columnId}
                 title={item.title}
                 description={item.description}
                 priority={item.priority}
