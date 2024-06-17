@@ -23,7 +23,7 @@
 
 /* Dark Theme */
 [data-theme="dark"] {
-  --background: #232323;
+  --background: #1f1f1f;
   --background-header: #161616;
   --text-color: #ffffff;
   --color-no-active-element: #bedbb0;
@@ -82,7 +82,7 @@
 
 /* Violet Theme */
 [data-theme="violet"] {
-  --background: #d6d8ff;
+  --background: #ecedfd;
   --background-header: #ffffff;
   --text-color: #161616;
   --color-no-active-element: #5255bc;
