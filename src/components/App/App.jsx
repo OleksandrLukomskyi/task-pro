@@ -7,8 +7,8 @@ import { refreshUser } from "../../redux/auth/operations";
 import { selectIsRefreshing } from "../../redux/auth/selectors";
 // --------------------------------------------------------------
 
-import { PrivateRoute } from "../PrivateRoute.jsx";
-import { RestrictedRoute } from "../RestrictedRoute.jsx";
+import PrivateRoute from "../PrivateRoute.jsx";
+import RestrictedRoute from "../RestrictedRoute.jsx";
 
 import Layout from "../Layout/Layout.jsx";
 import LoginForm from "../LoginForm/LoginForm.jsx";
@@ -43,39 +43,28 @@ export default function App() {
         <Routes>
           <Route
             path="/welcome"
-            element={
-              <RestrictedRoute component={<WelcomePage />}></RestrictedRoute>
-            }
+            element={<RestrictedRoute component={<WelcomePage />} />}
           />
           <Route
             path="/auth/:id"
-            element={
-              <RestrictedRoute component={<AuthPage />}></RestrictedRoute>
-            }
+            element={<RestrictedRoute component={<AuthPage />} />}
           >
             <Route
               path="login"
-              element={
-                <RestrictedRoute component={<LoginForm />}></RestrictedRoute>
-              }
+              element={<RestrictedRoute component={<LoginForm />} />}
             />
             <Route
               path="register"
-              element={
-                <RestrictedRoute component={<RegisterForm />}></RestrictedRoute>
-              }
+              element={<RestrictedRoute component={<RegisterForm />} />}
             />
           </Route>
           <Route
             path="/home"
             element={
-              <PrivateRoute
-                component={<HomePage />}
-                redirectTo="/welcome"
-              ></PrivateRoute>
+              <PrivateRoute component={<HomePage />} redirectTo="/welcome" />
             }
           />
-          <Route path="/home/:boardName" element={<ScreensPage />}></Route>
+          <Route path="/home/:boardName" element={<ScreensPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>

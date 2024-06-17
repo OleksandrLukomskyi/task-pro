@@ -1,6 +1,6 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import LoginForm from "../../components/LoginForm/LoginForm";
-import { RegisterForm } from "../../components/RegisterForm/RegisterForm";
+import RegisterForm from "../../components/RegisterForm/RegisterForm";
 import { Box, Tabs, Tab } from "@mui/material";
 import css from "./AuthPage.module.css";
 

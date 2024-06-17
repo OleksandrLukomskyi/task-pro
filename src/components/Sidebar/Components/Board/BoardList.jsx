@@ -1,28 +1,50 @@
-import React from 'react';
-import BoardItem from './BoardItem';
-import styles from './BoardList.module.css'
+import React from "react";
+import BoardItem from "./BoardItem";
+import styles from "./BoardList.module.css";
 
-const BoardList = ({ boards, onDelete, onEdit }) => {
+const BoardList = ({ boards, onDelete, onEdit, handleBoardId }) => {
   if (!Array.isArray(boards)) {
     return <div>Loading...</div>;
   }
 
-  
-
   return (
-    <div className={styles['board-list']}>
-      {boards.map(board => (
-        <BoardItem key={ board._id} board={board} onDelete={onDelete} onEdit={onEdit} />
-      ))}
+    <div className={styles["board-list"]}>
+      {/* {boards.map((board) => (
+        <BoardItem
+          key={board._id}
+          board={board}
+          onClick={() => handleBoardId(board._id)}
+          onDelete={onDelete}
+          onEdit={onEdit}
+        />
+      ))} */}
+      <ul>
+        {boards.map((board) => {
+          return (
+            <li key={board._id} onClick={() => handleBoardId(board._id)}>
+              <BoardItem
+                key={board._id}
+                board={board}
+                onClick={() => handleBoardId(board._id)}
+                onDelete={onDelete}
+                onEdit={onEdit}
+              />
+              {/* <button
+                title={board.title}
+                type="button"
+                onClick={() => handleRender(board._id)}
+              >
+                {board.title}
+              </button> */}
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };
 
 export default BoardList;
-
-
-
-
 
 // import { useSelector, useDispatch } from 'react-redux';
 // import { selectBoard } from '../../../../redux/boards/selectors';
@@ -53,4 +75,3 @@ export default BoardList;
 // };
 
 // export default BoardList;
-
