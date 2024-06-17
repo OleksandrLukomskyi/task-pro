@@ -11,7 +11,7 @@ import {
 export default function Card({ id, columnId, title, description, priority, deadline }) {
   const [isEditing, setIsEditing] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  
+
   const columns = useSelector(selectColumnsData);
   const dispatch = useDispatch();
 
@@ -36,6 +36,14 @@ export default function Card({ id, columnId, title, description, priority, deadl
   const handleDeleteCard = () => {
     dispatch(deleteCard(id));
   }
+  const handleMouseEnter = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsPopupOpen(false);
+  };
+
 
   return (
     <div className={`${css.card} ${css[`card-${priority.toLowerCase()}`]}`}>
@@ -58,35 +66,41 @@ export default function Card({ id, columnId, title, description, priority, deadl
         </div>
 
 
-        <div className={css.icons}>
+        <div className={css.icons} onMouseLeave={handleMouseLeave}>
         {isDeadlineDay && (
           <svg className={css.logoIcon}>
             <use href={`${sprite}#bell`}></use>
           </svg>
         )}
-        <button className={css.deleteCard} onClick={() => setIsPopupOpen(!isPopupOpen)}>
+  
+        <button className={css.btnCard}
+         onMouseEnter={handleMouseEnter}
+         >
             <svg className={css.logoIcon}>
               <use href={`${sprite}#icon-arrow-circle-broken-right`}></use>
             </svg>   
         </button>
         {isPopupOpen && (
-          <div className="popup">
+          <div className={css.popup} onMouseLeave={handleMouseLeave}>
             {columns.map((column) => (
               <div key={column._id} onClick={() => handleMoveCard(column._id)}>
-               <span>{column.name}</span>
-               <svg className={css.popupIcon}>
+               
+                <button className={css.popBox}>
+               <span className={css.popTitle}>{column.title}</span>
+               <svg className={css.logoIcon}>
                     <use href={`${sprite}#icon-arrow-circle-broken-right`}></use>
-                  </svg> 
+                  </svg>
+                  </button> 
               </div>
             ))}
           </div>
         )}
-        <button className={css.deleteCard} onClick={() => setIsEditing(true)}>
+        <button className={css.btnCard} onClick={() => setIsEditing(true)}>
         <svg className={css.logoIcon}>
             <use href={`${sprite}#icon-pencil-01`}></use>
           </svg>
         </button>
-        <button className={css.deleteCard} onClick={handleDeleteCard}>
+        <button className={css.btnCard} onClick={handleDeleteCard}>
         <svg className={css.logoIcon}>
             <use href={`${sprite}#icon-trash-04`}></use>
           </svg>

@@ -43,13 +43,6 @@
     opacity: 0.5;
     
 }
-/* .description::after {
-    content: '...'; 
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        padding: 0 5px;
-} */
 .cardDivider {
     display: flex;
     width: 290px;
@@ -122,6 +115,7 @@ color: var(--text-color-start-white);
     display: flex;
     gap: 8px;
     margin-right: 20px;
+    position: relative;
 }
 .logoIcon {
     width: 16px;
@@ -134,11 +128,54 @@ color: var(--text-color-start-white);
     stroke-linejoin: round;
     stroke-miterlimit: 4;
   }
+  .logoIcon:hover {
+    stroke: var(--btn-color)
 
-.deleteCard {
+  }
+.btnCard {
     background-color: transparent;
     border: none;
     cursor: pointer;
     padding: 0;
     width: auto;
+   
+  }
+ 
+  .popup {
+  width: 135px;
+  position: absolute;
+  top: 110%;
+  background-color: #1F1F1F;
+  padding: 18px;
+  border: 1px solid var(--text-color-start-white);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  }
+ 
+  .popTitle {
+    font-size: 14px;
+    line-height: 21px;
+    color: var(--text-color-start-white);
+    opacity: 0.5;
+  }
+  .popBox {
+    width: 99px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 8px;
+  }
+
+  .popBox:hover .popTitle,
+  .popBox:hover .logoIcon {
+    color: var(--btn-color);
+    stroke: var(--btn-color)
   }
