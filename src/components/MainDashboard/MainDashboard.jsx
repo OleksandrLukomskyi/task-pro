@@ -278,7 +278,6 @@ import {
 import Modal from 'react-modal';
 import Column from '../Column/Column';
 import css from './MainDashboard.module.css';
-
 import {
   selectColumnsData,
   selectLoading,
@@ -301,13 +300,11 @@ export default function MainDashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newColumnTitle, setNewColumnTitle] = useState('');
 
-
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
-  const boardId = "666b2baa72f2dcf6bb1959d1";
+
   const columns = useSelector(selectColumnsData);
   const [columnsData, setColumnsData] = useState([]);
-
 
   useEffect(() => {
     Object.keys(board).length == 0
@@ -322,49 +319,9 @@ export default function MainDashboard() {
       boardId: idBoard,
       title: newColumnTitle,
     };
-  const handleDeleteColumn = async (_id) => {
-    try {
-      await axios.delete(
-        `https://project-back-codewave1-rqmw.onrender.com/api/columns/${_id}`,
-        {
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmI1NTYxNDhiMTY4ZTdjMWM3NWQ2MSIsImVtYWlsIjoicDNAcC5jb20iLCJpYXQiOjE3MTgzMTAyNDEsImV4cCI6MTcxOTE3NDI0MX0.MB7dXShXVl1aqxvRkxsMvhMAYiuk0LbHjLTeAPOQXdE",
-          },
-        }
-      );
-      setColumnsData((prevColumns) =>
-        prevColumns.filter((column) => column._id !== _id)
-      );
-      toast.success("Column deleted successfully!");
-    } catch (error) {
-      toast.error("Failed to delete column. Please try again.");
-    }
-  };
 
-  const handleEditColumn = async (_id, title) => {
-    try {
-      const response = await axios.put(
-        `https://project-back-codewave1-rqmw.onrender.com/api/columns/${_id}`,
-        { title },
-        {
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmI1NTYxNDhiMTY4ZTdjMWM3NWQ2MSIsImVtYWlsIjoicDNAcC5jb20iLCJpYXQiOjE3MTgzMTAyNDEsImV4cCI6MTcxOTE3NDI0MX0.MB7dXShXVl1aqxvRkxsMvhMAYiuk0LbHjLTeAPOQXdE",
-          },
-        }
-      );
-      setColumnsData((prevColumns) =>
-        prevColumns.map((column) =>
-          column._id === _id
-            ? { ...column, title: response.data.column.title }
-            : column
-        )
-      );
-      toast.success("Column updated successfully!");
-    } catch (error) {
-      toast.error("Failed to update column. Please try again.");
-    }
+    dispatch(createColumn(newObj));
+
     setIsModalOpen(false);
   };
 

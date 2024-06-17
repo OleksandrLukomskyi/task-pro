@@ -100,7 +100,7 @@ const Sidebar = () => {
   const error = useSelector(state => state.boards.error);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-
+  // UseEffect to update boards list after a new board is created
   useEffect(() => {
     dispatch(fetchBoards());
   }, [dispatch]);
@@ -122,9 +122,8 @@ const Sidebar = () => {
   return (
     <div className={css.sidebar}>
       <ul>
-        <li className={css.logo}>
-          <div><img src={Logo} alt="" /></div>
-          <div><h1>Task Pro</h1></div>
+        <li>
+          <h1>Task Pro</h1>
         </li>
         <li className={css.createNewBoardButton}>
           <CreateNewBoardButton onOpen={openModal} />
