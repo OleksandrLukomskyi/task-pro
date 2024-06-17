@@ -77,6 +77,7 @@
 
 import { useState } from 'react';
 import CreateNewBoardModal from './CreateNewBoardModal'; // Импорт модального окна
+import css from './CreateNewBoardModal.module.css'
 
 const CreateNewBoardButton = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // Состояние для открытия/закрытия модального окна
@@ -92,7 +93,7 @@ const CreateNewBoardButton = () => {
   };
 
   return (
-    <div>
+    <div className={css.create}>
       {/* Кнопка для открытия модального окна */}
       <button onClick={openModal}>
         + Create New Board

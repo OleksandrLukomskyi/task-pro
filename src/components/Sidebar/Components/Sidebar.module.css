@@ -1,5 +1,5 @@
-/* #root {
-  max-width: 350px;
+#root {
+  max-width: 212px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -42,13 +42,13 @@
 }
 
 .sidebar {
-  max-width: 350px;
+  max-width: 212px;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Выравнивание по центру по горизонтали */
+  align-items: center; 
   padding: 20px;
   background-color: #f8f9fa;
-  height: 100vh; /* Высота на весь экран */
+  /* height: 100vh;  */
 }
 
 .sidebar h1 {
@@ -60,6 +60,19 @@
 }
 
 .sidebar .logout-button {
-  margin-top: auto; /* Чтобы кнопка выхода располагалась внизу */
-} */
+  margin-top: auto; 
+} 
+ 
 
+.board-list {
+  background-color: black;
+}
+
+.helpBox {
+  max-width: 212px;
+  height: 272px;
+  margin-left: 24px;
+}
+.boardList {
+  /* height: 70px; */
+}

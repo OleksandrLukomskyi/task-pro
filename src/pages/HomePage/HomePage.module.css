@@ -1,16 +1,17 @@
 .div {
   display: flex;
-  width: 100%;
+  width: 1440px;
   height: 100%;
 }
 
 .container {
   width: 1180px;
-  padding: 20px;
 }
 
 .sidebar {
   width: 260px;
+  height: 100vh;
+  background-color: black;
 }
 
 .header {
