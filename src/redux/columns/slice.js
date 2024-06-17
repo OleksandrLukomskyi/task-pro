@@ -22,7 +22,6 @@ const columnSlice = createSlice({
         state.error = false;
       })
       .addCase(fetchColumns.fulfilled, (state, action) => {
-        console.log(action.payload);
         state.loading = false;
         state.items = action.payload;
       })
