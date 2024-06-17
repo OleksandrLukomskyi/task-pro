@@ -5,7 +5,7 @@ import { deleteColumn, editColumn } from "../../redux/columns/slice";
 import { useDispatch, useSelector } from "react-redux";
 import sprite from "../../assets/icons/Sprite.svg";
 import AddCard from "../card/AddCard";
-import { addCard, editCard } from "../../redux/cards/slice";
+import { addCard } from "../../redux/cards/slice";
 import { selectCards } from "../../redux/cards/selectors";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
@@ -35,10 +35,6 @@ export default function Column({
 
   const handleEdit = () => {
     onEditColumn(_id, newTitle);
-  };
-
-  const handleEditCard = (cardId, newCardData) => {
-    dispatch(editCard({ cardId, editCard: newCardData }));
   };
 
   const handleAddCard = async (card) => {
@@ -91,11 +87,6 @@ export default function Column({
               <p>{card.description}</p>
               <p>Priority: {card.priority}</p>
               <p>Deadline: {new Date(card.deadline).toLocaleString()}</p>
-              <button className={css.deleteColumn} onClick={handleEditCard}>
-                <svg className={css.logoIcon}>
-                  <use href={sprite + "#icon-trash-04"}></use>
-                </svg>{" "}
-              </button>
             </li>
           ))}
         </ul>
@@ -105,7 +96,7 @@ export default function Column({
           className={css.btn_add_card}
           onClick={() => setIsAddCardModalOpen(true)}
         >
-          <svg className={css.logoIconCard} viewBox="0 0 32 32">
+          {/* <svg className={css.logoIconCard} viewBox="0 0 32 32">
             <rect
               className={css.iconBackgroundCard}
               width="28"
@@ -120,7 +111,7 @@ export default function Column({
               width="14"
               height="14"
             />
-          </svg>
+          </svg> */}
           Add another card
         </button>
       </div>
