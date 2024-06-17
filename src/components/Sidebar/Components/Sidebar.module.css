@@ -51,6 +51,7 @@
   height: 100vh; 
 }
 
+
 .sidebar h1 {
   margin-bottom: 20px;
 }
@@ -75,4 +76,12 @@
 }
 .boardList {
   /* height: 70px; */
+}
+
+.logo {
+  display: flex;
+  gap: 10px;
+  /* justify-content: space-between; */
+  /* background-color: var(--color-column);
+  color: var(--text-color); */
 }
