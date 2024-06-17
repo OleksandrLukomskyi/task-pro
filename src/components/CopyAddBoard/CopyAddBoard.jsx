@@ -1,6 +1,6 @@
 import css from "./CopyAddBoard.module.css";
 import { Field, Form, Formik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addBoard,
   editBoard,
