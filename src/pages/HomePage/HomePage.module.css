@@ -10,8 +10,8 @@
 
 .sidebar {
   width: 260px;
-  height: 100vh;
-  background-color: black;
+  height: 1200px;
+  background-color: var(--btn-color);
 }
 
 .header {
