@@ -1,20 +1,21 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchBoards } from '../../../redux/boards/operations';
-import BoardList from './Board/BoardList';
-import CreateNewBoardButton from './CreateNewBoard/CreateNewBoardButton';
-import CreateNewBoardModal from './CreateNewBoard/CreateNewBoardModal';
-import HelpBox from './Help/HelpBox';
-import LogoutButton from './LogoutButton';
-import css from './Sidebar.module.css'
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchBoards } from "../../../redux/boards/operations";
+import BoardList from "./Board/BoardList";
+import CreateNewBoardButton from "./CreateNewBoard/CreateNewBoardButton";
+import CreateNewBoardModal from "./CreateNewBoard/CreateNewBoardModal";
+import HelpBox from "./Help/HelpBox";
+import LogoutButton from "./LogoutButton";
+import css from "./Sidebar.module.css";
 
-const Sidebar = () => {
+const Sidebar = ({ getId }) => {
   const dispatch = useDispatch();
   const boards = useSelector((state) => state.boards.items);
   const isLoading = useSelector((state) => state.boards.loading);
   const error = useSelector((state) => state.boards.error);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+  let [oneBoardId, setoneBoardId] = useState("");
 
   useEffect(() => {
     dispatch(fetchBoards());
@@ -43,25 +44,40 @@ const Sidebar = () => {
     setIsHelpModalOpen(false);
   };
 
+  const handleBoardId = (idBoard) => {
+    setoneBoardId((oneBoardId = idBoard));
+    // console.log(oneBoardId);
+    getId(oneBoardId);
+  };
+
   return (
     <div className="sidebar">
-
-<ul>
-    <li><h1>Task Pro</h1></li>
-    <li className={css.createNewBoardButton}><CreateNewBoardButton onOpen={openModal} /></li>
-    <li className={css.boardList}>  {isLoading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>Error fetching boards</p>
-      ) : (
-        <BoardList boards={boards} />
-      )}
-      <CreateNewBoardModal  show={isModalOpen} onClose={closeModal} />
-      </li>
-    <li className={css.helpBox}><HelpBox/></li>
-    <li> <LogoutButton /></li>
-  </ul>
-     
+      <ul>
+        <li>
+          <h1>Task Pro</h1>
+        </li>
+        <li className={css.createNewBoardButton}>
+          <CreateNewBoardButton onOpen={openModal} />
+        </li>
+        <li className={css.boardList}>
+          {" "}
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : error ? (
+            <p>Error fetching boards</p>
+          ) : (
+            <BoardList boards={boards} handleBoardId={handleBoardId} />
+          )}
+          <CreateNewBoardModal show={isModalOpen} onClose={closeModal} />
+        </li>
+        <li className={css.helpBox}>
+          <HelpBox />
+        </li>
+        <li>
+          {" "}
+          <LogoutButton />
+        </li>
+      </ul>
     </div>
   );
 };

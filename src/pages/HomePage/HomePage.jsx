@@ -9,20 +9,20 @@ import { useState, useEffect } from "react";
 // import CopyBoardItem from "../../components/CopyBoardItem/CopyBoardItem";
 
 export default function HomePage() {
-  // let [trueBoardId, setTrueBoardId] = useState("");
-  // const getId = (id) => {
-  //   setTrueBoardId((trueBoardId = id));
-  // };
-  // console.log(trueBoardId);
+  let [trueBoardId, setTrueBoardId] = useState("");
+  const getId = (id) => {
+    setTrueBoardId((trueBoardId = id));
+  };
+
   return (
     <div className={css.div}>
       <div className={css.sidebar}>
-        <Sidebar />
+        <Sidebar getId={getId} />
       </div>
 
       <div className={css.container}>
         <Header className={css.header} />
-        <ScreensPage className={css.screensPage} />
+        <ScreensPage idBoard={trueBoardId} className={css.screensPage} />
       </div>
       {/* <TestLogOut /> */}
 
