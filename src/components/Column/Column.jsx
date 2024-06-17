@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import css from "./Column.module.css";
 import { deleteColumn, editColumn } from "../../redux/columns/slice";
 import { useDispatch, useSelector } from "react-redux";
 import sprite from "../../assets/icons/Sprite.svg";
 import AddCard from "../card/AddCard";
-import { addCard } from "../../redux/cards/slice";
+import { addCard, editCard, deleteCard } from "../../redux/cards/slice";
 import { selectCards } from "../../redux/cards/selectors";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
@@ -20,8 +20,9 @@ export default function Column({
   const [isAddCardModalOpen, setIsAddCardModalOpen] = useState(false);
   const dispatch = useDispatch();
   const boardId = "666b2baa72f2dcf6bb1959d1";
-  const [cardsData, setCardsData] = useState([]);
 
+  const cardId = "";
+  const [cardsData, setCardsData] = useState([]);
   const cards = useSelector(selectCards);
 
   console.log(_id);
@@ -55,6 +56,31 @@ export default function Column({
     }
     setIsAddCardModalOpen(false);
   };
+  ("");
+
+  const fetchCards = async (cardId) => {
+    try {
+      const response = await axios.get(
+        `https://project-back-codewave1-rqmw.onrender.com/api/cards/?boardId=${cardId}`,
+        {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmI1NTYxNDhiMTY4ZTdjMWM3NWQ2MSIsImVtYWlsIjoicDNAcC5jb20iLCJpYXQiOjE3MTgzMTAyNDEsImV4cCI6MTcxOTE3NDI0MX0.MB7dXShXVl1aqxvRkxsMvhMAYiuk0LbHjLTeAPOQXdE",
+          },
+        }
+      );
+      console.log(response.data);
+      setCardsData(response.data.cards);
+    } catch (error) {
+      console.error("Fetch columns error:", error);
+      setCardsData([]);
+    }
+  };
+  useEffect(() => {
+    fetchCards(cardId);
+  }, [cardId]);
+
+  console.log(cardsData);
 
   return (
     <div className={css.container_columns}>

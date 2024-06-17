@@ -59,13 +59,16 @@ export const moveCard = createAsyncThunk(
 
 export const fetchCards = createAsyncThunk(
   "cards/fetchCards",
-  async (_, thunkAPI) => {
+  async (columnId, thunkAPI) => {
     try {
-      const response = await axios.get("/api/cards/");
-      // return response.data;
+      const response = await axios.get(`/api/cards/?columnId=${columnId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return response.data.cards;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
