@@ -8,7 +8,7 @@ import { getBoard, deleteBoard } from "../../redux/boards/operations";
 import { createColumn } from "../../redux/columns/operations";
 import CopyAddBoard from "../../components/CopyAddBoard/CopyAddBoard";
 
-export default function CopySideBar() {
+export default function CopySideBar({ getId }) {
   const dispatch = useDispatch();
   // Ініціалізуємо стан для збереження id дошки
   let [oneBoardId, setoneBoardId] = useState("");
@@ -24,6 +24,7 @@ export default function CopySideBar() {
 
     // передаємо в стан id дошки
     setoneBoardId((oneBoardId = boardId));
+    getId(oneBoardId);
   };
 
   // console.log(oneBoardId);

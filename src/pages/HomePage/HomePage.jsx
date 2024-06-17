@@ -4,10 +4,16 @@ import Sidebar from "../../components/Sidebar/Components/Sidebar.jsx";
 import Header from "../../components/Header/Header.jsx";
 import ScreensPage from "../../pages/ScreensPage/ScreensPage.jsx";
 import css from "./HomePage.module.css";
+import { useState, useEffect } from "react";
 // import CopySideBar from "../../components/CopySideBar/CopySideBar";
 // import CopyBoardItem from "../../components/CopyBoardItem/CopyBoardItem";
 
 export default function HomePage() {
+  // let [trueBoardId, setTrueBoardId] = useState("");
+  // const getId = (id) => {
+  //   setTrueBoardId((trueBoardId = id));
+  // };
+  // console.log(trueBoardId);
   return (
     <div className={css.div}>
       <div className={css.sidebar}>
@@ -21,7 +27,7 @@ export default function HomePage() {
       {/* <TestLogOut /> */}
 
       {/* <div className={css.container}> */}
-      {/* <CopySideBar />
+      {/* <CopySideBar getId={getId} />
       <CopyBoardItem /> */}
       {/* </div> */}
 
