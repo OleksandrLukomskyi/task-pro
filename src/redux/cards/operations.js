@@ -24,10 +24,16 @@ export const editCard = createAsyncThunk(
   "cards/updateCard",
   async ({ cardId, editCard }, thunkAPI) => {
     try {
-      const response = await axios.put(`/api/cards/${cardId}`, editCard);
+      const response = await axios.put(
+        `https://project-back-codewave1-rqmw.onrender.com/api/cards/${cardId}`,
+        editCard
+      );
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue({
+        message: error.message,
+        code: error.code,
+      });
     }
   }
 );
@@ -44,7 +50,7 @@ export const deleteCard = createAsyncThunk(
   }
 );
 
-// -------------------&&&&&&&&&&&&&&&&&----------------------?????????????
+
 export const moveCard = createAsyncThunk(
   "cards/moveCard",
   async (cardId, thunkAPI) => {
