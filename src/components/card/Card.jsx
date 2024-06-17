@@ -10,17 +10,20 @@ export default function Card({ card, columns }) {
   const [isEditing, setIsEditing] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [idColumn, setIdColumn] = useState("666daa46d58498a7b239faa7")
-  const cards = useSelector(selectCards);
-  console.log(cards);
+ 
   const dispatch = useDispatch();
 
-  const handleColumnClick = () => {
-    console.log(idColumn);
-    let id = idColumn;
-    dispatch(fetchCards(id));
-  }
+  useEffect(() => {
+    dispatch(fetchCards(idColumn));
+  }, [dispatch, idColumn]);
 
-  handleColumnClick()
+  const cards = useSelector(selectCards);
+  console.log(cards);
+  const isLoading = useSelector(selectLoading);
+  const error = useSelector(selectError);
+
+
+
   const checkDeadline = (deadline) => {
     const today = new Date();
     const deadlineDay = new Date(deadline);
@@ -30,7 +33,7 @@ export default function Card({ card, columns }) {
 
   
   const handleEditCard = (updateCard) => {
-    dispatch(editCard({id: card._id, updateCard: updateCard }));
+    dispatch(editCard({id: card._id, updateCard }));
     setIsEditing(false);
   };
 
@@ -41,6 +44,14 @@ export default function Card({ card, columns }) {
   
   const handleDeleteCard = () => {
     dispatch(deleteCard(card._id));
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
   }
   return (
     <div className={`card ${card.priority.toLowerCase()}`}>
