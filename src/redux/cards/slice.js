@@ -63,7 +63,10 @@ const cardSlice = createSlice({
         state.loading = true;
         state.error = false;
       })
-      .addCase(moveCard.fulfilled, (state, action) => {})
+      .addCase(moveCard.fulfilled, (state, action) => {
+        state.loading = false;
+        state.items = action.payload;
+      })
       .addCase(moveCard.rejected, (state) => {
         state.loading = false;
         state.error = true;
