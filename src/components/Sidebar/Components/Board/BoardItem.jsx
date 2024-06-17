@@ -48,7 +48,7 @@
 //           </Typography>
 //         )}
 //       </Card>
-      
+
 //       {/* Модальное окно для редактирования доски */}
 //       <EditBoardModal
 //         show={editModalOpen}
@@ -60,7 +60,6 @@
 // };
 
 // export default BoardItem;
-
 
 // import React, { useState, useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
@@ -135,8 +134,6 @@
 
 // export default BoardItem;
 
-
-
 // import React, { useState } from 'react';
 // import { useDispatch } from 'react-redux';
 // import { deleteBoard, fetchBoards } from '../../../../redux/boards/operations';
@@ -205,8 +202,6 @@
 // };
 
 // export default BoardItem;
-
-
 
 // import { useState } from 'react';
 // import { useDispatch } from 'react-redux';
@@ -285,7 +280,6 @@
 
 // export default BoardItem;
 
-
 // import { useState } from 'react';
 // import { useDispatch } from 'react-redux';
 // import { deleteBoard, fetchBoards } from '../../../../redux/boards/operations';
@@ -363,8 +357,6 @@
 
 // export default BoardItem;
 
-
-
 // import { useNavigate } from 'react-router-dom';
 // import { useState } from 'react';
 // import { useDispatch } from 'react-redux';
@@ -404,8 +396,6 @@
 //     setEditModalOpen(false);
 //     dispatch(fetchBoards());
 //   };
-
-  
 
 //   const handleClick = () => {
 //     navigate(`/home/${board.title}`);
@@ -449,6 +439,95 @@
 
 // export default BoardItem;
 
+// import { useState } from 'react';
+// import { useDispatch } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
+// import { deleteBoard, fetchBoards } from '../../../../redux/boards/operations';
+// import Card from '@mui/material/Card';
+// import CardContent from '@mui/material/CardContent';
+// import Typography from '@mui/material/Typography';
+// import CardActions from '@mui/material/CardActions';
+// import IconButton from '@mui/material/IconButton';
+// import EditIcon from '@mui/icons-material/Edit';
+// import DeleteIcon from '@mui/icons-material/Delete';
+// import SvgIcon from '@mui/material/SvgIcon';
+// import EditBoardModal from './EditBoardModal';
+// import Sprite from '../../../../assets/icons/Sprite.svg'; // Импорт спрайта
+
+// const BoardItem = ({ board }) => {
+//   const dispatch = useDispatch();
+//   const navigate = useNavigate();
+//   const [error, setError] = useState('');
+//   const [editModalOpen, setEditModalOpen] = useState(false);
+
+//   const handleDelete = async (_id) => {
+//     try {
+//       await dispatch(deleteBoard(_id));
+//       dispatch(fetchBoards());
+//     } catch (error) {
+//       console.error('Failed to delete the board:', error);
+//       setError('Failed to delete the board');
+//     }
+//   };
+
+//   const handleEditModalOpen = () => {
+//     setEditModalOpen(true);
+//   };
+
+//   const handleEditModalClose = () => {
+//     setEditModalOpen(false);
+//     dispatch(fetchBoards());
+//   };
+
+//   const handleClick = () => {
+//     navigate(`/home/${board._id}`);
+//   };
+
+//   return (
+//     <>
+//      <Card key={board._id} variant="outlined" sx={{ mb: 2,
+//           }}>
+//         <CardContent sx={{ display: 'flex', alignItems: 'center' }}>
+//           <SvgIcon sx={{ mr: 2 }}>
+//             <svg width="24" height="24">
+//               <use href={`${Sprite}#${board.icon}`} />
+//             </svg>
+//           </SvgIcon>
+//           <Typography
+//             variant="h5"
+//             component="div"
+//             sx={{ flexGrow: 1 }}
+//             onClick={handleClick}
+//             style={{ cursor: 'pointer' }} // Белый цвет текста на черной доске
+//             >
+
+//             {board.title}
+//           </Typography>
+//           <CardActions>
+//             <IconButton onClick={handleEditModalOpen}>
+//               <EditIcon />
+//             </IconButton>
+//             <IconButton onClick={() => handleDelete(board._id)}>
+//               <DeleteIcon />
+//             </IconButton>
+//           </CardActions>
+//         </CardContent>
+//         {error && (
+//           <Typography color="error" sx={{ mt: 2 }}>
+//             {error}
+//           </Typography>
+//         )}
+//       </Card>
+//       <EditBoardModal
+//         show={editModalOpen}
+//         onClose={handleEditModalClose}
+//         board={board}
+//       />
+//     </>
+//   );
+// };
+
+// export default BoardItem;
 
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -465,14 +544,13 @@ import SvgIcon from '@mui/material/SvgIcon';
 import EditBoardModal from './EditBoardModal';
 import Sprite from '../../../../assets/icons/Sprite.svg'; // Импорт спрайта
 
-
 const BoardItem = ({ board }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState('');
   const [editModalOpen, setEditModalOpen] = useState(false);
 
-  const handleDelete = async (_id) => {
+  const handleDelete = async _id => {
     try {
       await dispatch(deleteBoard(_id));
       dispatch(fetchBoards());
@@ -497,8 +575,7 @@ const BoardItem = ({ board }) => {
 
   return (
     <>
-     <Card key={board._id} variant="outlined" sx={{ mb: 2,
-          }}>
+      <Card key={board._id} variant="outlined" sx={{ mb: 2 }}>
         <CardContent sx={{ display: 'flex', alignItems: 'center' }}>
           <SvgIcon sx={{ mr: 2 }}>
             <svg width="24" height="24">
@@ -511,8 +588,7 @@ const BoardItem = ({ board }) => {
             sx={{ flexGrow: 1 }}
             onClick={handleClick}
             style={{ cursor: 'pointer' }} // Белый цвет текста на черной доске
-            >
-          
+          >
             {board.title}
           </Typography>
           <CardActions>
