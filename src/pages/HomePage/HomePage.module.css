@@ -1,12 +1,14 @@
-.div {
-  display: flex;
-  width: 1440px;
-  height: 100%;
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  background-color: black;
+  margin-left: 0;
 }
 
 .container {
   width: 1180px;
 }
+
 
 .sidebar {
   width: 260px;
@@ -14,10 +16,37 @@
   background-color: var(--btn-color);
 }
 
+
 .header {
   width: 1180px;
 }
 
-.screensPage {
+.div {
+  display: flex;
+  width: 1440px;
   height: 100%;
+}
+
+.screensPage {
+  height: 702px;
+}
+
+@media screen and (max-width: 768px) and (min-width: 376px) {
+  .container {
+    width: 768px;
+  }
+
+  .sidebar {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .container {
+    width: 375px;
+  }
+
+  .sidebar {
+    display: none;
+  }
 }

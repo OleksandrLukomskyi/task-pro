@@ -118,7 +118,7 @@ const RegisterForm = () => {
         }}
       />
       {ifError && (
-        <Typography color="error" variant="body2">
+        <Typography color="error" variant="body2" align="center">
           {errorMessage}
         </Typography>
       )}

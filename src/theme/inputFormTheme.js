@@ -31,6 +31,12 @@ const inputFormTheme = {
   "& .MuiInputLabel-outlined.Mui-focused": {
     ...focusedStyles,
   },
+  "& .MuiInputLabel-root.Mui-focused": {
+    color: "green",
+  },
+  "& .MuiInputBase-root.Mui-filled": {
+    backgroundColor: "red",
+  },
   "& .MuiInputLabel-root": {
     ...labelStyles,
   },

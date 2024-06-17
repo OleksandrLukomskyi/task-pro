@@ -52,12 +52,12 @@ const LoginForm = () => {
         if (logIn.fulfilled.match(result)) {
           reset(); // скидаємо форму
         } else if (logIn.rejected.match(result)) {
-          setErrorMessage(result.payload.message || "Login failed");
+          setErrorMessage(result.payload || "Login failed");
         }
       })
       .catch((error) => {
         setErrorMessage(error.message);
-        console.error("Login failed:", error.message);
+        console.error("Login is failed:", error.message);
       });
   };
 
@@ -104,7 +104,12 @@ const LoginForm = () => {
         }}
       />
       {ifError && (
-        <Typography color="error" variant="body2" marginTop="normal">
+        <Typography
+          color="error"
+          variant="body2"
+          marginTop="normal"
+          align="center"
+        >
           {"Invalid email or password: " + errorMessage}
         </Typography>
       )}
