@@ -1,23 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 import {
   fetchBoards,
   getBoard,
   deleteBoard,
   addBoard,
   editBoard,
-} from "./operations";
-import { logOut } from "../auth/operations";
+} from './operations';
+import { logOut } from '../auth/operations';
 
 const boardSlice = createSlice({
-  name: "boards",
+  name: 'boards',
   initialState: {
+    item: {},
     items: [],
     loading: false,
     error: false,
   },
-  extraReducers: (builder) =>
+  extraReducers: builder =>
     builder
-      .addCase(fetchBoards.pending, (state) => {
+      .addCase(fetchBoards.pending, state => {
         state.loading = true;
         state.error = false;
       })
@@ -25,37 +26,35 @@ const boardSlice = createSlice({
         state.loading = false;
         state.items = action.payload;
       })
-      .addCase(fetchBoards.rejected, (state) => {
+      .addCase(fetchBoards.rejected, state => {
         state.loading = false;
         state.error = true;
       })
-      .addCase(getBoard.pending, (state) => {
+      .addCase(getBoard.pending, state => {
         state.loading = true;
         state.error = false;
       })
       .addCase(getBoard.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = action.payload;
+        state.item = action.payload;
       })
-      .addCase(getBoard.rejected, (state) => {
+      .addCase(getBoard.rejected, state => {
         state.loading = false;
         state.error = true;
       })
-      .addCase(deleteBoard.pending, (state) => {
+      .addCase(deleteBoard.pending, state => {
         state.loading = true;
         state.error = false;
       })
       .addCase(deleteBoard.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = state.items.filter(
-          (item) => item.id !== action.payload.id
-        );
+        state.items = state.items.filter(item => item.id !== action.payload.id);
       })
-      .addCase(deleteBoard.rejected, (state) => {
+      .addCase(deleteBoard.rejected, state => {
         state.loading = false;
         state.error = true;
       })
-      .addCase(addBoard.pending, (state) => {
+      .addCase(addBoard.pending, state => {
         state.loading = true;
         state.error = false;
       })
@@ -63,27 +62,27 @@ const boardSlice = createSlice({
         state.loading = false;
         state.items.push(action.payload);
       })
-      .addCase(addBoard.rejected, (state) => {
+      .addCase(addBoard.rejected, state => {
         state.loading = false;
         state.error = true;
       })
-      .addCase(editBoard.pending, (state) => {
+      .addCase(editBoard.pending, state => {
         state.loading = true;
         state.error = false;
       })
       .addCase(editBoard.fulfilled, (state, action) => {
         console.log(action.payload.board);
         const boardIndex = state.items.findIndex(
-          (item) => item.id === action.payload.id
+          item => item.id === action.payload.id
         );
         // -1 ??????????? -------------------------------------------------
         state.items[boardIndex] = action.payload.board;
       })
-      .addCase(editBoard.rejected, (state) => {
+      .addCase(editBoard.rejected, state => {
         state.loading = false;
         state.error = true;
       })
-      .addCase(logOut.fulfilled, (state) => {
+      .addCase(logOut.fulfilled, state => {
         state.items = [];
         state.loading = false;
         state.error = false;

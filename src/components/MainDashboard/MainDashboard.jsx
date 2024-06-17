@@ -1,41 +1,45 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   createColumn,
   deleteColumn,
   fetchColumns,
-} from "../../redux/columns/slice";
-import Modal from "react-modal";
-import Column from "../Column/Column";
-import css from "./MainDashboard.module.css";
+} from '../../redux/columns/slice';
+import Modal from 'react-modal';
+import Column from '../Column/Column';
+import css from './MainDashboard.module.css';
 import {
   selectColumnsData,
   selectLoading,
   selectError,
-} from "../../redux/columns/selectors";
-import toast, { Toaster } from "react-hot-toast";
-import axios from "axios";
-import sprite from "../../assets/icons/Sprite.svg";
-import ColumnItem from "../ColumnItem/ColumnItem";
+} from '../../redux/columns/selectors';
+import toast, { Toaster } from 'react-hot-toast';
+import axios from 'axios';
+import sprite from '../../assets/icons/Sprite.svg';
+import ColumnItem from '../ColumnItem/ColumnItem';
+import { selectOneBoard } from '../../redux/boards/selectors';
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
-export default function MainDashboard() {
+export default function MainDashboard({ idBoard }) {
   const dispatch = useDispatch();
-  let [oneBoardId, setoneBoardId] = useState("666b6b8b07902b2daa80d54d");
+  // let [oneBoardId, setoneBoardId] = useState(idBoard);
 
   useEffect(() => {
-    dispatch(fetchColumns(oneBoardId));
-  }, [dispatch, oneBoardId]);
+    dispatch(fetchColumns(idBoard));
+  }, [dispatch, idBoard]);
 
   let [isModalOpen, setIsModalOpen] = useState(false);
-  const [newColumnTitle, setNewColumnTitle] = useState("");
+  const [newColumnTitle, setNewColumnTitle] = useState('');
 
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
 
   const columns = useSelector(selectColumnsData);
   const [columnsData, setColumnsData] = useState([]);
+
+  const bor = useSelector(selectOneBoard);
+  console.log(bor);
 
   // const fetchColumns = async (boardId) => {
   //   try {
@@ -73,11 +77,11 @@ export default function MainDashboard() {
   //   form.reset();
   // };
 
-  const handleAddColumn = (e) => {
+  const handleAddColumn = e => {
     e.preventDefault();
 
     let newObj = {
-      boardId: oneBoardId,
+      boardId: idBoard,
       title: newColumnTitle,
     };
 
@@ -89,7 +93,7 @@ export default function MainDashboard() {
   return (
     <div>
       <ul className={css.columnList}>
-        {columns.map((item) => {
+        {columns.map(item => {
           return (
             <li className={css.columnItem} key={item._id}>
               <ColumnItem
@@ -136,7 +140,7 @@ export default function MainDashboard() {
                   ry="6"
                 />
                 <use
-                  href={sprite + "#icon-plus"}
+                  href={sprite + '#icon-plus'}
                   x="7"
                   y="7"
                   width="14"
@@ -157,7 +161,7 @@ export default function MainDashboard() {
                 className={css.buttonAddColumn}
                 onClick={() => setIsModalOpen(true)}
               >
-                {" "}
+                {' '}
                 <svg className={css.logoIcon} viewBox="0 0 32 32">
                   <rect
                     className={css.iconBackground}
@@ -167,14 +171,14 @@ export default function MainDashboard() {
                     ry="6"
                   />
                   <use
-                    href={sprite + "#icon-plus"}
+                    href={sprite + '#icon-plus'}
                     x="7"
                     y="7"
                     width="14"
                     height="14"
                   />
-                </svg>{" "}
-                Add another column{" "}
+                </svg>{' '}
+                Add another column{' '}
               </button>
             </Modal>
           </div>
@@ -238,7 +242,7 @@ export default function MainDashboard() {
             </button>
             <h2 className={css.modalTitle}>Add Column</h2>
             <form
-              onSubmit={(e) => {
+              onSubmit={e => {
                 e.preventDefault();
                 // handleAddColumn();
                 form.reset();
@@ -248,7 +252,7 @@ export default function MainDashboard() {
               <input
                 type="text"
                 value={newColumnTitle}
-                onChange={(e) => setNewColumnTitle(e.target.value)}
+                onChange={e => setNewColumnTitle(e.target.value)}
                 placeholder="Column title"
                 className={css.modalInput}
               />

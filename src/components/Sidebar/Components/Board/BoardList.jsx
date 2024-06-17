@@ -1,14 +1,18 @@
-import React from "react";
-import BoardItem from "./BoardItem";
-import styles from "./BoardList.module.css";
+import React from 'react';
+import BoardItem from './BoardItem';
+import styles from './BoardList.module.css';
+import { selectBoard } from '../../../../redux/boards/selectors';
+import { useSelector } from 'react-redux';
 
-const BoardList = ({ boards, onDelete, onEdit, handleBoardId }) => {
+const BoardList = ({ handleBoardId }) => {
+  const boards = useSelector(selectBoard);
+
   if (!Array.isArray(boards)) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div className={styles["board-list"]}>
+    <div className={styles['board-list']}>
       {/* {boards.map((board) => (
         <BoardItem
           key={board._id}
@@ -19,15 +23,15 @@ const BoardList = ({ boards, onDelete, onEdit, handleBoardId }) => {
         />
       ))} */}
       <ul>
-        {boards.map((board) => {
+        {boards.map(board => {
           return (
             <li key={board._id} onClick={() => handleBoardId(board._id)}>
               <BoardItem
-                key={board._id}
+                // key={board._id}
                 board={board}
-                onClick={() => handleBoardId(board._id)}
-                onDelete={onDelete}
-                onEdit={onEdit}
+                // onClick={() => handleBoardId(board._id)}
+                // onDelete={onDelete}
+                // onEdit={onEdit}
               />
               {/* <button
                 title={board.title}
