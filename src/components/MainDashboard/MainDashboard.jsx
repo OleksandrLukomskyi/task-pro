@@ -37,41 +37,41 @@ export default function MainDashboard() {
   const columns = useSelector(selectColumnsData);
   const [columnsData, setColumnsData] = useState([]);
 
-  const fetchColumns = async (boardId) => {
-    try {
-      const response = await axios.get(
-        `https://project-back-codewave1-rqmw.onrender.com/api/columns/?boardId=${boardId}`,
-        {
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmI1NTYxNDhiMTY4ZTdjMWM3NWQ2MSIsImVtYWlsIjoicDNAcC5jb20iLCJpYXQiOjE3MTgzMTAyNDEsImV4cCI6MTcxOTE3NDI0MX0.MB7dXShXVl1aqxvRkxsMvhMAYiuk0LbHjLTeAPOQXdE",
-          },
-        }
-      );
-      console.log(response.data);
-      setColumnsData(response.data.columns);
-    } catch (error) {
-      console.error("Fetch columns error:", error);
-      setColumnsData([]);
-    }
-  };
+  // const fetchColumns = async (boardId) => {
+  //   try {
+  //     const response = await axios.get(
+  //       `https://project-back-codewave1-rqmw.onrender.com/api/columns/?boardId=${boardId}`,
+  //       {
+  //         headers: {
+  //           Authorization:
+  //             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmI1NTYxNDhiMTY4ZTdjMWM3NWQ2MSIsImVtYWlsIjoicDNAcC5jb20iLCJpYXQiOjE3MTgzMTAyNDEsImV4cCI6MTcxOTE3NDI0MX0.MB7dXShXVl1aqxvRkxsMvhMAYiuk0LbHjLTeAPOQXdE",
+  //         },
+  //       }
+  //     );
+  //     console.log(response.data);
+  //     setColumnsData(response.data.columns);
+  //   } catch (error) {
+  //     console.error("Fetch columns error:", error);
+  //     setColumnsData([]);
+  //   }
+  // };
 
-  console.log(columns);
+  // console.log(columns);
 
-  const handleColumnSubmit = (evt) => {
-    evt.preventDefault();
-    setIsModalOpen((isModalOpen = true));
-    console.log(oneBoardId);
-    const form = evt.target;
-    const { formTitle } = form.elements;
-    let newObj = {
-      boardId: oneBoardId,
-      title: formTitle.value,
-    };
+  // const handleColumnSubmit = (evt) => {
+  //   evt.preventDefault();
+  //   setIsModalOpen((isModalOpen = true));
+  //   console.log(oneBoardId);
+  //   const form = evt.target;
+  //   const { formTitle } = form.elements;
+  //   let newObj = {
+  //     boardId: oneBoardId,
+  //     title: formTitle.value,
+  //   };
 
-    dispatch(createColumn(newObj));
-    form.reset();
-  };
+  //   dispatch(createColumn(newObj));
+  //   form.reset();
+  // };
 
   const handleAddColumn = (e) => {
     e.preventDefault();
@@ -97,8 +97,8 @@ export default function MainDashboard() {
                 boardId={item.board}
                 owner={item.owner}
                 title={item.title}
-                onDeleteColumn={handleDeleteColumn}
-                onEditColumn={handleEditColumn}
+                // onDeleteColumn={handleDeleteColumn}
+                // onEditColumn={handleEditColumn}
               />
             </li>
           );
@@ -106,6 +106,8 @@ export default function MainDashboard() {
       </ul>
       <div>
         <div>
+          {/* ====================================================================== */}
+
           <div className={css.mainDashboard}>
             {loading && <p>Loading...</p>}
             <Toaster />
@@ -183,7 +185,7 @@ export default function MainDashboard() {
         {loading && <p>Loading...</p>}
         <Toaster />
         {error && <p>Error loading columns: {error.message}</p>}
-        <ul className={css.columns_list}>
+        {/* <ul className={css.columns_list}>
           {columnsData.map((column, index) => (
             <li key={index}>
               <Column
@@ -193,8 +195,8 @@ export default function MainDashboard() {
               />
             </li>
           ))}
-        </ul>
-        <button
+        </ul> */}
+        {/* <button
           className={css.buttonAddColumn}
           onClick={() => setIsModalOpen(true)}
         >
@@ -216,7 +218,7 @@ export default function MainDashboard() {
             />
           </svg>{" "}
           Add another column{" "}
-        </button>
+        </button> */}
 
         <Modal
           isOpen={isModalOpen}
@@ -238,7 +240,7 @@ export default function MainDashboard() {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                handleAddColumn();
+                // handleAddColumn();
                 form.reset();
               }}
               className={css.modalForm}
