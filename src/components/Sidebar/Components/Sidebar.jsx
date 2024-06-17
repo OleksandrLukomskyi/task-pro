@@ -7,6 +7,8 @@ import CreateNewBoardModal from "./CreateNewBoard/CreateNewBoardModal";
 import HelpBox from "./Help/HelpBox";
 import LogoutButton from "./LogoutButton";
 import css from "./Sidebar.module.css";
+import Logo from '../../../assets/icons/logo.png'  
+
 
 const Sidebar = ({ getId }) => {
   const dispatch = useDispatch();
@@ -16,6 +18,7 @@ const Sidebar = ({ getId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   let [oneBoardId, setoneBoardId] = useState("");
+
 
   useEffect(() => {
     dispatch(fetchBoards());
@@ -53,8 +56,9 @@ const Sidebar = ({ getId }) => {
   return (
     <div className="sidebar">
       <ul>
-        <li>
-          <h1>Task Pro</h1>
+        <li className={css.logo}>
+          <div><img src={Logo} alt="" /></div>
+          <div><h1>Task Pro</h1></div>
         </li>
         <li className={css.createNewBoardButton}>
           <CreateNewBoardButton onOpen={openModal} />
