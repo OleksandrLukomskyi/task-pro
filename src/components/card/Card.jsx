@@ -1,7 +1,7 @@
 import React from "react";
 import EditCard from "./EditCard.jsx";
 import { useState } from "react";
-import { editCard, moveCard, deleteCard, fetchCards } from "../../redux/cards/operations.js";
+import { editCard, moveCard, deleteCard } from "../../redux/cards/operations.js";
 import { useDispatch, useSelector } from "react-redux";
 import sprite from "../../assets/icons/Sprite.svg"
 import css from './Card.module.css';
