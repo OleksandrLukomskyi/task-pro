@@ -11,6 +11,7 @@ import { selectColumnsData } from "../../redux/columns/selectors";
 // import { userThema, help } from "../../redux/auth/operations";
 import { selectUser } from "../../redux/auth/selectors";
 import { editThema } from "../../redux/thema/operations";
+import MainDashboard from "../../components/MainDashboard/MainDashboard";
 
 export default function BoardItem() {
   const dispatch = useDispatch();
@@ -25,10 +26,13 @@ export default function BoardItem() {
 
   //  отримуємо картки
   const handleColumnClick = () => {
-    console.log(idColumn);
+    // console.log(idColumn);
     let id = idColumn;
     dispatch(fetchCards(id));
   };
+
+  const allCards = useSelector(selectCards);
+  // console.log(allCards);
 
   // enum: ["dark", "light", "violet"],
   const handleThemaClick = () => {
@@ -37,7 +41,7 @@ export default function BoardItem() {
   };
 
   const handleClick = () => {
-    console.log(idBoard);
+    // console.log(idBoard);
     let id = idBoard;
     dispatch(fetchColumns(id));
   };
@@ -66,6 +70,7 @@ export default function BoardItem() {
           GET CARDS
         </button>
       </div>
+      <MainDashboard />
     </div>
   );
 }

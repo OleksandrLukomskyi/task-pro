@@ -20,13 +20,13 @@ export default function CopySideBar() {
   // title не потрібен (для прикладу передачі пропсів)
 
   const handleRender = (title, boardId) => {
-    console.log(`boardId ${title}: ${boardId}`);
+    // console.log(`boardId ${title}: ${boardId}`);
 
     // передаємо в стан id дошки
     setoneBoardId((oneBoardId = boardId));
   };
 
-  console.log(oneBoardId);
+  // console.log(oneBoardId);
 
   // функція сворення нової колонки (форма внизу файла)
   const handleColumnSubmit = (evt) => {
