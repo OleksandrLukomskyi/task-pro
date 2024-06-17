@@ -1,60 +1,3 @@
-// import { useState } from 'react';
-// import axios from 'axios';
-// import styles from './HelpModal.module.css';
-
-// const HelpModal = ({ show, onClose }) => {
-//   const [name, setName] = useState('');
-//   const [email, setEmail] = useState('');
-//   const [error, setError] = useState('');
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     if (!name.trim() || !email.trim()) {
-//       setError('All fields are required');
-//       return;
-//     }
-
-//     try {
-//       const response = await axios.post('https://project-back-codewave1-rqmw.onrender.com/api/help', { name, email });
-//       console.log('Help request sent:', response.data);
-//       onClose(); // Закриваємо модальне вікно після успішного відправлення запиту
-//     } catch (error) {
-//       console.error('Failed to send help request:', error);
-//       setError('Failed to send help request');
-//     }
-//   };
-
-//   return (
-//     <div className={styles.overlay} style={{ display: show ? 'block' : 'none' }}>
-//       <div className={styles.modal}>
-//         <button className={styles.closeButton} onClick={onClose}>X</button>
-//         <h2>Need Help?</h2>
-//         <form onSubmit={handleSubmit} className={styles.form}>
-//           <input
-//             type="text"
-//             placeholder="Your Name"
-//             value={name}
-//             onChange={(e) => setName(e.target.value)}
-//             className={styles.input}
-//           />
-//           <input
-//             type="email"
-//             placeholder="Your Email"
-//             value={email}
-//             onChange={(e) => setEmail(e.target.value)}
-//             className={styles.input}
-//           />
-//           <button type="submit" className={styles.sendButton}>Send</button>
-//           {error && <p className={styles.error}>{error}</p>}
-//         </form>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default HelpModal;
-
-
 import { useState } from 'react';
 import axios from 'axios';
 import Box from '@mui/material/Box';
@@ -152,3 +95,64 @@ const HelpModal = ({ show, onClose }) => {
 };
 
 export default HelpModal;
+
+// import React, { useState } from 'react';
+// import axios from 'axios';
+// import styles from './HelpModal.module.css';
+
+// const HelpModal = ({ show, onClose }) => {
+//   const [name, setName] = useState('');
+//   const [email, setEmail] = useState('');
+//   const [error, setError] = useState('');
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     if (!name.trim() || !email.trim()) {
+//       setError('All fields are required');
+//       return;
+//     }
+
+//     try {
+//       const response = await axios.post('https://project-back-codewave1-rqmw.onrender.com/api/help', { name, email });
+//       console.log('Help request sent:', response.data);
+//       onClose(); // Закрываем модальное окно после успешной отправки запроса
+//     } catch (error) {
+//       console.error('Failed to send help request:', error);
+//       setError('Failed to send help request');
+//     }
+//   };
+
+//   return (
+//     <div className={`${styles.modalOverlay} ${show ? styles.show : ''}`}>
+//       <div className={styles.modalContent}>
+//         <button className={styles.modalCloseButton} onClick={onClose}>
+//           &times;
+//         </button>
+//         <h2 className={styles.modalTitle}>Need Help?</h2>
+//         <form className={styles.modalForm} onSubmit={handleSubmit}>
+//           <input
+//             type="text"
+//             className={styles.modalFormInput}
+//             placeholder="Your Name"
+//             value={name}
+//             onChange={(e) => setName(e.target.value)}
+//           />
+//           <input
+//             type="email"
+//             className={styles.modalFormInput}
+//             placeholder="Your Email"
+//             value={email}
+//             onChange={(e) => setEmail(e.target.value)}
+//           />
+//           {error && <p className={styles.modalError}>{error}</p>}
+//           <button type="submit" className={styles.modalFormButton}>
+//             Send
+//           </button>
+//         </form>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default HelpModal;
+
