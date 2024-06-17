@@ -135,8 +135,8 @@ color: var(--text-color);
     stroke-miterlimit: 4;
   }
   .logoIcon:hover {
-    stroke: var(--btn-color)
-
+    stroke: var(--btn-color);
+    opacity: 1;
   }
 .btnCard {
     background-color: transparent;
@@ -162,10 +162,18 @@ color: var(--text-color);
   }
  
   .popTitle {
-    font-size: 14px;
     line-height: 21px;
     color: var(--text-color);
-    opacity: 0.5;
+  }
+  .popIcon {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: var(--text-color);
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 4;
   }
   .popBox {
     width: 99px;
@@ -181,7 +189,7 @@ color: var(--text-color);
   }
 
   .popBox:hover .popTitle,
-  .popBox:hover .logoIcon {
+  .popBox:hover .popIcon {
     color: var(--btn-color);
     stroke: var(--btn-color)
   }

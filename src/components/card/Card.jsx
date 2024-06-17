@@ -87,7 +87,7 @@ export default function Card({ id, columnId, boardId, title, description, priori
                
                 <button className={css.popBox}>
                <span className={css.popTitle}>{column.title}</span>
-               <svg className={css.logoIcon}>
+               <svg className={css.popIcon}>
                     <use href={`${sprite}#icon-arrow-circle-broken-right`}></use>
                   </svg>
                   </button> 
