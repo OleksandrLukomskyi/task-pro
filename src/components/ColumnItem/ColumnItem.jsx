@@ -16,6 +16,7 @@ import {
   selectError,
 } from "../../redux/columns/selectors";
 import Modal from "react-modal";
+import Card from "../card/Card.jsx";
 
 export default function ColumnItem({ id, boardId, title, owner }) {
   const dispatch = useDispatch();
@@ -81,11 +82,15 @@ export default function ColumnItem({ id, boardId, title, owner }) {
           return (
             <li className={css.cardItem} key={item._id}>
               {/* Компонент CARD */}
-              {/* <CardItem
+              <Card
                 id={item._id}
                 boardId={item.board}
+                columnId={item.column}
                 title={item.title}
-              /> */}
+                description={item.description}
+                priority={item.priority}
+                deadline={item.deadline}
+              />
             </li>
           );
         })}

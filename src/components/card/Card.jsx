@@ -1,98 +1,101 @@
 import React from "react";
-import Btn from "../Btn/Btn.jsx";
 import EditCard from "./EditCard.jsx";
 import { useState } from "react";
 import { editCard, moveCard, deleteCard, fetchCards } from "../../redux/cards/operations.js";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCards, selectLoading, selectError } from "../../redux/cards/selectors.js";
-
-export default function Card({ card, columns }) {
+import sprite from "../../assets/icons/Sprite.svg"
+import css from './Card.module.css';
+import {
+  selectColumnsData
+} from "../../redux/columns/selectors.js";
+export default function Card({ id, columnId, title, description, priority, deadline }) {
   const [isEditing, setIsEditing] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [idColumn, setIdColumn] = useState("666daa46d58498a7b239faa7")
- 
+  
+  const columns = useSelector(selectColumnsData);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchCards(idColumn));
-  }, [dispatch, idColumn]);
-
-  const cards = useSelector(selectCards);
-  console.log(cards);
-  const isLoading = useSelector(selectLoading);
-  const error = useSelector(selectError);
-
-
 
   const checkDeadline = (deadline) => {
     const today = new Date();
     const deadlineDay = new Date(deadline);
     return today.toDateString() === deadlineDay.toDateString();
   };
-  const isDeadlineDay = checkDeadline(card.deadline);
+  const isDeadlineDay = checkDeadline(deadline);
 
   
   const handleEditCard = (updateCard) => {
-    dispatch(editCard({id: card._id, updateCard }));
+    dispatch(editCard({ cardId: id, updateCard }));
     setIsEditing(false);
   };
 
-  const handleMoveCard = (columnId) => {
-    dispatch(moveCard({id: card._id, columnId}));
+  const handleMoveCard = (newColumnId) => {
+    dispatch(moveCard({cardId: id, columnId: newColumnId}));
     setIsPopupOpen(false);
   }
   
   const handleDeleteCard = () => {
-    dispatch(deleteCard(card._id));
+    dispatch(deleteCard(id));
   }
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
   return (
-    <div className={`card ${card.priority.toLowerCase()}`}>
-      <h4>{card.title}</h4>
-      <p>{card.description}</p>
+    <div className={`${css.card} ${css[`card-${priority.toLowerCase()}`]}`}>
       <div>
-        <span>Priority: {card.priority}</span>
-        <span>Deadline: {card.deadline}</span>
+      <h4 className={css.title}>{title}</h4>
+      <p className={css.description}>{description}</p>
+      </div>
+      <div className={css.cardDivider}></div>
+      <div className={css.cardFooter}>
+        <div className={css.priority}>
+        <span className={css.priorityTitle}>Priority</span>
+        <div className={css.priorityType}>
+        <span className={`${css.dot} ${css[`dot-${priority.toLowerCase()}`]}`}></span>
+        <span className={css.priorityValue}>{priority}</span>
+        </div>
+        </div>
+        <div className={css.deadline}>
+        <span className={css.deadlineTitle}>Deadline</span>
+        <span className={css.deadlineValue}>{deadline}</span>
+        </div>
+
+
+        <div className={css.icons}>
         {isDeadlineDay && (
-          <svg>
-            <use xlinkHref="#bell" />
+          <svg className={css.logoIcon}>
+            <use href={`${sprite}#bell`}></use>
           </svg>
         )}
-        <Btn className="btn" onClick={() => setIsPopupOpen(!isPopupOpen)}>
-            <svg>
-              <use xlinkHref="#arrow-circle-broken-right" />
-            </svg>
-        </Btn>
+        <button className={css.deleteCard} onClick={() => setIsPopupOpen(!isPopupOpen)}>
+            <svg className={css.logoIcon}>
+              <use href={`${sprite}#icon-arrow-circle-broken-right`}></use>
+            </svg>   
+        </button>
         {isPopupOpen && (
           <div className="popup">
             {columns.map((column) => (
-              <div key={column.id} onClick={() => handleMoveCard(column.id)}>
-                {column.name}
+              <div key={column._id} onClick={() => handleMoveCard(column._id)}>
+               <span>{column.name}</span>
+               <svg className={css.popupIcon}>
+                    <use href={`${sprite}#icon-arrow-circle-broken-right`}></use>
+                  </svg> 
               </div>
             ))}
           </div>
         )}
-        <Btn className="btn" onClick={() => setIsEditing(true)}>
-        <svg>
-            <use xlinkHref="#pencel" />
+        <button className={css.deleteCard} onClick={() => setIsEditing(true)}>
+        <svg className={css.logoIcon}>
+            <use href={`${sprite}#icon-pencil-01`}></use>
           </svg>
-        </Btn>
-        <Btn className="btn" onClick={handleDeleteCard}>
-        <svg>
-            <use xlinkHref="#trash-04" />
+        </button>
+        <button className={css.deleteCard} onClick={handleDeleteCard}>
+        <svg className={css.logoIcon}>
+            <use href={`${sprite}#icon-trash-04`}></use>
           </svg>
-        </Btn>
+        </button>
+        </div>
       </div>
       {isEditing && (
         <EditCard
-          card={card}
+          card={{id, columnId, title, description, priority, deadline}}
           onSave={handleEditCard}
           onClose={() => setIsEditing(false)}
         />

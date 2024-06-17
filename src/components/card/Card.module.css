@@ -1,0 +1,144 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 334px;
+    height: 154px;
+    gap: 0px;
+    margin-bottom: 8px;
+    border-left: 4px solid;
+    border-radius: 8px;
+    background-color: var(--color-column);
+}
+.card-low {
+    border-left-color: var( --label-low-task-color);
+}
+.card-medium {
+    border-left-color: var( --label-medium-task-color);
+}
+.card-high {
+    border-left-color: var( --label-high-task-color);
+}
+.title {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+    margin-top: 14px;
+    margin-left: 20px;
+    margin-bottom: 8px;
+    color: var(--text-color-start-white);
+}
+.description {
+    max-width: 290px;
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    line-height: 16px;
+    margin-left: 20px;
+    color: var(--text-color-start-white);
+    opacity: 0.5;
+    
+}
+/* .description::after {
+    content: '...'; 
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        padding: 0 5px;
+} */
+.cardDivider {
+    display: flex;
+    width: 290px;
+    height: 1px;
+    background-color: var(--text-color-start-white); 
+    opacity: 0.1;
+    margin: 14px 20px; 
+  }
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+   margin-bottom: 14px;
+}
+.priority {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+.priorityTitle {
+    font-size: 8px;
+    line-height: 12px;
+    color: var(--text-color-start-white);
+    opacity: 0.5;
+    margin-bottom: 4px;
+}
+.priorityType {
+    display: flex;
+
+}
+.priorityValue {
+font-size: 10px;
+font-weight: 400;
+line-height: 15px;
+color: var(--text-color-start-white);
+}
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 4px; 
+}
+.dot-low {
+    background-color: var(--label-low-task-color);
+}
+.dot-medium {
+    background-color: var(--label-medium-task-color);
+}
+.dot-high {
+    background-color: var(--label-high-task-color);
+}
+.deadline {
+    display: flex;
+    flex-direction: column;
+}
+.deadlineTitle {
+    font-size: 8px;
+    line-height: 12px;
+    color: var(--text-color-start-white);
+    opacity: 0.5;
+    margin-bottom: 4px; 
+}
+.deadlineValue {
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 15px;
+    color: var(--text-color-start-white);  
+}
+.icons {
+    display: flex;
+    gap: 8px;
+    margin-right: 20px;
+}
+.logoIcon {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: var(--text-color-start-white);
+    opacity: 0.5;
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 4;
+  }
+
+.deleteCard {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: auto;
+  }
