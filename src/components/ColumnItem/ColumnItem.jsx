@@ -33,7 +33,7 @@ export default function ColumnItem({ id, boardId, title, owner }) {
     dispatch(fetchCards(id));
   }, [dispatch]);
   const cards = useSelector(selectCards);
-console.log(cards);
+
   const handleDeleteColumn = () => {
     dispatch(deleteColumn(idColumn));
   };
