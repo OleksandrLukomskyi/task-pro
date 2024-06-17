@@ -25,7 +25,7 @@ const schema = yup.object().shape({
   password: yup.string().min(8).max(64).required(),
 });
 
-export const RegisterForm = () => {
+const RegisterForm = () => {
   const dispatch = useDispatch();
   const loading = useSelector(selectLoading);
   const ifError = useSelector(selectError);
@@ -136,4 +136,4 @@ export const RegisterForm = () => {
   );
 };
 
-export default { RegisterForm };
+export default RegisterForm;
