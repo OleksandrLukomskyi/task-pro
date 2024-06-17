@@ -1,5 +1,5 @@
 #root {
-  max-width: 350px;
+  max-width: 212px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -42,13 +42,14 @@
 }
 
 .sidebar {
-  max-width: 350px;
+  max-width: 212px;
   display: flex;
   flex-direction: column;
   align-items: center; 
   padding: 20px;
   background-color: #f8f9fa;
-  height: 100vh; 
+  /* height: 100vh;  */
+}
 
 .sidebar h1 {
   margin-bottom: 20px;
@@ -65,4 +66,13 @@
 
 .board-list {
   background-color: black;
+}
+
+.helpBox {
+  max-width: 212px;
+  height: 272px;
+  margin-left: 24px;
+}
+.boardList {
+  /* height: 70px; */
 }
