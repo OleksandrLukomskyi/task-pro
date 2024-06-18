@@ -310,8 +310,8 @@ export default function MainDashboard() {
   }, [boards, board]);
 
   useEffect(() => {
-    dispatch(fetchColumns(board._id));
-  }, [dispatch, board._id]);
+    dispatch(fetchColumns(idBoard));
+  }, [dispatch, idBoard]);
 
   const handleAddColumn = e => {
     e.preventDefault();
