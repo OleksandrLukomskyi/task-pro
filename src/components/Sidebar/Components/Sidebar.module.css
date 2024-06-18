@@ -7,10 +7,16 @@
 
 .logo {
   height: 6em;
-  padding: 1.5em;
+  /* padding: 1.5em; */
   will-change: filter;
   transition: filter 300ms;
   margin-bottom: 50px;
+  display: flex;
+  gap: 10px;
+  height: 32px;
+}
+.logo h1 {
+  font-weight: 200;
 }
 
 .logo:hover {
@@ -51,7 +57,6 @@
   padding: 14px;
   background: var(--sidebar-background);
   padding: 24px 24px;
-  height: 770px;
 }
 
 .sidebar h1 {
@@ -71,12 +76,12 @@
   width: 260px;
 }
 
-.logo {
-  display: flex;
-  gap: 10px;
-  height: 32px;
-}
-
 .sidebar h1 {
   color: var(--sidebar-text);
+}
+
+.loader {
+  margin-left: 40px;
+
+  height: 150px;
 }

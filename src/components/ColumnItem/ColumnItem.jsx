@@ -7,33 +7,34 @@ import {
   deleteColumn,
   editColumn,
   fetchColumns,
-} from "../../redux/columns/slice";
-import { addCard } from "../../redux/cards/operations.js";
-import css from "./ColumnItem.module.css";
-import sprite from "../../assets/icons/Sprite.svg";
+} from '../../redux/columns/slice';
+import { addCard } from '../../redux/cards/operations.js';
+import css from './ColumnItem.module.css';
+import sprite from '../../assets/icons/Sprite.svg';
 import {
   selectColumnsData,
   selectLoading,
   selectError,
-} from "../../redux/columns/selectors";
-import Modal from "react-modal";
-import Card from "../card/Card.jsx";
-import AddCard from "../card/AddCard.jsx";
+} from '../../redux/columns/selectors';
+import Modal from 'react-modal';
+import Card from '../card/Card.jsx';
+import AddCard from '../card/AddCard.jsx';
 
 export default function ColumnItem({ id, boardId, title, owner }) {
   const dispatch = useDispatch();
   const [idColumn, setIdColumn] = useState(id);
   let [isModalOpen, setIsModalOpen] = useState(false);
   let [isModalAddCardOpen, setIsModalAddCardOpen] = useState(false);
-  const [newColumnTitle, setNewColumnTitle] = useState("");
+  const [newColumnTitle, setNewColumnTitle] = useState('');
   let [oneBoardId, setoneBoardId] = useState(boardId);
   // useEffect(() => {
   //   dispatch(fetchColumns(oneBoardId));
   // }, [dispatch, oneBoardId]);
 
+  console.log(id);
   useEffect(() => {
     dispatch(fetchCards(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
   const cards = useSelector(selectCards);
 
   const handleDeleteColumn = () => {
@@ -54,14 +55,14 @@ export default function ColumnItem({ id, boardId, title, owner }) {
 
     setIsModalOpen(false);
   };
- const handleCreateCard = (newCard) => {
-  dispatch(addCard(newCard))
-  .then(() => dispatch(fetchCards(id)))
-  .catch(err => toast.error(`Error adding card: ${err.message}`));
- }
+  const handleCreateCard = newCard => {
+    dispatch(addCard(newCard))
+      .then(() => dispatch(fetchCards(id)))
+      .catch(err => toast.error(`Error adding card: ${err.message}`));
+  };
   const handleAddCard = () => {
-    setIsModalAddCardOpen(true)
-  }
+    setIsModalAddCardOpen(true);
+  };
   return (
     <div className={css.columnItem}>
       <div className={css.columnList}>
@@ -93,7 +94,7 @@ export default function ColumnItem({ id, boardId, title, owner }) {
           </li>
         </ul>
       </div>
-     
+
       {/* <p>{`column id: ${id}`}</p>
       <p>{`board id: ${boardId}`}</p>
       <p>{`owner: ${owner}`}</p>
@@ -117,16 +118,28 @@ export default function ColumnItem({ id, boardId, title, owner }) {
         })}
       </ul>
       <div>
-      <button className={css.buttonAddCard} onClick={handleAddCard}>
-      <svg className={css.logoPlus} viewBox="0 0 32 32">
-      <rect className={css.iconBackground} rx="6" ry="6" width="28" height="28"/>
-         <use href={`${sprite}#icon-plus`} x="7" y="7" width="14" height="14"></use>
-      </svg>
+        <button className={css.buttonAddCard} onClick={handleAddCard}>
+          <svg className={css.logoPlus} viewBox="0 0 32 32">
+            <rect
+              className={css.iconBackground}
+              rx="6"
+              ry="6"
+              width="28"
+              height="28"
+            />
+            <use
+              href={`${sprite}#icon-plus`}
+              x="7"
+              y="7"
+              width="14"
+              height="14"
+            ></use>
+          </svg>
           <span className={css.buttonTitle}>Add another card</span>
-      </button>
-      
+        </button>
+
         {/* &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& */}
-        <AddCard 
+        <AddCard
           columnId={id}
           boardId={boardId}
           onAddCard={handleCreateCard}

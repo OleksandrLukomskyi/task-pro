@@ -583,12 +583,17 @@ const BoardItem = ({ board }) => {
             backgroundColor: 'var(--sidebar-background)',
             color: ' var(--sidebar-text)',
             border: 'none',
-            height: '30px',
+            height: '40px',
             padding: 1,
           }}
         >
           <SvgIcon sx={{ mr: 2 }}>
-            <svg width="16" height="16" fill="var(--color-icons-no-active)">
+            <svg
+              width="16"
+              height="16"
+              stroke="var(--color-plus-no-active)"
+              fill="none"
+            >
               <use href={`${Sprite}#${board.icon}`} />
             </svg>
           </SvgIcon>
@@ -604,13 +609,13 @@ const BoardItem = ({ board }) => {
           <CardActions>
             <IconButton
               onClick={handleEditModalOpen}
-              sx={{ color: 'var(--color-icons-no-active)' }}
+              sx={{ color: 'var(--color-plus-no-active)' }}
             >
               <EditIcon />
             </IconButton>
             <IconButton
               onClick={() => handleDelete(board._id)}
-              sx={{ color: 'var(--color-icons-no-active)' }}
+              sx={{ color: 'var(--color-plus-no-active)' }}
             >
               <DeleteIcon />
             </IconButton>
