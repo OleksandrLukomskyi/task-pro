@@ -16,6 +16,7 @@ import {
   selectError,
 } from "../../redux/columns/selectors";
 import Modal from "react-modal";
+import Card from "../card/Card.jsx";
 
 export default function ColumnItem({ id, boardId, title, owner }) {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ export default function ColumnItem({ id, boardId, title, owner }) {
     dispatch(fetchCards(id));
   }, [dispatch]);
   const cards = useSelector(selectCards);
-  console.log(cards);
+
   const handleDeleteColumn = () => {
     dispatch(deleteColumn(idColumn));
   };
@@ -75,17 +76,22 @@ export default function ColumnItem({ id, boardId, title, owner }) {
       <p>{`column id: ${id}`}</p>
       <p>{`board id: ${boardId}`}</p>
       <p>{`owner: ${owner}`}</p>
+   
       <div className={css.cardsContainer}></div>
       <ul className={css.cardsList}>
         {cards.map((item) => {
           return (
             <li className={css.cardItem} key={item._id}>
               {/* Компонент CARD */}
-              {/* <CardItem
+              <Card
                 id={item._id}
-                boardId={item.board}
+                boardId={item.boardId}
+                columnId={item.columnId}
                 title={item.title}
-              /> */}
+                description={item.description}
+                priority={item.priority}
+                deadline={item.deadline}
+              />
             </li>
           );
         })}

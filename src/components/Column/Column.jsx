@@ -1,21 +1,15 @@
-import { useState } from "react";
-import Modal from "react-modal";
-import css from "./Column.module.css";
-import { deleteColumn, editColumn } from "../../redux/columns/slice";
-import { useDispatch, useSelector } from "react-redux";
-import sprite from "../../assets/icons/Sprite.svg";
-import AddCard from "../card/AddCard";
-import { addCard, editCard } from "../../redux/cards/slice";
-import { selectCards } from "../../redux/cards/selectors";
-import toast, { Toaster } from "react-hot-toast";
-import axios from "axios";
-import { IconButton } from "@mui/material";
+import { useState } from 'react';
+import Modal from 'react-modal';
+import css from './Column.module.css';
+import {  deleteColumn, editColumn } from '../../redux/columns/slice';
+import { useDispatch, useSelector } from 'react-redux';
+import sprite from "../../assets/icons/Sprite.svg"
 
-export default function Column({
-  column: { _id, title },
-  onDeleteColumn,
-  onEditColumn,
-}) {
+
+export default function Column({ column: { _id, title }, onDeleteColumn, onEditColumn }) {
+  
+
+
   const [newTitle, setNewTitle] = useState(title);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddCardModalOpen, setIsAddCardModalOpen] = useState(false);
@@ -35,10 +29,6 @@ export default function Column({
 
   const handleEdit = () => {
     onEditColumn(_id, newTitle);
-  };
-
-  const handleEditCard = (cardId, newCardData) => {
-    dispatch(editCard({ cardId, editCard: newCardData }));
   };
 
   const handleAddCard = async (card) => {
@@ -83,55 +73,28 @@ export default function Column({
         </button>
       </div>
 
-      <div className={css.container_cards}>
-        <ul className={css.cards_list}>
-          {cardsData.map((card) => (
-            <li key={card._id} className={css.card}>
-              <h3>{card.title}</h3>
-              <p>{card.description}</p>
-              <p>Priority: {card.priority}</p>
-              <p>Deadline: {new Date(card.deadline).toLocaleString()}</p>
-              <button className={css.deleteColumn} onClick={handleEditCard}>
-                <svg className={css.logoIcon}>
-                  <use href={sprite + "#icon-trash-04"}></use>
-                </svg>{" "}
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className={css.button_add_card}>
-        <button
-          className={css.btn_add_card}
-          onClick={() => setIsAddCardModalOpen(true)}
-        >
-          <svg className={css.logoIconCard} viewBox="0 0 32 32">
-            <rect
-              className={css.iconBackgroundCard}
-              width="28"
-              height="28"
-              rx="6"
-              ry="6"
-            />
-            <use
-              href={sprite + "#icon-plus"}
-              x="7"
-              y="7"
-              width="14"
-              height="14"
-            />
-          </svg>
-          Add another card
-        </button>
-      </div>
+    <div className={css.container_cards}>
+          <ul className={css.cards_list}>
+            <li className={css.card}>Its card</li>
+            <li className={css.card}>Its card</li>
+            <li className={css.card}>Its card</li>
+            <li className={css.card}>Its card</li>
+            <li className={css.card}>Its card</li>
+            <li className={css.card}>Its card</li>
+            <li className={css.card}>Its card</li>
+            <li className={css.card}>Its card</li>
+            <li className={css.card}>Its card</li>
+          </ul>
+    </div>
+    
+
 
       <Modal
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
         contentLabel="Add Column"
-        className={css.modal}
       >
-        <h2 className={css.titleModal}>Edit</h2>
+        <h2>Edit</h2>
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -144,7 +107,6 @@ export default function Column({
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
             placeholder="Column title"
-            className={css.addModalInput}
           />
           <button type="submit">Add</button>
         </form>

@@ -1,9 +1,9 @@
-#root {
+/* #root {
   max-width: 212px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}
+} */
 
 .logo {
   height: 6em;
@@ -33,23 +33,24 @@
   }
 }
 
-.card {
+/* .card {
   padding: 2em;
-}
+} */
 
-.read-the-docs {
+/* .read-the-docs {
   color: #888;
-}
+} */
 
 .sidebar {
-  max-width: 212px;
+  width: 225px;
   display: flex;
   flex-direction: column;
   align-items: center; 
-  padding: 20px;
-  background-color: #f8f9fa;
-  /* height: 100vh;  */
+  padding: 14px;
+  background: var(--color-column);
+  height: 100vh; 
 }
+
 
 .sidebar h1 {
   margin-bottom: 20px;
@@ -75,4 +76,12 @@
 }
 .boardList {
   /* height: 70px; */
+}
+
+.logo {
+  display: flex;
+  gap: 10px;
+  /* justify-content: space-between; */
+  /* background-color: var(--color-column);
+  color: var(--text-color); */
 }
