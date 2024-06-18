@@ -76,6 +76,9 @@ const boardSlice = createSlice({
           item => item.id === action.payload.id
         );
         // -1 ??????????? -------------------------------------------------
+        if (boardIndex === -1) {
+          return toast.error('Board not found.', { duration: 2000 });
+        }
         state.items[boardIndex] = action.payload.board;
       })
       .addCase(editBoard.rejected, state => {
