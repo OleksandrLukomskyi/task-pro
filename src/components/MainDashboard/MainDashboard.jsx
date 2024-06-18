@@ -342,6 +342,29 @@ export default function MainDashboard() {
           );
         })}
       </ul>
+
+      <button
+        className={css.buttonAddColumn}
+        onClick={() => setIsModalOpen(true)}
+      >
+        <svg className={css.logoIcon} viewBox="0 0 32 32">
+          <rect
+            className={css.iconBackground}
+            width="28"
+            height="28"
+            rx="6"
+            ry="6"
+          />
+          <use
+            href={sprite + '#icon-plus'}
+            x="7"
+            y="7"
+            width="14"
+            height="14"
+          />
+        </svg>
+        Add another column
+      </button>
       <div>
         <div>
           {/* ====================================================================== */}
@@ -361,28 +384,6 @@ export default function MainDashboard() {
                 </li>
               ))}
             </ul>
-            <button
-              className={css.buttonAddColumn}
-              onClick={() => setIsModalOpen(true)}
-            >
-              <svg className={css.logoIcon} viewBox="0 0 32 32">
-                <rect
-                  className={css.iconBackground}
-                  width="28"
-                  height="28"
-                  rx="6"
-                  ry="6"
-                />
-                <use
-                  href={sprite + '#icon-plus'}
-                  x="7"
-                  y="7"
-                  width="14"
-                  height="14"
-                />
-              </svg>
-              Add another column
-            </button>
 
             <Modal
               isOpen={isModalOpen}
