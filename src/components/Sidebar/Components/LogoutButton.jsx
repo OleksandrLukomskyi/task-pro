@@ -15,7 +15,7 @@ const LogoutButton = () => {
 
   return (
     <button className={css.btn} onClick={handleLogout}>
-      <TbLogin2 />
+      <TbLogin2 className={css.icon} />
       Logout
     </button>
   );

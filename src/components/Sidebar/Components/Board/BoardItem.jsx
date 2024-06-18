@@ -576,10 +576,19 @@ const BoardItem = ({ board }) => {
   return (
     <>
       <Card key={board._id} variant="outlined" sx={{ mb: 2, border: '0' }}>
-        <CardContent sx={{ display: 'flex', alignItems: 'center', backgroundColor: 'var(--sidebar-background)',
-           color: ' var(--sidebar-text)', border: 'none', height: '61px', padding: 1} }>
+        <CardContent
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            backgroundColor: 'var(--sidebar-background)',
+            color: ' var(--sidebar-text)',
+            border: 'none',
+            height: '30px',
+            padding: 1,
+          }}
+        >
           <SvgIcon sx={{ mr: 2 }}>
-            <svg width="24" height="24" fill="var(--color-icons-no-active)">
+            <svg width="16" height="16" fill="var(--color-icons-no-active)">
               <use href={`${Sprite}#${board.icon}`} />
             </svg>
           </SvgIcon>
@@ -588,15 +597,21 @@ const BoardItem = ({ board }) => {
             component="div"
             sx={{ flexGrow: 1 }}
             onClick={handleClick}
-            style={{ cursor: 'pointer' }} // Белый цвет текста на черной доске
+            style={{ cursor: 'pointer', fontSize: '14px' }}
           >
             {board.title}
           </Typography>
           <CardActions>
-            <IconButton onClick={handleEditModalOpen} sx={{ color:'var(--color-icons-no-active)' }}>
+            <IconButton
+              onClick={handleEditModalOpen}
+              sx={{ color: 'var(--color-icons-no-active)' }}
+            >
               <EditIcon />
             </IconButton>
-            <IconButton onClick={() => handleDelete(board._id)} sx={{ color:'var(--color-icons-no-active)' }}>
+            <IconButton
+              onClick={() => handleDelete(board._id)}
+              sx={{ color: 'var(--color-icons-no-active)' }}
+            >
               <DeleteIcon />
             </IconButton>
           </CardActions>
