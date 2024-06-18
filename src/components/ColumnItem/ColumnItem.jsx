@@ -55,28 +55,32 @@ export default function ColumnItem({ id, boardId, title, owner }) {
 
   return (
     <div className={css.columnItem}>
-      <div>
+      <div className={css.columnList}>
         <div className={css.columnHeader}>
-          <h3>{`${title}`}</h3>
+          <h3 className={css.title}>{`${title}`}</h3>
         </div>
-        <ul>
+        <ul className={css.buttonList}>
           <li>
-            <button type="button" onClick={() => setIsModalOpen(true)}>
-              edit
+            <button className={css.btnColumn} type="button" onClick={() => setIsModalOpen(true)}>
+            <svg className={css.logoIcon}>
+            <use href={`${sprite}#icon-pencil-01`}></use>
+          </svg>
             </button>
           </li>
           <li>
-            <button type="button" onClick={handleDeleteColumn}>
-              delete
+            <button className={css.btnColumn} type="button" onClick={handleDeleteColumn}>
+            <svg className={css.logoIcon}>
+            <use href={`${sprite}#icon-trash-04`}></use>
+          </svg>
             </button>
           </li>
         </ul>
       </div>
 
-      <p>{`column id: ${id}`}</p>
+      {/* <p>{`column id: ${id}`}</p>
       <p>{`board id: ${boardId}`}</p>
       <p>{`owner: ${owner}`}</p>
-   
+    */}
       <div className={css.cardsContainer}></div>
       <ul className={css.cardsList}>
         {cards.map((item) => {
