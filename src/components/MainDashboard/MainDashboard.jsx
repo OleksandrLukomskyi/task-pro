@@ -351,6 +351,7 @@ export default function MainDashboard() {
                     boardId={item.board}
                     owner={item.owner}
                     title={item.title}
+                    idBoard={idBoard}
                   />
                 </li>
               );

@@ -20,7 +20,7 @@ import Modal from 'react-modal';
 import Card from '../card/Card.jsx';
 import AddCard from '../card/AddCard.jsx';
 
-export default function ColumnItem({ id, boardId, title, owner }) {
+export default function ColumnItem({ id, boardId, title, owner, idBoard }) {
   const dispatch = useDispatch();
   const [idColumn, setIdColumn] = useState(id);
   let [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,8 +33,8 @@ export default function ColumnItem({ id, boardId, title, owner }) {
 
   console.log(id);
   useEffect(() => {
-    dispatch(fetchCards(id));
-  }, [dispatch, id]);
+    dispatch(fetchCards(id, idBoard));
+  }, [dispatch, id, idBoard]);
   const cards = useSelector(selectCards);
 
   const handleDeleteColumn = () => {
