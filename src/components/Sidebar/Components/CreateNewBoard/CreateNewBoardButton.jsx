@@ -8,7 +8,6 @@
 //   const openModal = () => {
 //     setIsModalOpen(true);
 
-
 //   };
 
 //   // Функция для закрытия модального окна
@@ -29,7 +28,6 @@
 
 // export default CreateNewBoardButton;
 
-
 // import React from 'react';
 
 // const CreateNewBoardButton = ({ onCreate }) => {
@@ -41,7 +39,6 @@
 // };
 
 // export default CreateNewBoardButton;
-
 
 // import { useState } from 'react';
 // import CreateNewBoardModal from './CreateNewBoardModal'; // Импорт модального окна
@@ -74,11 +71,10 @@
 
 // export default CreateNewBoardButton;
 
-
 import { useState } from 'react';
 import CreateNewBoardModal from './CreateNewBoardModal'; // Импорт модального окна
 import css from './CreateNewBoardModal.module.css';
-import Plus  from '../../../../assets/icons/plus.png';
+import Plus from '../../../../assets/icons/plus.png';
 
 const CreateNewBoardButton = () => {
   const [isModalOpen, setIsModalOpen] = useState(false); // Состояние для открытия/закрытия модального окна
@@ -94,15 +90,14 @@ const CreateNewBoardButton = () => {
   };
 
   return (
-
-
-
     <div className={css.create}>
-      <div className={css.text}><p>Create a New Board</p></div>
-      
+      <div className={css.text}>
+        <p>Create a New Board</p>
+      </div>
+
       {/* Кнопка для открытия модального окна */}
       <button className={css.btn} onClick={openModal}>
-      +
+        <div>+</div>
       </button>
       {/* Модальное окно */}
       <CreateNewBoardModal show={isModalOpen} onClose={closeModal} />
