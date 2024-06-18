@@ -18,11 +18,12 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  margin-top: 20px;
 }
 
-.helpBox li {
+/* .helpBox li {
   margin-bottom: 15px;
-}
+} */
 
 .helpBox p {
   font-size: 14px;
