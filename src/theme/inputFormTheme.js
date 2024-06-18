@@ -32,16 +32,20 @@ const inputFormTheme = {
     ...focusedStyles,
   },
   "& .MuiInputLabel-root.Mui-focused": {
-    color: "green",
-  },
-  "& .MuiInputBase-root.Mui-filled": {
-    backgroundColor: "red",
+    color: "var(--btn-color)",
   },
   "& .MuiInputLabel-root": {
     ...labelStyles,
   },
   "& .MuiInputBase-input": {
     ...inputBaseStyles,
+    padding: "14px 18px",
+  },
+  "& .MuiInputBase-input.Mui-filled": {
+    backgroundColor: "red",
+  },
+  "& .MuiInputBase-input.Mui -internal - autofill - selected": {
+    backgroundColor: "red",
   },
 };
 
