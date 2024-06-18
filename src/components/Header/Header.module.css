@@ -11,7 +11,7 @@
   }
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 769px) {
   .header {
     display: flex;
     padding: 18px 24px;
@@ -34,7 +34,7 @@
   }
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 769px) {
   .menuBurger {
     display: none;
   }
@@ -53,7 +53,7 @@
   }
 }
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 769px) {
   .menuIcon {
     stroke: none;
   }

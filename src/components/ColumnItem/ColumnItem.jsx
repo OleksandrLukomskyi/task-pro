@@ -1,7 +1,7 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
-import { selectCards } from "../../redux/cards/selectors";
-import { fetchCards } from "../../redux/cards/operations";
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { selectCards } from '../../redux/cards/selectors';
+import { fetchCards } from '../../redux/cards/operations';
 import {
   createColumn,
   deleteColumn,
@@ -40,7 +40,7 @@ export default function ColumnItem({ id, boardId, title, owner }) {
     dispatch(deleteColumn(idColumn));
   };
 
-  const handleEditColumn = (e) => {
+  const handleEditColumn = e => {
     e.preventDefault();
 
     let newObj = {
@@ -70,17 +70,25 @@ export default function ColumnItem({ id, boardId, title, owner }) {
         </div>
         <ul className={css.buttonList}>
           <li>
-            <button className={css.btnColumn} type="button" onClick={() => setIsModalOpen(true)}>
-            <svg className={css.logoIcon}>
-            <use href={`${sprite}#icon-pencil-01`}></use>
-          </svg>
+            <button
+              className={css.btnColumn}
+              type="button"
+              onClick={() => setIsModalOpen(true)}
+            >
+              <svg className={css.logoIcon}>
+                <use href={`${sprite}#icon-pencil-01`}></use>
+              </svg>
             </button>
           </li>
           <li>
-            <button className={css.btnColumn} type="button" onClick={handleDeleteColumn}>
-            <svg className={css.logoIcon}>
-            <use href={`${sprite}#icon-trash-04`}></use>
-          </svg>
+            <button
+              className={css.btnColumn}
+              type="button"
+              onClick={handleDeleteColumn}
+            >
+              <svg className={css.logoIcon}>
+                <use href={`${sprite}#icon-trash-04`}></use>
+              </svg>
             </button>
           </li>
         </ul>
@@ -92,7 +100,7 @@ export default function ColumnItem({ id, boardId, title, owner }) {
     */}
       <div className={css.cardsContainer}></div>
       <ul className={css.cardsList}>
-        {cards.map((item) => {
+        {cards.map(item => {
           return (
             <li className={css.cardItem} key={item._id}>
               <Card
@@ -143,7 +151,7 @@ export default function ColumnItem({ id, boardId, title, owner }) {
             </button>
             <h2 className={css.modalTitle}>Edit Column</h2>
             <form
-              onSubmit={(e) => {
+              onSubmit={e => {
                 e.preventDefault();
                 // handleAddColumn();
               }}
@@ -152,7 +160,7 @@ export default function ColumnItem({ id, boardId, title, owner }) {
               <input
                 type="text"
                 value={newColumnTitle}
-                onChange={(e) => setNewColumnTitle(e.target.value)}
+                onChange={e => setNewColumnTitle(e.target.value)}
                 placeholder="Column title"
                 className={css.modalInput}
               />
