@@ -1,8 +1,8 @@
-import sprite from "../../assets/icons/Sprite.svg";
-import Modal from "react-modal";
-import css from "./EditProfileModal.module.css";
+import Modal from 'react-modal';
+import sprite from '../../assets/icons/Sprite.svg';
+import css from './EditProfileModal.module.css';
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
 const EditProfileModal = ({
   isOpen,
@@ -28,7 +28,7 @@ const EditProfileModal = ({
       <div className={css.modalContent}>
         <span className={css.spanClose} onClick={onClose}>
           <svg className={css.closeSvg} width="24px" height="24px">
-            <use href={sprite + "#icon-x-close"}></use>
+            <use href={sprite + '#icon-x-close'}></use>
           </svg>
         </span>
         <h2 className={css.titleModal}>Edit Profile</h2>
@@ -37,7 +37,7 @@ const EditProfileModal = ({
             type="file"
             onChange={handleFileChange}
             accept="image/*"
-            style={{ display: "none" }}
+            style={{ display: 'none' }}
             id="avatarInput"
           />
           {avatarFile ? (
@@ -59,11 +59,11 @@ const EditProfileModal = ({
           )}
           <button
             type="button"
-            onClick={() => document.getElementById("avatarInput").click()}
+            onClick={() => document.getElementById('avatarInput').click()}
             className={css.plusBtn}
           >
             <svg className={css.plusSvg} width="10px" height="10px">
-              <use href={sprite + "#icon-plus"}></use>
+              <use href={sprite + '#icon-plus'}></use>
             </svg>
           </button>
         </div>
@@ -73,7 +73,7 @@ const EditProfileModal = ({
               className={css.name}
               type="text"
               value={userName}
-              onChange={(e) => setUserName(e.target.value)}
+              onChange={e => setUserName(e.target.value)}
               placeholder="Name"
             />
           </div>
@@ -82,7 +82,7 @@ const EditProfileModal = ({
               className={css.email}
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
               placeholder="Email"
             />
           </div>
@@ -91,7 +91,7 @@ const EditProfileModal = ({
               className={css.password}
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={e => setPassword(e.target.value)}
               placeholder="Password"
             />
           </div>
