@@ -51,6 +51,8 @@
   --sidebar-background: #121212;
   --sidebar-text: #ffffff;
   --heed-help: rgba(31, 31, 31, 1);
+
+  --icon-plus: #ffffff;
 }
 
 /* Light Theme */
@@ -87,6 +89,8 @@
 
   --sidebar-text: #161616;
   --heed-help: rgba(246, 246, 247, 1);
+
+  --icon-plus: #ffffff;
 }
 
 /* Violet Theme */
@@ -122,6 +126,8 @@
   --sidebar-background: #5255bc;
   --sidebar-text: #ffffff;
   --heed-help: rgba(236, 237, 253, 0.4);
+
+  --icon-plus: #161616;
 }
 
 h1,
