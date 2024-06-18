@@ -575,10 +575,11 @@ const BoardItem = ({ board }) => {
 
   return (
     <>
-      <Card key={board._id} variant="outlined" sx={{ mb: 2 }}>
-        <CardContent sx={{ display: 'flex', alignItems: 'center' }}>
+      <Card key={board._id} variant="outlined" sx={{ mb: 2, border: '0' }}>
+        <CardContent sx={{ display: 'flex', alignItems: 'center', backgroundColor: 'var(--sidebar-background)',
+           color: ' var(--sidebar-text)', border: 'none', height: '61px', padding: 1} }>
           <SvgIcon sx={{ mr: 2 }}>
-            <svg width="24" height="24">
+            <svg width="24" height="24" fill="var(--color-icons-no-active)">
               <use href={`${Sprite}#${board.icon}`} />
             </svg>
           </SvgIcon>
@@ -592,10 +593,10 @@ const BoardItem = ({ board }) => {
             {board.title}
           </Typography>
           <CardActions>
-            <IconButton onClick={handleEditModalOpen}>
+            <IconButton onClick={handleEditModalOpen} sx={{ color:'var(--color-icons-no-active)' }}>
               <EditIcon />
             </IconButton>
-            <IconButton onClick={() => handleDelete(board._id)}>
+            <IconButton onClick={() => handleDelete(board._id)} sx={{ color:'var(--color-icons-no-active)' }}>
               <DeleteIcon />
             </IconButton>
           </CardActions>
