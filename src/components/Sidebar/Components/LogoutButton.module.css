@@ -1,0 +1,7 @@
+.btn {
+  border: none;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
