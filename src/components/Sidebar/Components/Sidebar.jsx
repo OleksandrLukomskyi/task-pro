@@ -93,7 +93,7 @@ import CreateNewBoardModal from './CreateNewBoard/CreateNewBoardModal';
 import HelpBox from './Help/HelpBox';
 import LogoutButton from './LogoutButton';
 import css from './Sidebar.module.css';
-import logo from '../../../assets/icons/logo.png'
+import logo from '../../../assets/icons/logo.png';
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -124,7 +124,11 @@ const Sidebar = () => {
     <div className={css.sidebar}>
       <ul>
         <li className={css.logo}>
-        <img src={logo} alt="Логотип" style={{ width: '32px', height: '32px' }} />
+          <img
+            src={logo}
+            alt="Логотип"
+            style={{ width: '32px', height: '32px' }}
+          />
           <h1>Task Pro</h1>
         </li>
         <li className={css.createNewBoardButton}>

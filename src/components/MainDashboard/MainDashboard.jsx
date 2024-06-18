@@ -284,6 +284,7 @@ import sprite from '../../assets/icons/Sprite.svg';
 import ColumnItem from '../ColumnItem/ColumnItem';
 import { selectBoard, selectOneBoard } from '../../redux/boards/selectors';
 import { fetchColumns } from '../../redux/columns/operations';
+import { getBoard } from '../../redux/boards/operations';
 
 Modal.setAppElement('#root');
 
@@ -308,6 +309,11 @@ export default function MainDashboard() {
       ? setIdBoat(boards[0]._id)
       : setIdBoat(board._id);
   }, [boards, board]);
+
+  if (idBoard === '') {
+    setIdBoat(boards[0]._id);
+    dispatch(getBoard(boards[0]._id));
+  }
 
   useEffect(() => {
     dispatch(fetchColumns(idBoard));
