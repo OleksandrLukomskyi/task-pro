@@ -586,7 +586,7 @@ const BoardItem = ({ board }) => {
           <Typography
             variant="h5"
             component="div"
-            sx={{ flexGrow: 1 }}
+            sx={{ flexGrow: 1, fontSize: '14px' }}
             onClick={handleClick}
             style={{ cursor: 'pointer' }} // Белый цвет текста на черной доске
           >
