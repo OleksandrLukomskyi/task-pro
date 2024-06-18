@@ -1,7 +1,6 @@
 .sidebar {
   width: 260px;
-  height: 100vh;
-  background-color: black;
+  /* height: 100vh; */
   margin-left: 0;
 }
 
