@@ -270,11 +270,7 @@
 
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  createColumn,
-  deleteColumn,
-  fetchColumns,
-} from '../../redux/columns/slice';
+import { createColumn, deleteColumn } from '../../redux/columns/slice';
 import Modal from 'react-modal';
 import Column from '../Column/Column';
 import css from './MainDashboard.module.css';
@@ -287,6 +283,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import sprite from '../../assets/icons/Sprite.svg';
 import ColumnItem from '../ColumnItem/ColumnItem';
 import { selectBoard, selectOneBoard } from '../../redux/boards/selectors';
+import { fetchColumns } from '../../redux/columns/operations';
 
 Modal.setAppElement('#root');
 
@@ -311,6 +308,10 @@ export default function MainDashboard() {
       ? setIdBoat(boards[0]._id)
       : setIdBoat(board._id);
   }, [boards, board]);
+
+  useEffect(() => {
+    dispatch(fetchColumns(board._id));
+  }, [dispatch, board._id]);
 
   const handleAddColumn = e => {
     e.preventDefault();
