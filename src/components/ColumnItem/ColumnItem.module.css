@@ -9,6 +9,7 @@
   stroke-linejoin: round;
   stroke-miterlimit: 4;
 }
+
 .btnColumn {
   background-color: transparent;
   border: none;
@@ -24,7 +25,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
- 
   padding: 18px 20px 17px 20px;
   gap: 0px;
   border-radius: 8px;
@@ -40,6 +40,42 @@
 .buttonList {
   display: flex;
   gap: 8px;
+}
+.buttonAddCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  width: 334px;
+  height: 56px;
+  padding: 14px 84px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 14px;
+  background-color: var(--btn-color);
+}
+.buttonAddCard:hover {
+  background-color: var( --btn-color-hover);
+}
+.buttonTitle {
+  color: var(--text-color-btn);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 21px;
+}
+.logoPlus {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: var(--icon-plus);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 4;
+}
+.iconBackground {
+  fill: var(--text-color-btn);
+  stroke: none;
 }
 /* .columnItem {
   border: 1px solid #000;
