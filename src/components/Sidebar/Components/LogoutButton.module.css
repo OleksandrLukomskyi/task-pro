@@ -4,4 +4,9 @@
   display: flex;
   align-items: center;
   gap: 7px;
+  color: var(--color-logout);
+}
+
+.btn:hover {
+  color: var(--color-logout-hover);
 }
