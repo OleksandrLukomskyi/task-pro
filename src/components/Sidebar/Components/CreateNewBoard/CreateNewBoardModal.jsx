@@ -654,7 +654,7 @@ const CreateNewBoardModal = ({ show, onClose, title }) => {
                       }}
                     >
                       <use
-                        xlinkHref={`/src/assets/icons/Sprite.svg#${iconId}`}
+                        xlinkHref={`../../../../../src/assets/icons/Sprite.svg#${iconId}`}
                       />
                     </SvgIcon>
                   }
