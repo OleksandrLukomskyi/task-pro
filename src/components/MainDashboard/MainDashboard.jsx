@@ -494,6 +494,9 @@ import sprite from '../../assets/icons/Sprite.svg';
 import ColumnItem from '../ColumnItem/ColumnItem';
 import { selectBoard, selectOneBoard } from '../../redux/boards/selectors';
 import { fetchColumns } from '../../redux/columns/operations';
+
+import BeatLoader from 'react-spinners/BeatLoader';
+
 import { getBoard } from '../../redux/boards/operations';
 
 Modal.setAppElement('#root');
@@ -546,6 +549,7 @@ export default function MainDashboard() {
 
   return (
     <div>
+
       <div className={css.mainDashboard}>
         {loading && <p>Loading...</p>}
         <Toaster />
@@ -566,6 +570,7 @@ export default function MainDashboard() {
         </ul>
         
         {/* Кнопка для открытия модального окна добавления колонки */}
+
         <button
           className={css.buttonAddColumn}
           onClick={() => setIsModalOpen(true)}
@@ -589,7 +594,9 @@ export default function MainDashboard() {
           Add another column
         </button>
 
+
         {/* Модальное окно для добавления новой колонки */}
+
         <Modal
           isOpen={isModalOpen}
           onRequestClose={() => setIsModalOpen(false)}
@@ -607,7 +614,9 @@ export default function MainDashboard() {
               </svg>
             </button>
             <h2 className={css.modalTitle}>Add Column</h2>
+
             <form onSubmit={handleAddColumn} className={css.modalForm}>
+
               <input
                 type="text"
                 value={newColumnTitle}

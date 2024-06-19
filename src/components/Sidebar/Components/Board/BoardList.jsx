@@ -86,6 +86,7 @@ import { selectBoard } from '../../../../redux/boards/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBoards, getBoard } from '../../../../redux/boards/operations';
 import { useEffect } from 'react';
+import BeatLoader from 'react-spinners/BeatLoader';
 
 const BoardList = () => {
   const dispatch = useDispatch();
@@ -97,7 +98,7 @@ const BoardList = () => {
   };
 
   if (!Array.isArray(boards)) {
-    return <div>Loading...</div>;
+    return <BeatLoader color="#FFFFFF" />;
   }
 
   return (

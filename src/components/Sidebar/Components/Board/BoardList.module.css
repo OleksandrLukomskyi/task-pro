@@ -1,3 +1,7 @@
 .board-list {
   background: var(--sidebar-background);
+  margin-bottom: 20px;
+  height: 120px; /* Устанавливаем фиксированную высоту */
+  overflow: auto; /* Добавляем прокрутку */
+  scrollbar-width: thin; /* Ширина полосы прокрутки (thin, auto, none) */
 }
