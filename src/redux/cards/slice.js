@@ -76,8 +76,13 @@ const cardSlice = createSlice({
         state.error = false;
       })
       .addCase(fetchCards.fulfilled, (state, action) => {
+        const newCards = action.payload;
+        
+        const existingCardIds = state.items.map(card => card._id);
+        const filteredNewCards = newCards.filter(card => !existingCardIds.includes(card._id));
+        
+        state.items = [...state.items, ...filteredNewCards];
         state.loading = false;
-        state.items = action.payload;
       })
       .addCase(fetchCards.rejected, (state) => {
         state.loading = false;
