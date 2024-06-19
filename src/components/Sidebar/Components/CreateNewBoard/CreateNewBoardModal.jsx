@@ -496,7 +496,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import SvgIcon from '@mui/material/SvgIcon';
-import { addBoard } from '../../../../redux/boards/operations';
+import { addBoard, fetchBoards } from '../../../../redux/boards/operations';
 import BackgroundSelector from './BackgroundSelector'; // Импорт компонента BackgroundSelector
 
 const style = {
@@ -515,8 +515,8 @@ const style = {
 const CreateNewBoardModal = ({ show, onClose, title }) => {
   const dispatch = useDispatch();
   const [boardTitle, setBoardTitle] = useState('');
-  const [selectedIcon, setSelectedIcon] = useState('');
-  const [selectedBackground, setSelectedBackground] = useState('');
+  const [selectedIcon, setSelectedIcon] = useState('icon-Project');
+  const [selectedBackground, setSelectedBackground] = useState('background1');
   const [error, setError] = useState('');
 
   const handleSubmit = async e => {
@@ -535,11 +535,36 @@ const CreateNewBoardModal = ({ show, onClose, title }) => {
         })
       ).unwrap();
       onClose(); // Закрываем модальное окно после успешного создания
+      dispatch(fetchBoards()); // Обновляем список досок после создания
     } catch (error) {
       console.error('Failed to create new board:', error);
       setError('Failed to create new board');
+    } finally {
+      setBoardTitle('');
     }
   };
+
+  // const handleSubmit = async e => {
+  //   e.preventDefault();
+  //   if (!boardTitle.trim()) {
+  //     setError('Title is required');
+  //     return;
+  //   }
+
+  //   try {
+  //     await dispatch(
+  //       addBoard({
+  //         title: boardTitle,
+  //         icon: selectedIcon,
+  //         background: selectedBackground,
+  //       })
+  //     ).unwrap();
+  //     onClose(); // Закрываем модальное окно после успешного создания
+  //   } catch (error) {
+  //     console.error('Failed to create new board:', error);
+  //     setError('Failed to create new board');
+  //   }
+  // };
 
   return (
     <Modal
@@ -619,7 +644,10 @@ const CreateNewBoardModal = ({ show, onClose, title }) => {
                   label={
                     <SvgIcon
                       sx={{
-                        stroke: 'var(--color-icons-no-active)',
+                        stroke:
+                          selectedIcon === iconId
+                            ? 'var(--color-icons-active)'
+                            : 'var(--color-icons-no-active)',
                         fill: 'none',
                         width: '18px',
                         height: '18px',
@@ -635,7 +663,10 @@ const CreateNewBoardModal = ({ show, onClose, title }) => {
             </RadioGroup>
           </FormControl>
 
-          <BackgroundSelector sx={{ marginRight: '10px' }} />
+          <BackgroundSelector
+            setSelectedBackground={setSelectedBackground}
+            sx={{ marginRight: '10px' }}
+          />
 
           {error && (
             <Typography

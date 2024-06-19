@@ -150,6 +150,10 @@ const BackgroundSelector = ({ setSelectedBackground }) => {
                     borderRadius: '6px',
                     cursor: 'pointer',
                     padding: '1px',
+                    border:
+                      selectedBackgroundLocal === background.id
+                        ? '2px solid var(--btn-color)'
+                        : 'none',
                   }}
                 />
               </ButtonBase>
