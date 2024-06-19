@@ -268,6 +268,216 @@
 //   );
 // }
 
+// import { useState, useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { createColumn, deleteColumn } from '../../redux/columns/slice';
+// import Modal from 'react-modal';
+// import Column from '../Column/Column';
+// import css from './MainDashboard.module.css';
+// import {
+//   selectColumnsData,
+//   selectLoading,
+//   selectError,
+// } from '../../redux/columns/selectors';
+// import toast, { Toaster } from 'react-hot-toast';
+// import sprite from '../../assets/icons/Sprite.svg';
+// import ColumnItem from '../ColumnItem/ColumnItem';
+// import { selectBoard, selectOneBoard } from '../../redux/boards/selectors';
+// import { fetchColumns } from '../../redux/columns/operations';
+// import { getBoard } from '../../redux/boards/operations';
+
+// Modal.setAppElement('#root');
+
+// export default function MainDashboard() {
+//   const dispatch = useDispatch();
+//   const [idBoard, setIdBoat] = useState('');
+
+//   const board = useSelector(selectOneBoard);
+//   const boards = useSelector(selectBoard);
+
+//   const [isModalOpen, setIsModalOpen] = useState(false);
+//   const [newColumnTitle, setNewColumnTitle] = useState('');
+
+//   const loading = useSelector(selectLoading);
+//   const error = useSelector(selectError);
+
+//   const columns = useSelector(selectColumnsData);
+//   const [columnsData, setColumnsData] = useState([]);
+
+//   useEffect(() => {
+//     Object.keys(board).length == 0
+//       ? setIdBoat(boards[0]._id)
+//       : setIdBoat(board._id);
+//   }, [boards, board]);
+
+//   if (idBoard === '') {
+//     setIdBoat(boards[0]._id);
+//     dispatch(getBoard(boards[0]._id));
+//   }
+
+//   useEffect(() => {
+//     dispatch(fetchColumns(idBoard));
+//   }, [dispatch, idBoard]);
+
+//   const handleAddColumn = e => {
+//     e.preventDefault();
+
+//     let newObj = {
+//       boardId: idBoard,
+//       title: newColumnTitle,
+//     };
+
+//     dispatch(createColumn(newObj));
+
+//     setIsModalOpen(false);
+//   };
+
+//   return (
+//     <div>
+//       <ul className={css.columnList}>
+//         {columns.map(item => {
+//           return (
+//             <li className={css.columnItem} key={item._id}>
+//               <ColumnItem
+//                 id={item._id}
+//                 boardId={item.board}
+//                 owner={item.owner}
+//                 title={item.title}
+//               />
+//             </li>
+//           );
+//         })}
+//       </ul>
+//       <div>
+//         <div>
+//           {/* ====================================================================== */}
+
+//           <div className={css.mainDashboard}>
+//             {loading && <p>Loading...</p>}
+//             <Toaster />
+//             {error && <p>Error loading columns: {error.message}</p>}
+//             <ul className={css.columns_list}>
+//               {columnsData.map((column, index) => (
+//                 <li className={css.item} key={index}>
+//                   <Column
+//                     column={column}
+//                     onDeleteColumn={handleDeleteColumn}
+//                     onEditColumn={handleEditColumn}
+//                   />
+//                 </li>
+//               ))}
+//             </ul>
+//             <button
+//               className={css.buttonAddColumn}
+//               onClick={() => setIsModalOpen(true)}
+//             >
+//               <svg className={css.logoIcon} viewBox="0 0 32 32">
+//                 <rect
+//                   className={css.iconBackground}
+//                   width="28"
+//                   height="28"
+//                   rx="6"
+//                   ry="6"
+//                 />
+//                 <use
+//                   href={sprite + '#icon-plus'}
+//                   x="7"
+//                   y="7"
+//                   width="14"
+//                   height="14"
+//                 />
+//               </svg>
+//               Add another column
+//             </button>
+
+//             <Modal
+//               isOpen={isModalOpen}
+//               onRequestClose={() => setIsModalOpen(false)}
+//               contentLabel="Add Column"
+//               className={css.modal}
+//               overlayClassName={css.overlay}
+//             >
+//               <button
+//                 className={css.buttonAddColumn}
+//                 onClick={() => setIsModalOpen(true)}
+//               >
+//                 {' '}
+//                 <svg className={css.logoIcon} viewBox="0 0 32 32">
+//                   <rect
+//                     className={css.iconBackground}
+//                     width="28"
+//                     height="28"
+//                     rx="6"
+//                     ry="6"
+//                   />
+//                   <use
+//                     href={sprite + '#icon-plus'}
+//                     x="7"
+//                     y="7"
+//                     width="14"
+//                     height="14"
+//                   />
+//                 </svg>{' '}
+//                 Add another column{' '}
+//               </button>
+//             </Modal>
+//           </div>
+//         </div>
+//       </div>
+
+//       <div className={css.mainDashboard}>
+//         {loading && <p>Loading...</p>}
+//         <Toaster />
+//         {error && <p>Error loading columns: {error.message}</p>}
+//         <Modal
+//           isOpen={isModalOpen}
+//           onRequestClose={() => setIsModalOpen(false)}
+//           contentLabel="Add Column"
+//           className={css.modal}
+//           overlayClassName={css.overlay}
+//         >
+//           <div className={css.modalContent}>
+//             <button
+//               onClick={() => setIsModalOpen(false)}
+//               className={css.closeButton}
+//             >
+//               <svg className={css.closeIcon}>
+//                 <use xlinkHref="#icon-close" />
+//               </svg>
+//             </button>
+//             <h2 className={css.modalTitle}>Add Column</h2>
+//             <form
+//               onSubmit={e => {
+//                 e.preventDefault();
+//                 // handleAddColumn();
+//                 form.reset();
+//               }}
+//               className={css.modalForm}
+//             >
+//               <input
+//                 type="text"
+//                 value={newColumnTitle}
+//                 onChange={e => setNewColumnTitle(e.target.value)}
+//                 placeholder="Column title"
+//                 className={css.modalInput}
+//               />
+//               <button
+//                 type="button"
+//                 onClick={handleAddColumn}
+//                 className={css.modalButton}
+//               >
+//                 Add
+//               </button>
+//             </form>
+//           </div>
+//         </Modal>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createColumn, deleteColumn } from '../../redux/columns/slice';
@@ -290,7 +500,7 @@ Modal.setAppElement('#root');
 
 export default function MainDashboard() {
   const dispatch = useDispatch();
-  const [idBoard, setIdBoat] = useState('');
+  const [idBoard, setIdBoard] = useState('');
 
   const board = useSelector(selectOneBoard);
   const boards = useSelector(selectBoard);
@@ -302,41 +512,48 @@ export default function MainDashboard() {
   const error = useSelector(selectError);
 
   const columns = useSelector(selectColumnsData);
-  const [columnsData, setColumnsData] = useState([]);
 
+  // Проверка наличия текущей доски и установка idBoard
   useEffect(() => {
-    Object.keys(board).length == 0
-      ? setIdBoat(boards[0]._id)
-      : setIdBoat(board._id);
-  }, [boards, board]);
+    if (!board._id && boards.length > 0) {
+      setIdBoard(boards[0]._id);
+      dispatch(getBoard(boards[0]._id));
+    } else if (board._id) {
+      setIdBoard(board._id);
+    }
+  }, [boards, board, dispatch]);
 
-  if (idBoard === '') {
-    setIdBoat(boards[0]._id);
-    dispatch(getBoard(boards[0]._id));
-  }
-
+  // Получение колонок для текущей доски
   useEffect(() => {
-    dispatch(fetchColumns(idBoard));
+    if (idBoard) {
+      dispatch(fetchColumns(idBoard));
+    }
   }, [dispatch, idBoard]);
 
+  // Функция для добавления новой колонки
   const handleAddColumn = e => {
     e.preventDefault();
 
-    let newObj = {
+    const newColumn = {
       boardId: idBoard,
       title: newColumnTitle,
     };
 
-    dispatch(createColumn(newObj));
-
+    dispatch(createColumn(newColumn));
     setIsModalOpen(false);
+    setNewColumnTitle('');
   };
 
   return (
     <div>
-      <ul className={css.columnList}>
-        {columns.map(item => {
-          return (
+      <div className={css.mainDashboard}>
+        {loading && <p>Loading...</p>}
+        <Toaster />
+        {error && <p>Error loading columns: {error.message}</p>}
+        
+        {/* Рендеринг списка колонок */}
+        <ul className={css.columnList}>
+          {columns.map(item => (
             <li className={css.columnItem} key={item._id}>
               <ColumnItem
                 id={item._id}
@@ -345,90 +562,34 @@ export default function MainDashboard() {
                 title={item.title}
               />
             </li>
-          );
-        })}
-      </ul>
-      <div>
-        <div>
-          {/* ====================================================================== */}
+          ))}
+        </ul>
+        
+        {/* Кнопка для открытия модального окна добавления колонки */}
+        <button
+          className={css.buttonAddColumn}
+          onClick={() => setIsModalOpen(true)}
+        >
+          <svg className={css.logoIcon} viewBox="0 0 32 32">
+            <rect
+              className={css.iconBackground}
+              width="28"
+              height="28"
+              rx="6"
+              ry="6"
+            />
+            <use
+              href={sprite + '#icon-plus'}
+              x="7"
+              y="7"
+              width="14"
+              height="14"
+            />
+          </svg>
+          Add another column
+        </button>
 
-          <div className={css.mainDashboard}>
-            {loading && <p>Loading...</p>}
-            <Toaster />
-            {error && <p>Error loading columns: {error.message}</p>}
-            <ul className={css.columns_list}>
-              {columnsData.map((column, index) => (
-                <li className={css.item} key={index}>
-                  <Column
-                    column={column}
-                    onDeleteColumn={handleDeleteColumn}
-                    onEditColumn={handleEditColumn}
-                  />
-                </li>
-              ))}
-            </ul>
-            <button
-              className={css.buttonAddColumn}
-              onClick={() => setIsModalOpen(true)}
-            >
-              <svg className={css.logoIcon} viewBox="0 0 32 32">
-                <rect
-                  className={css.iconBackground}
-                  width="28"
-                  height="28"
-                  rx="6"
-                  ry="6"
-                />
-                <use
-                  href={sprite + '#icon-plus'}
-                  x="7"
-                  y="7"
-                  width="14"
-                  height="14"
-                />
-              </svg>
-              Add another column
-            </button>
-
-            <Modal
-              isOpen={isModalOpen}
-              onRequestClose={() => setIsModalOpen(false)}
-              contentLabel="Add Column"
-              className={css.modal}
-              overlayClassName={css.overlay}
-            >
-              <button
-                className={css.buttonAddColumn}
-                onClick={() => setIsModalOpen(true)}
-              >
-                {' '}
-                <svg className={css.logoIcon} viewBox="0 0 32 32">
-                  <rect
-                    className={css.iconBackground}
-                    width="28"
-                    height="28"
-                    rx="6"
-                    ry="6"
-                  />
-                  <use
-                    href={sprite + '#icon-plus'}
-                    x="7"
-                    y="7"
-                    width="14"
-                    height="14"
-                  />
-                </svg>{' '}
-                Add another column{' '}
-              </button>
-            </Modal>
-          </div>
-        </div>
-      </div>
-
-      <div className={css.mainDashboard}>
-        {loading && <p>Loading...</p>}
-        <Toaster />
-        {error && <p>Error loading columns: {error.message}</p>}
+        {/* Модальное окно для добавления новой колонки */}
         <Modal
           isOpen={isModalOpen}
           onRequestClose={() => setIsModalOpen(false)}
@@ -442,18 +603,11 @@ export default function MainDashboard() {
               className={css.closeButton}
             >
               <svg className={css.closeIcon}>
-                <use xlinkHref="#icon-close" />
+                <use xlinkHref={`${sprite}#icon-close`} />
               </svg>
             </button>
             <h2 className={css.modalTitle}>Add Column</h2>
-            <form
-              onSubmit={e => {
-                e.preventDefault();
-                // handleAddColumn();
-                form.reset();
-              }}
-              className={css.modalForm}
-            >
+            <form onSubmit={handleAddColumn} className={css.modalForm}>
               <input
                 type="text"
                 value={newColumnTitle}
@@ -461,11 +615,7 @@ export default function MainDashboard() {
                 placeholder="Column title"
                 className={css.modalInput}
               />
-              <button
-                type="button"
-                onClick={handleAddColumn}
-                className={css.modalButton}
-              >
+              <button type="submit" className={css.modalButton}>
                 Add
               </button>
             </form>
