@@ -65,8 +65,8 @@
 }
 
 .createButton {
-  background-color: #4caf50;
-  color: white;
+  background-color: var(--btn-color);
+  color: var(-text-color-btn);
 }
 
 .create {

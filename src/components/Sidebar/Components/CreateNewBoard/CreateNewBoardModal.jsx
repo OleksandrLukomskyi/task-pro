@@ -101,8 +101,6 @@
 
 // export default BoardItem;
 
-
-
 // import { useState, useEffect } from 'react';
 // import { useDispatch } from 'react-redux';
 // import Box from '@mui/material/Box';
@@ -331,7 +329,7 @@
 //                 <FormControlLabel
 //                   key={iconId}
 //                   value={iconId}
-//                   control={<Radio style={{ display: 'none' }} />} 
+//                   control={<Radio style={{ display: 'none' }} />}
 //                   label={
 //                     <SvgIcon>
 //                       <use xlinkHref={`/src/assets/icons/Sprite.svg#${iconId}`} />
@@ -359,7 +357,6 @@
 // };
 
 // export default CreateNewBoardModal;
-
 
 // import { useState } from 'react';
 // import { useDispatch } from 'react-redux';
@@ -455,7 +452,7 @@
 //                 <FormControlLabel
 //                   key={iconId}
 //                   value={iconId}
-//                   control={<Radio style={{ display: 'none' }} />} 
+//                   control={<Radio style={{ display: 'none' }} />}
 //                   label={
 //                     <SvgIcon sx={{ color: 'var(--color-icons-no-active)'}}>
 //                       <use xlinkHref={`/src/assets/icons/Sprite.svg#${iconId}`} />
@@ -484,7 +481,6 @@
 
 // export default CreateNewBoardModal;
 
-
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
@@ -509,8 +505,9 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
-  bgcolor: 'var(--sidebar-background)',
-  border: '2px solid #000',
+  bgcolor: 'var(--modal-backgr)',
+  border: 'none',
+  borderRadius: '8px',
   boxShadow: 24,
   p: 4,
 };
@@ -522,7 +519,7 @@ const CreateNewBoardModal = ({ show, onClose, title }) => {
   const [selectedBackground, setSelectedBackground] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     if (!boardTitle.trim()) {
       setError('Title is required');
@@ -530,7 +527,13 @@ const CreateNewBoardModal = ({ show, onClose, title }) => {
     }
 
     try {
-      await dispatch(addBoard({ title: boardTitle, icon: selectedIcon, background: selectedBackground })).unwrap();
+      await dispatch(
+        addBoard({
+          title: boardTitle,
+          icon: selectedIcon,
+          background: selectedBackground,
+        })
+      ).unwrap();
       onClose(); // Закрываем модальное окно после успешного создания
     } catch (error) {
       console.error('Failed to create new board:', error);
@@ -557,7 +560,20 @@ const CreateNewBoardModal = ({ show, onClose, title }) => {
         >
           <CloseIcon />
         </IconButton>
-        <Typography id="create-board-modal-title" variant="h6" component="h2" sx={{ color: 'var(--text-color)' }}>
+        <Typography
+          id="create-board-modal-title"
+          variant="h6"
+          component="h2"
+          sx={{ color: 'var(--text-color)' }}
+        >
+          New board
+        </Typography>
+        <Typography
+          id="create-board-modal-title"
+          variant="h6"
+          component="h2"
+          sx={{ color: 'var(--text-color)' }}
+        >
           {title}
         </Typography>
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
@@ -565,25 +581,53 @@ const CreateNewBoardModal = ({ show, onClose, title }) => {
             fullWidth
             label="Title"
             value={boardTitle}
-            onChange={(e) => setBoardTitle(e.target.value)}
+            onChange={e => setBoardTitle(e.target.value)}
             margin="normal"
-            sx={{ color: 'var(--text-color)' }} // Установка цвета текста для TextField
+            sx={{
+              color: 'var(--text-color)',
+              backgroundColor: 'white',
+              borderRadius: '8px',
+            }} // Установка цвета текста для TextField
           />
           <FormControl component="fieldset" sx={{ mt: 2 }}>
-            <FormLabel component="legend" sx={{ color: 'var(--text-color)' }}>Choose an Icon</FormLabel>
+            <FormLabel component="legend" sx={{ color: 'var(--text-color)' }}>
+              Choose an Icon
+            </FormLabel>
             <RadioGroup
               row
               value={selectedIcon}
-              onChange={(e) => setSelectedIcon(e.target.value)}
+              onChange={e => setSelectedIcon(e.target.value)}
+              sx={{
+                marginLeft: '10px',
+                marginTop: '10px',
+              }}
             >
-              {['icon-arrow-circle-broken-right', 'icon-star-04', 'icon-trash-04', 'icon-Vector', 'icon-menu-01'].map(iconId => (
+              {[
+                'icon-Project',
+                'icon-star-04',
+                'icon-loading-03',
+                'icon-puzzle-piece-02',
+                'icon-container',
+                'icon-lightning-02',
+                'icon-colors',
+                'icon-hexagon-01',
+              ].map(iconId => (
                 <FormControlLabel
                   key={iconId}
                   value={iconId}
-                  control={<Radio style={{ display: 'none' }} />} 
+                  control={<Radio style={{ display: 'none' }} />}
                   label={
-                    <SvgIcon sx={{ color: 'var(--color-icons-no-active)'}}>
-                      <use xlinkHref={`/src/assets/icons/Sprite.svg#${iconId}`} />
+                    <SvgIcon
+                      sx={{
+                        stroke: 'var(--color-icons-no-active)',
+                        fill: 'none',
+                        width: '18px',
+                        height: '18px',
+                      }}
+                    >
+                      <use
+                        xlinkHref={`/src/assets/icons/Sprite.svg#${iconId}`}
+                      />
                     </SvgIcon>
                   }
                 />
@@ -591,14 +635,30 @@ const CreateNewBoardModal = ({ show, onClose, title }) => {
             </RadioGroup>
           </FormControl>
 
-          <BackgroundSelector setSelectedBackground={setSelectedBackground} />
+          <BackgroundSelector sx={{ marginRight: '10px' }} />
 
           {error && (
-            <Typography color="error" sx={{ mt: 2, color: 'var(--text-color)' }}>
+            <Typography
+              color="error"
+              sx={{ marginTop: 2, color: 'var(--text-color)' }}
+            >
               {error}
             </Typography>
           )}
-          <Button type="submit" variant="contained" sx={{ mt: 2, width: 302, height: 49, backgroundColor: 'var(--btn-color)', color: 'var(--text-color-btn)' }} startIcon={<CloseIcon />}>
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{
+              marginTop: '40px',
+              width: '100%',
+              height: 49,
+              backgroundColor: 'var(--btn-color)',
+              color: 'var(--text-color-btn)',
+              '&:hover': {
+                backgroundColor: 'var( --btn-color-hover)',
+              },
+            }}
+          >
             Create
           </Button>
         </Box>
@@ -608,13 +668,6 @@ const CreateNewBoardModal = ({ show, onClose, title }) => {
 };
 
 export default CreateNewBoardModal;
-
-
-
-
-
-
-
 
 // import { useState } from 'react';
 // import { useDispatch } from 'react-redux';
@@ -750,7 +803,6 @@ export default CreateNewBoardModal;
 
 // export default CreateNewBoardModal;
 
-
 // import React, { useState, useEffect } from 'react';
 // import { useDispatch } from 'react-redux';
 // import Box from '@mui/material/Box';
@@ -767,7 +819,6 @@ export default CreateNewBoardModal;
 // import Radio from '@mui/material/Radio';
 // import SvgIcon from '@mui/material/SvgIcon';
 // import { addBoard,editBoard } from '../../../../redux/boards/operations';
-
 
 // const style = {
 //   position: 'absolute',

@@ -42,7 +42,7 @@ const EditBoardModal = ({ show, onClose, board }) => {
     }
   }, [board]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     if (!title.trim()) {
       setError('Title is required');
@@ -56,8 +56,10 @@ const EditBoardModal = ({ show, onClose, board }) => {
         icon: selectedIcon,
         background: selectedBackground,
       };
-      await dispatch(editBoard({ boardId: board._id, board: updatedBoardData })); // Передаем _id и обновленные данные доски в операцию editBoard
-      onClose(); // Закрываем модальное окно после успешного обновления
+      await dispatch(
+        editBoard({ boardId: board._id, board: updatedBoardData })
+      );
+      onClose();
     } catch (error) {
       console.error('Failed to update board:', error);
       setError('Failed to update board');
@@ -91,7 +93,7 @@ const EditBoardModal = ({ show, onClose, board }) => {
             fullWidth
             label="Title"
             value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={e => setTitle(e.target.value)}
             margin="normal"
           />
           <FormControl component="fieldset" sx={{ mt: 2 }}>
@@ -99,15 +101,20 @@ const EditBoardModal = ({ show, onClose, board }) => {
             <RadioGroup
               row
               value={selectedIcon}
-              onChange={(e) => setSelectedIcon(e.target.value)}
+              onChange={e => setSelectedIcon(e.target.value)}
             >
               <FormControlLabel
                 value="icon1"
                 control={<Radio />}
                 label={
                   <SvgIcon>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                      <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm-2 13h-3v-3h3v3zm0-5h-3V7h3v3zm5 5h-3v-3h3v3zm0-5h-3V7h3v3z"/>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      width="24"
+                      height="24"
+                    >
+                      <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm-2 13h-3v-3h3v3zm0-5h-3V7h3v3zm5 5h-3v-3h3v3zm0-5h-3V7h3v3z" />
                     </svg>
                   </SvgIcon>
                 }
@@ -120,12 +127,18 @@ const EditBoardModal = ({ show, onClose, board }) => {
             <RadioGroup
               row
               value={selectedBackground}
-              onChange={(e) => setSelectedBackground(e.target.value)}
+              onChange={e => setSelectedBackground(e.target.value)}
             >
               <FormControlLabel
                 value="background1"
                 control={<Radio />}
-                label={<img src="/path/to/background1.jpg" alt="Background 1" style={{ width: 50, height: 50 }} />}
+                label={
+                  <img
+                    src="/path/to/background1.jpg"
+                    alt="Background 1"
+                    style={{ width: 50, height: 50 }}
+                  />
+                }
               />
               {/* Add other backgrounds similarly */}
             </RadioGroup>
@@ -145,8 +158,6 @@ const EditBoardModal = ({ show, onClose, board }) => {
 };
 
 export default EditBoardModal;
-
-
 
 // import { useState, useEffect } from 'react';
 // import { useDispatch } from 'react-redux';
