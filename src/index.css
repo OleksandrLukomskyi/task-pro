@@ -179,4 +179,5 @@ img {
 body {
   background: var(--background);
   height: 100vh;
+  overflow: hidden;
 }
