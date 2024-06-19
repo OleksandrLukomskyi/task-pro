@@ -14,8 +14,8 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: 'var(--modal-backgr)',
+  borderRadius: '8px',
   boxShadow: 24,
   p: 4,
 };
@@ -25,7 +25,7 @@ const HelpModal = ({ show, onClose }) => {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     if (!name.trim() || !email.trim()) {
       setError('All fields are required');
@@ -33,7 +33,10 @@ const HelpModal = ({ show, onClose }) => {
     }
 
     try {
-      const response = await axios.post('https://project-back-codewave1-rqmw.onrender.com/api/help', { name, email });
+      const response = await axios.post(
+        'https://project-back-codewave1-rqmw.onrender.com/api/help',
+        { name, email }
+      );
       console.log('Help request sent:', response.data);
       onClose(); // Закрываем модальное окно после успешной отправки запроса
     } catch (error) {
@@ -69,7 +72,7 @@ const HelpModal = ({ show, onClose }) => {
             fullWidth
             label="Your Name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={e => setName(e.target.value)}
             margin="normal"
           />
           <TextField
@@ -77,7 +80,7 @@ const HelpModal = ({ show, onClose }) => {
             label="Your Email"
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value)}
             margin="normal"
           />
           {error && (
@@ -85,7 +88,19 @@ const HelpModal = ({ show, onClose }) => {
               {error}
             </Typography>
           )}
-          <Button type="submit" variant="contained" sx={{ mt: 2 }}>
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{
+              mt: 2,
+              width: '100%',
+              color: 'var(--text-color-btn)',
+              backgroundColor: 'var(--btn-color)',
+              '&:hover': {
+                backgroundColor: 'var(--btn-color-hover)', // Например, изменяем цвет иконки на красный при ховере
+              },
+            }}
+          >
             Send
           </Button>
         </Box>
@@ -155,4 +170,3 @@ export default HelpModal;
 // };
 
 // export default HelpModal;
-
