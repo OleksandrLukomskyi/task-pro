@@ -94,14 +94,17 @@ export const moveCard = createAsyncThunk(
 
 export const fetchCards = createAsyncThunk(
   'cards/fetchCards',
-  async (currentColumn, idBoard, thunkAPI) => {
+  async ({ currentColumn, idBoard }, thunkAPI) => {
     try {
-      const response = await axios.get('/api/cards/', {
-        params: {
-          columnId: currentColumn,
-          board: idBoard,
-        },
-      });
+      const response = await axios.get(
+        `/api/cards/?columnId=6671e3a7bebd1a53878b945b&boardId=666eec6324fd5d8665d3bbc4`
+        // {
+        //   params: {
+        //     columnId: currentColumn,
+        //     boardId: idBoard,
+        //   },
+        // }
+      );
       // return response.data;
       return response.data.cards;
     } catch (error) {
