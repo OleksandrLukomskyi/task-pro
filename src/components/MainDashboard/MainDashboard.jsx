@@ -284,6 +284,9 @@ import sprite from '../../assets/icons/Sprite.svg';
 import ColumnItem from '../ColumnItem/ColumnItem';
 import { selectBoard, selectOneBoard } from '../../redux/boards/selectors';
 import { fetchColumns } from '../../redux/columns/operations';
+
+import BeatLoader from 'react-spinners/BeatLoader';
+
 import { getBoard } from '../../redux/boards/operations';
 
 Modal.setAppElement('#root');
@@ -302,7 +305,6 @@ export default function MainDashboard() {
   const error = useSelector(selectError);
 
   const columns = useSelector(selectColumnsData);
-  const [columnsData, setColumnsData] = useState([]);
 
   useEffect(() => {
     Object.keys(board).length == 0
@@ -334,101 +336,56 @@ export default function MainDashboard() {
 
   return (
     <div>
-      <ul className={css.columnList}>
-        {columns.map(item => {
-          return (
-            <li className={css.columnItem} key={item._id}>
-              <ColumnItem
-                id={item._id}
-                boardId={item.board}
-                owner={item.owner}
-                title={item.title}
-              />
-            </li>
-          );
-        })}
-      </ul>
-      <div>
-        <div>
-          {/* ====================================================================== */}
-
-          <div className={css.mainDashboard}>
-            {loading && <p>Loading...</p>}
-            <Toaster />
-            {error && <p>Error loading columns: {error.message}</p>}
-            <ul className={css.columns_list}>
-              {columnsData.map((column, index) => (
-                <li className={css.item} key={index}>
-                  <Column
-                    column={column}
-                    onDeleteColumn={handleDeleteColumn}
-                    onEditColumn={handleEditColumn}
+      <div className={css.box}>
+        {loading ? (
+          <div className={css.loading}>
+            <BeatLoader color="#FFFFFF" />
+          </div>
+        ) : (
+          <ul className={css.columnList}>
+            {columns.map(item => {
+              return (
+                <li className={css.columnItem} key={item._id}>
+                  <ColumnItem
+                    id={item._id}
+                    boardId={item.board}
+                    owner={item.owner}
+                    title={item.title}
+                    idBoard={idBoard}
                   />
                 </li>
-              ))}
-            </ul>
-            <button
-              className={css.buttonAddColumn}
-              onClick={() => setIsModalOpen(true)}
-            >
-              <svg className={css.logoIcon} viewBox="0 0 32 32">
-                <rect
-                  className={css.iconBackground}
-                  width="28"
-                  height="28"
-                  rx="6"
-                  ry="6"
-                />
-                <use
-                  href={sprite + '#icon-plus'}
-                  x="7"
-                  y="7"
-                  width="14"
-                  height="14"
-                />
-              </svg>
-              Add another column
-            </button>
-
-            <Modal
-              isOpen={isModalOpen}
-              onRequestClose={() => setIsModalOpen(false)}
-              contentLabel="Add Column"
-              className={css.modal}
-              overlayClassName={css.overlay}
-            >
-              <button
-                className={css.buttonAddColumn}
-                onClick={() => setIsModalOpen(true)}
-              >
-                {' '}
-                <svg className={css.logoIcon} viewBox="0 0 32 32">
-                  <rect
-                    className={css.iconBackground}
-                    width="28"
-                    height="28"
-                    rx="6"
-                    ry="6"
-                  />
-                  <use
-                    href={sprite + '#icon-plus'}
-                    x="7"
-                    y="7"
-                    width="14"
-                    height="14"
-                  />
-                </svg>{' '}
-                Add another column{' '}
-              </button>
-            </Modal>
-          </div>
-        </div>
+              );
+            })}
+          </ul>
+        )}
+        <button
+          className={css.buttonAddColumn}
+          onClick={() => setIsModalOpen(true)}
+        >
+          <svg className={css.logoIcon} viewBox="0 0 32 32">
+            <rect
+              className={css.iconBackground}
+              width="28"
+              height="28"
+              rx="6"
+              ry="6"
+            />
+            <use
+              href={sprite + '#icon-plus'}
+              x="7"
+              y="7"
+              width="14"
+              height="14"
+            />
+          </svg>
+          Add another column
+        </button>
+      </div>
+      <div>
+        <div></div>
       </div>
 
-      <div className={css.mainDashboard}>
-        {loading && <p>Loading...</p>}
-        <Toaster />
-        {error && <p>Error loading columns: {error.message}</p>}
+      <div className={css.mainDashboardModal}>
         <Modal
           isOpen={isModalOpen}
           onRequestClose={() => setIsModalOpen(false)}
@@ -450,7 +407,7 @@ export default function MainDashboard() {
               onSubmit={e => {
                 e.preventDefault();
                 // handleAddColumn();
-                form.reset();
+                // form.reset();
               }}
               className={css.modalForm}
             >
