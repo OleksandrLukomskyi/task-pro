@@ -7,10 +7,18 @@
 
 .logo {
   height: 6em;
-  padding: 1.5em;
+  /* padding: 1.5em; */
   will-change: filter;
   transition: filter 300ms;
+  margin-bottom: 50px;
+  display: flex;
+  gap: 10px;
+  height: 32px;
 }
+.logo h1 {
+  font-weight: 200;
+}
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
@@ -42,31 +50,21 @@
 } */
 
 .sidebar {
-  width: 225px;
+  width: 260px;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   padding: 14px;
-  background: var(--color-column);
-  height: 100vh; 
+  background: var(--sidebar-background);
+  padding: 24px 24px;
 }
-
 
 .sidebar h1 {
   margin-bottom: 20px;
 }
 
-.sidebar button {
-  margin-top: 20px;
-}
-
 .sidebar .logout-button {
-  margin-top: auto; 
-} 
- 
-
-.board-list {
-  background-color: black;
+  margin-top: auto;
 }
 
 .helpBox {
@@ -75,13 +73,15 @@
   margin-left: 24px;
 }
 .boardList {
-  /* height: 70px; */
+  width: 260px;
 }
 
-.logo {
-  display: flex;
-  gap: 10px;
-  /* justify-content: space-between; */
-  /* background-color: var(--color-column);
-  color: var(--text-color); */
+.sidebar h1 {
+  color: var(--sidebar-text);
+}
+
+.loader {
+  margin-left: 40px;
+
+  height: 150px;
 }

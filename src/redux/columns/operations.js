@@ -1,17 +1,17 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const setBoardIdHeader = (boardId) => {
-  axios.defaults.headers.common["boardId"] = boardId;
+const setBoardIdHeader = boardId => {
+  axios.defaults.headers.common['boardId'] = boardId;
 };
 
 // --------------------------------------------------------
 export const fetchColumns = createAsyncThunk(
-  "columns/fetchAll",
+  'columns/fetchAll',
   async (currentBoard, thunkAPI) => {
     // console.log(currentBoard);
     try {
-      const response = await axios.get("/api/columns/", {
+      const response = await axios.get('/api/columns/', {
         params: {
           boardId: currentBoard,
         },
@@ -29,7 +29,7 @@ export const fetchColumns = createAsyncThunk(
 
 // ---------------------------------------------------------
 export const getColumn = createAsyncThunk(
-  "columns/getColumn",
+  'columns/getColumn',
   async (columnId, thunkAPI) => {
     try {
       const response = await axios.get(
@@ -47,12 +47,12 @@ export const getColumn = createAsyncThunk(
 
 // ---------------------------------------------------------
 export const createColumn = createAsyncThunk(
-  "columns/createColumn",
+  'columns/createColumn',
   async (newColumn, thunkAPI) => {
     const token = thunkAPI.getState().auth.token;
     // console.log("Token being sent:", token);
     try {
-      const response = await axios.post("/api/columns/", newColumn);
+      const response = await axios.post('/api/columns/', newColumn);
       console.log(response.data);
       return response.data.column;
     } catch (error) {
@@ -66,7 +66,7 @@ export const createColumn = createAsyncThunk(
 
 // ---------------------------------------------------------
 export const deleteColumn = createAsyncThunk(
-  "columns/deleteColumn",
+  'columns/deleteColumn',
   async (columnId, thunkAPI) => {
     // const token = thunkAPI.getState().auth.token;
     try {
@@ -92,7 +92,7 @@ export const deleteColumn = createAsyncThunk(
 
 // ---------------------------------------------------------
 export const editColumn = createAsyncThunk(
-  "columns/updateColumn",
+  'columns/updateColumn',
   async ({ columnId, editColumn }, thunkAPI) => {
     // try {
     //   const response = await axios.put(

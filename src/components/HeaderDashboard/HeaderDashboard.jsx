@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import Modal from "react-modal";
-import css from "./HeaderDashboard.module.css";
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import Modal from 'react-modal';
+import css from './HeaderDashboard.module.css';
+import { LuFilter } from 'react-icons/lu';
 
 export default function HeaderDashboard({ boardName }) {
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
@@ -14,9 +15,7 @@ export default function HeaderDashboard({ boardName }) {
         onClick={() => setIsFilterModalOpen(true)}
         className={css.filterButton}
       >
-        <svg className={css.icon}>
-          <use xlinkHref="#icon-filter" />
-        </svg>
+        <LuFilter />
         Filters
       </button>
 
@@ -33,7 +32,7 @@ export default function HeaderDashboard({ boardName }) {
             {/* Форма для зміни фону та фільтрів */}
             <input
               type="color"
-              onChange={(e) => handleBackgroundChange(e.target.value)}
+              onChange={e => handleBackgroundChange(e.target.value)}
             />
             {/* Інші елементи форми */}
             <button type="button" onClick={() => setIsFilterModalOpen(false)}>
