@@ -32,12 +32,9 @@ export default function ColumnItem({ id, boardId, title, owner, idBoard }) {
   // }, [dispatch, oneBoardId]);
 
   console.log(idBoard);
-  console.log(id);
-
   useEffect(() => {
-    dispatch(fetchCards({ currentColumn: id, boardId: idBoard }));
-  }, [dispatch, id, idBoard]);
-
+    dispatch(fetchCards(id));
+  }, [dispatch, id]);
   const cards = useSelector(selectCards);
 
   const handleDeleteColumn = () => {
