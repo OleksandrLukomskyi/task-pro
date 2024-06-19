@@ -1,23 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+import toast, { Toaster } from 'react-hot-toast';
 import {
   addCard,
   editCard,
   deleteCard,
   fetchCards,
   moveCard,
-} from "./operations";
-import { logOut } from "../auth/operations";
+} from './operations';
+import { logOut } from '../auth/operations';
 
 const cardSlice = createSlice({
-  name: "cards",
+  name: 'cards',
   initialState: {
     items: [],
     loading: false,
     error: false,
   },
-  extraReducers: (builder) =>
+  extraReducers: builder =>
     builder
-      .addCase(addCard.pending, (state) => {
+      .addCase(addCard.pending, state => {
         state.loading = true;
         state.error = false;
       })
@@ -25,41 +26,42 @@ const cardSlice = createSlice({
         state.loading = false;
         state.items.push(action.payload);
       })
-      .addCase(addCard.rejected, (state) => {
+      .addCase(addCard.rejected, state => {
         state.loading = false;
         state.error = true;
       })
-      .addCase(editCard.pending, (state) => {
+      .addCase(editCard.pending, state => {
         state.loading = true;
         state.error = false;
       })
       .addCase(editCard.fulfilled, (state, action) => {
         const cardIndex = state.items.findIndex(
-          (item) => item.id === action.payload.id
+          item => item.id === action.payload.id
         );
         // -1 ??????????? -------------------------------------------------
+        if (cardIndex === -1) {
+          return toast.error('Card not found.', { duration: 2000 });
+        }
         state.items[cardIndex] = action.payload;
       })
-      .addCase(editCard.rejected, (state) => {
+      .addCase(editCard.rejected, state => {
         state.loading = false;
         state.error = true;
       })
-      .addCase(deleteCard.pending, (state) => {
+      .addCase(deleteCard.pending, state => {
         state.loading = true;
         state.error = false;
       })
       .addCase(deleteCard.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = state.items.filter(
-          (item) => item.id !== action.payload.id
-        );
+        state.items = state.items.filter(item => item.id !== action.payload.id);
       })
-      .addCase(deleteCard.rejected, (state) => {
+      .addCase(deleteCard.rejected, state => {
         state.loading = false;
         state.error = true;
       })
       // ----------????????????????????????????????????????
-      .addCase(moveCard.pending, (state) => {
+      .addCase(moveCard.pending, state => {
         state.loading = true;
         state.error = false;
       })
@@ -67,11 +69,11 @@ const cardSlice = createSlice({
         state.loading = false;
         state.items = action.payload;
       })
-      .addCase(moveCard.rejected, (state) => {
+      .addCase(moveCard.rejected, state => {
         state.loading = false;
         state.error = true;
       })
-      .addCase(fetchCards.pending, (state) => {
+      .addCase(fetchCards.pending, state => {
         state.loading = true;
         state.error = false;
       })
@@ -84,12 +86,12 @@ const cardSlice = createSlice({
         state.items = [...state.items, ...filteredNewCards];
         state.loading = false;
       })
-      .addCase(fetchCards.rejected, (state) => {
+      .addCase(fetchCards.rejected, state => {
         state.loading = false;
         state.error = true;
       })
       // ----------------------??????????????????????????????????
-      .addCase(logOut.fulfilled, (state) => {
+      .addCase(logOut.fulfilled, state => {
         state.items = [];
         state.loading = false;
         state.error = false;

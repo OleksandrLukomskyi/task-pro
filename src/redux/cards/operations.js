@@ -1,14 +1,14 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmUwNjA3MzRjOWFlNjk2OGVlZTgyNCIsImVtYWlsIjoiYW5ueUBnbWFpbC5jb20iLCJpYXQiOjE3MTg0ODY3MjEsImV4cCI6MTcxOTM1MDcyMX0.SSKDFJDnvqkY1tUxZ3azbZWcmWqVC0gLtYSz4KRA4RA";
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NmUwNjA3MzRjOWFlNjk2OGVlZTgyNCIsImVtYWlsIjoiYW5ueUBnbWFpbC5jb20iLCJpYXQiOjE3MTg0ODY3MjEsImV4cCI6MTcxOTM1MDcyMX0.SSKDFJDnvqkY1tUxZ3azbZWcmWqVC0gLtYSz4KRA4RA';
 
 export const addCard = createAsyncThunk(
-  "cards/addCard",
+  'cards/addCard',
   async (newCard, thunkAPI) => {
     try {
-      const response = await axios.post("/api/cards/", newCard, {
+      const response = await axios.post('/api/cards/', newCard, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -21,7 +21,7 @@ export const addCard = createAsyncThunk(
 );
 
 export const editCard = createAsyncThunk(
-  "cards/updateCard",
+  'cards/updateCard',
   async ({ cardId, editCard }, thunkAPI) => {
     try {
       const response = await axios.put(`/api/cards/${cardId}`, editCard);
@@ -33,7 +33,7 @@ export const editCard = createAsyncThunk(
 );
 
 export const deleteCard = createAsyncThunk(
-  "cards/deleteCard",
+  'cards/deleteCard',
   async (cardId, thunkAPI) => {
     try {
       const response = await axios.delete(`/api/cards/${cardId}`);
@@ -46,17 +46,17 @@ export const deleteCard = createAsyncThunk(
 
 // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 export const moveCard = createAsyncThunk(
-  "cards/moveCard",
+  'cards/moveCard',
   async ({ newColumnId, currentCardId, currentColumn }, thunkAPI) => {
     let allCards = [];
     try {
-      const response = await axios.get("/api/cards/", {
+      const response = await axios.get('/api/cards/', {
         params: {
           columnId: currentColumn,
         },
       });
       allCards = response.data.cards;
-      const result = allCards.find((item) => item._id === currentCardId);
+      const result = allCards.find(item => item._id === currentCardId);
 
       const editCard = {
         title: result.title,
@@ -93,6 +93,7 @@ export const moveCard = createAsyncThunk(
 // );
 
 export const fetchCards = createAsyncThunk(
+  'cards/fetchCards',
   'cards/fetchCards',
   async (currentColumn, thunkAPI) => {
     try {

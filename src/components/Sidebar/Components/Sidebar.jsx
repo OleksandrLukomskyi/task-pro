@@ -93,7 +93,8 @@ import CreateNewBoardModal from './CreateNewBoard/CreateNewBoardModal';
 import HelpBox from './Help/HelpBox';
 import LogoutButton from './LogoutButton';
 import css from './Sidebar.module.css';
-import logo from '../../../assets/icons/logo.png'
+import logo from '../../../assets/icons/logo.png';
+import BeatLoader from 'react-spinners/BeatLoader';
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -122,18 +123,23 @@ const Sidebar = () => {
 
   return (
     <div className={css.sidebar}>
+      <div className={css.logo}>
+        <img
+          src={logo}
+          alt="Логотип"
+          style={{ width: '32px', height: '32px' }}
+        />
+        <h1>Task Pro</h1>
+      </div>
       <ul>
-        <li className={css.logo}>
-        <img src={logo} alt="Логотип" style={{ width: '32px', height: '32px' }} />
-          <h1>Task Pro</h1>
-        </li>
         <li className={css.createNewBoardButton}>
           <CreateNewBoardButton onOpen={openModal} />
         </li>
         <li className={css.boardList}>
-          {' '}
           {isLoading ? (
-            <p>Loading...</p>
+            <div className={css.loader}>
+              <BeatLoader color="rgba(255, 255, 255, 0.23)" width="50px" />
+            </div>
           ) : error ? (
             <p>Error fetching boards</p>
           ) : (
@@ -145,7 +151,6 @@ const Sidebar = () => {
           <HelpBox />
         </li>
         <li>
-          {' '}
           <LogoutButton />
         </li>
       </ul>

@@ -5,8 +5,15 @@
   align-items: center;
   gap: 7px;
   color: var(--color-logout);
+  margin-top: 20px;
+  margin-left: 20px;
 }
 
 .btn:hover {
   color: var(--color-logout-hover);
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
 }

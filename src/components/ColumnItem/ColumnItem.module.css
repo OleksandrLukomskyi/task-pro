@@ -16,7 +16,6 @@
   cursor: pointer;
   padding: 0;
   width: auto;
- 
 }
 .columnList {
   width: 334px;
@@ -29,7 +28,7 @@
   gap: 0px;
   border-radius: 8px;
   opacity: 0px;
-
+  margin-bottom: 20px;
 }
 .title {
   color: var(--text-color);
@@ -55,7 +54,7 @@
   background-color: var(--btn-color);
 }
 .buttonAddCard:hover {
-  background-color: var( --btn-color-hover);
+  background-color: var(--btn-color-hover);
 }
 .buttonTitle {
   color: var(--text-color-btn);
@@ -77,12 +76,8 @@
   fill: var(--text-color-btn);
   stroke: none;
 }
-/* .columnItem {
-  border: 1px solid #000;
-  padding: 10px;
-  border-radius: 4px;
-}
 
+/*
 .mainDashboard {
   display: flex;
   flex-direction: row;
