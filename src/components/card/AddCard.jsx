@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import css from './AddCard.module.css';
 import sprite from "../../assets/icons/Sprite.svg"
 import toast from 'react-hot-toast';
-import { Toaster } from 'react-hot-toast';
+
 export default function AddCard({
   columnId,
   boardId,
