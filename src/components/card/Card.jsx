@@ -8,6 +8,14 @@ import css from './Card.module.css';
 import {
   selectColumnsData
 } from "../../redux/columns/selectors.js";
+
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = String(date.getFullYear()).slice(-2); 
+  return `${day}/${month}/${year}`;
+};
 export default function Card({ id, columnId, boardId, title, description, priority, deadline }) {
   const [isEditing, setIsEditing] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -62,15 +70,17 @@ export default function Card({ id, columnId, boardId, title, description, priori
         </div>
         <div className={css.deadline}>
         <span className={css.deadlineTitle}>Deadline</span>
-        <span className={css.deadlineValue}>{deadline}</span>
+        <span className={css.deadlineValue}>{formatDate(deadline)}</span>
         </div>
 
 
         <div className={css.icons} onMouseLeave={handleMouseLeave}>
         {isDeadlineDay && (
+           <button className={css.btnCard}>
           <svg className={css.logoIcon}>
             <use href={`${sprite}#bell`}></use>
           </svg>
+          </button>
         )}
   
         <button className={css.btnCard}
