@@ -95,7 +95,7 @@ import LogoutButton from './LogoutButton';
 import css from './Sidebar.module.css';
 import logo from '../../../assets/icons/logo.png';
 import BeatLoader from 'react-spinners/BeatLoader';
-
+import { HiLightningBolt } from 'react-icons/hi';
 const Sidebar = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(state => state.boards.loading);
@@ -103,15 +103,15 @@ const Sidebar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // UseEffect to update boards list after a new board is created
-  useEffect(() => {
-    dispatch(fetchBoards());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchBoards());
+  // }, [dispatch]);
 
-  useEffect(() => {
-    if (!isModalOpen) {
-      dispatch(fetchBoards());
-    }
-  }, [isModalOpen, dispatch]);
+  // useEffect(() => {
+  //   if (!isModalOpen) {
+  //     dispatch(fetchBoards());
+  //   }
+  // }, [isModalOpen, dispatch]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -124,11 +124,10 @@ const Sidebar = () => {
   return (
     <div className={css.sidebar}>
       <div className={css.logo}>
-        <img
-          src={logo}
-          alt="Логотип"
-          style={{ width: '32px', height: '32px' }}
-        />
+        <div className={css.logoItem}>
+          <HiLightningBolt className={css.logoItemLigh} />
+        </div>
+
         <h1>Task Pro</h1>
       </div>
       <ul>

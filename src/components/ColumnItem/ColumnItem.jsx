@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { selectCards } from '../../redux/cards/selectors';
 import { fetchCards } from '../../redux/cards/operations';
 import {
@@ -19,35 +19,35 @@ import {
 import Modal from 'react-modal';
 import Card from '../card/Card.jsx';
 import AddCard from '../card/AddCard.jsx';
+import toast from 'react-hot-toast';
 
 export default function ColumnItem({ id, boardId, title, owner, idBoard }) {
   const dispatch = useDispatch();
+  const [idColumn, setIdColumn] = useState(id);
   let [isModalOpen, setIsModalOpen] = useState(false);
   let [isModalAddCardOpen, setIsModalAddCardOpen] = useState(false);
-  const [newColumnTitle, setNewColumnTitle] = useState("");
+  const [newColumnTitle, setNewColumnTitle] = useState('');
+  let [oneBoardId, setoneBoardId] = useState(boardId);
+  // useEffect(() => {
+  //   dispatch(fetchColumns(oneBoardId));
+  // }, [dispatch, oneBoardId]);
 
-  console.log(idBoard);
+ 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const columns = await dispatch(fetchColumns(boardId)).unwrap();
-        const columnIds = columns.map(column => column._id);
-        const newCards = await dispatch(fetchCards(columnIds)).unwrap();
-      } catch (error) {
-        console.error('Error fetching columns and cards:', error);
-      }
-    }
-    fetchData();
-  }, [dispatch, boardId]);
+    dispatch(fetchCards(id));
+  }, [dispatch, id]);
+  
   const cards = useSelector(selectCards);
 
-  // useEffect(() => {
-  //   dispatch(fetchCards(idColumn));
-  // }, [dispatch, idColumn]);
-  
-  
+
+
+  const columnCards = useMemo(() => {
+     const filteredCards = cards.filter(card => card.column === idColumn);
+    return filteredCards;
+  }, [cards, idColumn]);
+
   const handleDeleteColumn = () => {
-    dispatch(deleteColumn(id));
+    dispatch(deleteColumn(idColumn));
   };
 
   const handleEditColumn = e => {
@@ -65,18 +65,15 @@ export default function ColumnItem({ id, boardId, title, owner, idBoard }) {
     setIsModalOpen(false);
   };
 
+  
   const handleCreateCard = newCard => {
     dispatch(addCard(newCard))
-      .then(() => dispatch(fetchCards([id])))
-      .catch(err => console.error(`Error adding card: ${err.message}`));
+      .then(() => dispatch(fetchCards(id)))
+      .catch(err => toast.error(`Error adding card: ${err.message}`));
   };
   const handleAddCard = () => {
-    setIsModalAddCardOpen(true)
-  }
-
-
-  const filteredCards = cards.filter(card => card.column === id);
-
+    setIsModalAddCardOpen(true);
+  };
   return (
     <div className={css.columnItem}>
       <div className={css.columnList}>
@@ -108,25 +105,28 @@ export default function ColumnItem({ id, boardId, title, owner, idBoard }) {
           </li>
         </ul>
       </div>
-     
+
+      {/* <p>{`column id: ${id}`}</p>
+      <p>{`board id: ${boardId}`}</p>
+      <p>{`owner: ${owner}`}</p>
+    */}
       <div className={css.cardsContainer}></div>
       <ul className={css.cardsList}>
-        {filteredCards
-        .map((item) => {
-            return (
-              <li className={css.cardItem} key={item._id}>
-                <Card
-                  id={item._id}
-                  boardId={item.boardId}
-                  columnId={item.columnId}
-                  title={item.title}
-                  description={item.description}
-                  priority={item.priority}
-                  deadline={item.deadline}
-                />
-              </li>
-            );
-          })}
+        {columnCards.map(item => {
+          return (
+            <li className={css.cardItem} key={item._id}>
+              <Card
+                id={item._id}
+                boardId={item.boardId}
+                columnId={item.columnId}
+                title={item.title}
+                description={item.description}
+                priority={item.priority}
+                deadline={item.deadline}
+              />
+            </li>
+          );
+        })}
       </ul>
       <div>
         <button className={css.buttonAddCard} onClick={handleAddCard}>

@@ -18,8 +18,8 @@ function HelpBox() {
         </li>
         <li>
           <p>
-            If you need help with TaskPro, check out our support resources or
-            reach out to our customer support team.
+            If you need help with <span>TaskPro</span>, check out our support
+            resources or reach out to our customer support team.
           </p>
         </li>
         <li>

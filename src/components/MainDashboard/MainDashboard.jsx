@@ -314,7 +314,7 @@ export default function MainDashboard() {
 
   if (idBoard === '') {
     setIdBoat(boards[0]._id);
-    dispatch(getBoard(boards[0]._id));
+    // dispatch(getBoard(boards[0]._id));
   }
 
   useEffect(() => {

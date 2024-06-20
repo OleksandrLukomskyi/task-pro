@@ -19,6 +19,7 @@
   align-items: center;
   gap: 5px;
   margin-top: 20px;
+  color: var(--sidebar-text);
 }
 
 /* .helpBox li {
@@ -28,7 +29,11 @@
 .helpBox p {
   font-size: 14px;
   line-height: 1.5;
-  color: var(--text-color);
+  color: var(--sidebar-text);
+}
+
+.helpBox p span {
+  color: var(--btn-color);
 }
 
 .helpBox button {

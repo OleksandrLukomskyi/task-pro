@@ -55,6 +55,12 @@
   --sidebar-lines: rgba(116, 116, 116, 0.2);
 
   --icon-plus: #ffffff;
+
+  --logo-color: #1f1f1f;
+
+  --logo-icon-color: #1f1f1f;
+
+  --logo-icon-color: #fafafa;
 }
 
 /* Light Theme */
@@ -95,6 +101,10 @@
   --sidebar-lines: rgba(18, 18, 18, 0.2);
 
   --icon-plus: #ffffff;
+
+  --logo-color: #1f1f1f;
+  --logo-icon-color: #1f1f1f;
+  --logo-icon-color: #fafafa;
 }
 
 /* Violet Theme */
@@ -134,6 +144,10 @@
   --sidebar-lines: rgba(184, 188, 253, 0.2);
 
   --icon-plus: #161616;
+
+  --logo-color: #ecedfd;
+
+  --logo-icon-color: #5255bc;
 }
 
 h1,
