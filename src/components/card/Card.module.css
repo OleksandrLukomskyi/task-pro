@@ -148,9 +148,9 @@ color: var(--text-color);
   }
  
   .popup {
-  width: 135px;
+  width: 135x;
   position: absolute;
-  top: 110%;
+  top: 150%;
   background-color: var(--modal-backgr);
   padding: 18px;
   border: 1px solid var(--text-color);
@@ -159,6 +159,8 @@ color: var(--text-color);
   display: flex;
   flex-direction: column; 
   align-items: center;
+  transform: translateX(-70px);
+  transition: opacity 0.3s, visibility 0.3s;
   }
  
   .popTitle {
