@@ -494,6 +494,7 @@ import sprite from '../../assets/icons/Sprite.svg';
 import ColumnItem from '../ColumnItem/ColumnItem';
 import { selectBoard, selectOneBoard } from '../../redux/boards/selectors';
 import { fetchColumns } from '../../redux/columns/operations';
+import { FiX } from 'react-icons/fi';
 
 import BeatLoader from 'react-spinners/BeatLoader';
 
@@ -617,14 +618,10 @@ export default function MainDashboard() {
           overlayClassName={css.overlay}
         >
           <div className={css.modalContent}>
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className={css.closeButton}
-            >
-              <svg className={css.closeIcon}>
-                <use xlinkHref={`${sprite}#icon-close`} />
-              </svg>
-            </button>
+
+          <span className={css.spanClose} onClick={() => setIsModalOpen(false)}>
+        <FiX className={css.closeIcon} />
+      </span>
             <h2 className={css.modalTitle}>Add Column</h2>
 
             <form onSubmit={handleAddColumn} className={css.modalForm}>

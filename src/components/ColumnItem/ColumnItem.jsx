@@ -20,6 +20,7 @@ import Modal from 'react-modal';
 import Card from '../card/Card.jsx';
 import AddCard from '../card/AddCard.jsx';
 import toast from 'react-hot-toast';
+import { FiX } from 'react-icons/fi';
 
 export default function ColumnItem({ id, boardId, title, owner, idBoard }) {
   const dispatch = useDispatch();
@@ -165,14 +166,9 @@ export default function ColumnItem({ id, boardId, title, owner, idBoard }) {
           overlayClassName={css.overlay}
         >
           <div className={css.modalContent}>
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className={css.closeButton}
-            >
-              <svg className={css.closeIcon}>
-                <use xlinkHref="#icon-close" />
-              </svg>
-            </button>
+          <span className={css.spanClose} onClick={() => setIsModalOpen(false)}>
+        <FiX className={css.closeIcon} />
+      </span>
             <h2 className={css.modalTitle}>Edit Column</h2>
             <form
               onSubmit={e => {

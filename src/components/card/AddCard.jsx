@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
 import css from './AddCard.module.css';
-import sprite from '../../img/sprite.svg';
+import sprite from "../../assets/icons/Sprite.svg"
+import toast from 'react-hot-toast';
 
 export default function AddCard({
   columnId,
@@ -17,6 +18,14 @@ export default function AddCard({
 
   const handleAddCard = () => {
     if (cardTitle.trim() && cardDescription.trim() && cardDeadline.trim()) {
+
+      const selectedDeadline = new Date(cardDeadline);
+      const now = new Date();
+
+    if (selectedDeadline < now) {
+      return toast('Deadline must be in the future');
+       
+    }
       onAddCard({
         columnId,
         title: cardTitle,
@@ -109,7 +118,7 @@ export default function AddCard({
                 onChange={e => setCardPriority(e.target.value)}
               />
               <span className={css.radioLabel} style={{ color: '#000000' }}>
-                Critical
+                Without
               </span>
             </label>
           </div>
@@ -129,8 +138,8 @@ export default function AddCard({
         </button>
       </form>
       <span className={css.spanClose} onClick={() => setIsModalOpen(false)}>
-        <button>
-          <svg className={css.closeSvg} width="24px" height="24px">
+        <button className={css.btnCard}>
+          <svg className={css.closeSvg} width="18px" height="18px">
             <use href={sprite + '#icon-x-close'}></use>
           </svg>
         </button>
