@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { selectCards } from '../../redux/cards/selectors';
 import { fetchCards } from '../../redux/cards/operations';
 import {
@@ -19,6 +19,7 @@ import {
 import Modal from 'react-modal';
 import Card from '../card/Card.jsx';
 import AddCard from '../card/AddCard.jsx';
+import toast from 'react-hot-toast';
 
 export default function ColumnItem({ id, boardId, title, owner, idBoard }) {
   const dispatch = useDispatch();
@@ -31,11 +32,19 @@ export default function ColumnItem({ id, boardId, title, owner, idBoard }) {
   //   dispatch(fetchColumns(oneBoardId));
   // }, [dispatch, oneBoardId]);
 
-  console.log(idBoard);
+ 
   useEffect(() => {
     dispatch(fetchCards(id));
   }, [dispatch, id]);
+  
   const cards = useSelector(selectCards);
+
+
+
+  const columnCards = useMemo(() => {
+     const filteredCards = cards.filter(card => card.column === idColumn);
+    return filteredCards;
+  }, [cards, idColumn]);
 
   const handleDeleteColumn = () => {
     dispatch(deleteColumn(idColumn));
@@ -55,6 +64,8 @@ export default function ColumnItem({ id, boardId, title, owner, idBoard }) {
 
     setIsModalOpen(false);
   };
+
+  
   const handleCreateCard = newCard => {
     dispatch(addCard(newCard))
       .then(() => dispatch(fetchCards(id)))
@@ -101,7 +112,7 @@ export default function ColumnItem({ id, boardId, title, owner, idBoard }) {
     */}
       <div className={css.cardsContainer}></div>
       <ul className={css.cardsList}>
-        {cards.map(item => {
+        {columnCards.map(item => {
           return (
             <li className={css.cardItem} key={item._id}>
               <Card
