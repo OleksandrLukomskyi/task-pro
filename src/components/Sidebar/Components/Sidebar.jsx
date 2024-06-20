@@ -103,15 +103,15 @@ const Sidebar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // UseEffect to update boards list after a new board is created
-  useEffect(() => {
-    dispatch(fetchBoards());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchBoards());
+  // }, [dispatch]);
 
-  useEffect(() => {
-    if (!isModalOpen) {
-      dispatch(fetchBoards());
-    }
-  }, [isModalOpen, dispatch]);
+  // useEffect(() => {
+  //   if (!isModalOpen) {
+  //     dispatch(fetchBoards());
+  //   }
+  // }, [isModalOpen, dispatch]);
 
   const openModal = () => {
     setIsModalOpen(true);

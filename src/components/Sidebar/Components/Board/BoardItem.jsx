@@ -553,7 +553,7 @@ const BoardItem = ({ board }) => {
   const handleDelete = async _id => {
     try {
       await dispatch(deleteBoard(_id));
-      dispatch(fetchBoards());
+      // dispatch(fetchBoards());
     } catch (error) {
       console.error('Failed to delete the board:', error);
       setError('Failed to delete the board');
@@ -566,16 +566,16 @@ const BoardItem = ({ board }) => {
 
   const handleEditModalClose = () => {
     setEditModalOpen(false);
-    dispatch(fetchBoards());
+    // dispatch(fetchBoards());
   };
 
   const handleClick = () => {
-    navigate(`/home/${board._id}`);
+    navigate(`/home/${board.title}`);
   };
 
   return (
     <>
-      <Card key={board._id} variant="outlined" sx={{ mb: 2, border: '0' }}>
+      <Card key={board.title} variant="outlined" sx={{ mb: 2, border: '0' }}>
         <CardContent
           sx={{
             display: 'flex',
@@ -608,7 +608,7 @@ const BoardItem = ({ board }) => {
           </Typography>
           <CardActions>
             <IconButton
-              onClick={handleEditModalOpen}
+              onClick={() => handleEditModalOpen()}
               style={{ width: '16px', height: '16px' }}
               sx={{
                 color: 'var(--color-plus-no-active)',
