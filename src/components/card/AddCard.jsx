@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Modal from 'react-modal';
 import css from './AddCard.module.css';
-import sprite from '../../img/sprite.svg';
+import { FiX } from 'react-icons/fi';
+import sprite from '../../assets/icons/Sprite.svg';
 
 export default function AddCard({
   columnId,
@@ -66,51 +67,47 @@ export default function AddCard({
           className={css.textarea}
         />
         <label>
-          Priority:
-          <div>
+          Label color:
+          <div className={css.colorContainer}>
             <label>
               <input
                 type="radio"
+                name="priority"
                 value="Low"
                 checked={cardPriority === 'Low'}
                 onChange={e => setCardPriority(e.target.value)}
               />
-              <span className={css.radioLabel} style={{ color: '#E09CB5' }}>
-                Low
-              </span>
+              <div className={`${css.colorOption} ${css.colorLow}`}></div>
             </label>
             <label>
               <input
                 type="radio"
+                name="priority"
                 value="Medium"
                 checked={cardPriority === 'Medium'}
                 onChange={e => setCardPriority(e.target.value)}
               />
-              <span className={css.radioLabel} style={{ color: '#BEDBB0' }}>
-                Medium
-              </span>
+              <div className={`${css.colorOption} ${css.colorMedium}`}></div>
             </label>
             <label>
               <input
                 type="radio"
+                name="priority"
                 value="High"
                 checked={cardPriority === 'High'}
                 onChange={e => setCardPriority(e.target.value)}
               />
-              <span className={css.radioLabel} style={{ color: '#8FA1D0' }}>
-                High
-              </span>
+              <div className={`${css.colorOption} ${css.colorHigh}`}></div>
             </label>
             <label>
               <input
                 type="radio"
+                name="priority"
                 value="Critical"
                 checked={cardPriority === 'Critical'}
                 onChange={e => setCardPriority(e.target.value)}
               />
-              <span className={css.radioLabel} style={{ color: '#000000' }}>
-                Critical
-              </span>
+              <div className={`${css.colorOption} ${css.colorCritical}`}></div>
             </label>
           </div>
         </label>
@@ -125,15 +122,27 @@ export default function AddCard({
           />
         </label>
         <button type="submit" className={css.submitButton}>
+          <svg className={css.logoIcon} viewBox="0 0 32 32">
+            <rect
+              className={css.iconBackground}
+              width="28"
+              height="28"
+              rx="6"
+              ry="6"
+            />
+            <use
+              href={sprite + '#icon-plus'}
+              x="7"
+              y="7"
+              width="14"
+              height="14"
+            />
+          </svg>
           Add
         </button>
       </form>
       <span className={css.spanClose} onClick={() => setIsModalOpen(false)}>
-        <button>
-          <svg className={css.closeSvg} width="24px" height="24px">
-            <use href={sprite + '#icon-x-close'}></use>
-          </svg>
-        </button>
+        <FiX className={css.closeIcon} />
       </span>
     </Modal>
   );
