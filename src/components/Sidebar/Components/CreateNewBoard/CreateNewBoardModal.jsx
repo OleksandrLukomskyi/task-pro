@@ -161,11 +161,11 @@ const CreateNewBoardModal = ({ show, onClose, title }) => {
                   label={
                     <SvgIcon
                       sx={{
-                        stroke:
+                        fill:
                           selectedIcon === iconId
                             ? 'var(--color-icons-active)'
                             : 'var(--color-icons-no-active)',
-                        fill: 'none',
+                        // fill: 'none',
                         width: '18px',
                         height: '18px',
                       }}
