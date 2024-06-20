@@ -12,6 +12,7 @@ const setAuthHeader = token => {
 
 const clearAuthHeader = () => {
   axios.defaults.headers.common['Authorization'] = '';
+
   localStorage.removeItem('token'); // Видалення токена з локального сховища
 };
 
@@ -97,6 +98,7 @@ export const refreshUser = createAsyncThunk(
       auth: { token },
     } = thunkAPI.getState();
     setAuthHeader(token);
+
     try {
       const response = await axios.get('/users/current');
       return response.data;
