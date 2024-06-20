@@ -141,7 +141,6 @@ const EditBoardModal = ({ show, onClose, board }) => {
                           selectedIcon === iconId
                             ? 'var(--color-icons-active)'
                             : 'var(--color-icons-no-active)',
-                        // fill: 'none',
                         width: '18px',
                         height: '18px',
                       }}
