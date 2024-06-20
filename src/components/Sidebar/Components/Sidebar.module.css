@@ -11,19 +11,34 @@
   will-change: filter;
   transition: filter 300ms;
   margin-bottom: 50px;
+  margin-right: 90px;
   display: flex;
   gap: 10px;
   height: 32px;
+}
+
+.logoItem {
+  background-color: var(--logo-color);
+  border-radius: 8px;
+  padding: 5px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logoItemLigh {
+  fill: var(--logo-icon-color);
 }
 .logo h1 {
   font-weight: 200;
 }
 
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  filter: drop-shadow(0 0 1em #626262aa);
 }
 .logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  filter: drop-shadow(0 0 2em #020202aa);
 }
 
 @keyframes logo-spin {

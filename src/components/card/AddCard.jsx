@@ -1,6 +1,7 @@
-import { useState } from "react";
-import Modal from "react-modal";
-import css from "./AddCard.module.css";
+import { useState } from 'react';
+import Modal from 'react-modal';
+import css from './AddCard.module.css';
+import sprite from '../../img/sprite.svg';
 
 export default function AddCard({
   columnId,
@@ -9,10 +10,10 @@ export default function AddCard({
   isModalOpen,
   setIsModalOpen,
 }) {
-  const [cardTitle, setCardTitle] = useState("");
-  const [cardDescription, setCardDescription] = useState("");
-  const [cardPriority, setCardPriority] = useState("Low");
-  const [cardDeadline, setCardDeadline] = useState("");
+  const [cardTitle, setCardTitle] = useState('');
+  const [cardDescription, setCardDescription] = useState('');
+  const [cardPriority, setCardPriority] = useState('Low');
+  const [cardDeadline, setCardDeadline] = useState('');
 
   const handleAddCard = () => {
     if (cardTitle.trim() && cardDescription.trim() && cardDeadline.trim()) {
@@ -24,13 +25,13 @@ export default function AddCard({
         deadline: new Date(cardDeadline).toISOString(),
         board: boardId,
       });
-      setCardTitle("");
-      setCardDescription("");
-      setCardPriority("Low");
-      setCardDeadline("");
+      setCardTitle('');
+      setCardDescription('');
+      setCardPriority('Low');
+      setCardDeadline('');
       setIsModalOpen(false);
     } else {
-      alert("Please fill in all fields.");
+      alert('Please fill in all fields.');
     }
   };
 
@@ -39,10 +40,12 @@ export default function AddCard({
       isOpen={isModalOpen}
       onRequestClose={() => setIsModalOpen(false)}
       contentLabel="Add Card"
+      className={css.modal}
+      overlayClassName={css.overlay}
     >
       <h2>Add Card</h2>
       <form
-        onSubmit={(e) => {
+        onSubmit={e => {
           e.preventDefault();
           handleAddCard();
         }}
@@ -50,15 +53,17 @@ export default function AddCard({
         <input
           type="text"
           value={cardTitle}
-          onChange={(e) => setCardTitle(e.target.value)}
+          onChange={e => setCardTitle(e.target.value)}
           placeholder="Card title"
           required
+          className={css.input}
         />
         <textarea
           value={cardDescription}
-          onChange={(e) => setCardDescription(e.target.value)}
+          onChange={e => setCardDescription(e.target.value)}
           placeholder="Card description"
           required
+          className={css.textarea}
         />
         <label>
           Priority:
@@ -67,10 +72,10 @@ export default function AddCard({
               <input
                 type="radio"
                 value="Low"
-                checked={cardPriority === "Low"}
-                onChange={(e) => setCardPriority(e.target.value)}
+                checked={cardPriority === 'Low'}
+                onChange={e => setCardPriority(e.target.value)}
               />
-              <span className={css.radioLabel} style={{ color: "#E09CB5" }}>
+              <span className={css.radioLabel} style={{ color: '#E09CB5' }}>
                 Low
               </span>
             </label>
@@ -78,10 +83,10 @@ export default function AddCard({
               <input
                 type="radio"
                 value="Medium"
-                checked={cardPriority === "Medium"}
-                onChange={(e) => setCardPriority(e.target.value)}
+                checked={cardPriority === 'Medium'}
+                onChange={e => setCardPriority(e.target.value)}
               />
-              <span className={css.radioLabel} style={{ color: "#BEDBB0" }}>
+              <span className={css.radioLabel} style={{ color: '#BEDBB0' }}>
                 Medium
               </span>
             </label>
@@ -89,10 +94,10 @@ export default function AddCard({
               <input
                 type="radio"
                 value="High"
-                checked={cardPriority === "High"}
-                onChange={(e) => setCardPriority(e.target.value)}
+                checked={cardPriority === 'High'}
+                onChange={e => setCardPriority(e.target.value)}
               />
-              <span className={css.radioLabel} style={{ color: "#8FA1D0" }}>
+              <span className={css.radioLabel} style={{ color: '#8FA1D0' }}>
                 High
               </span>
             </label>
@@ -100,10 +105,10 @@ export default function AddCard({
               <input
                 type="radio"
                 value="Critical"
-                checked={cardPriority === "Critical"}
-                onChange={(e) => setCardPriority(e.target.value)}
+                checked={cardPriority === 'Critical'}
+                onChange={e => setCardPriority(e.target.value)}
               />
-              <span className={css.radioLabel} style={{ color: "#000000" }}>
+              <span className={css.radioLabel} style={{ color: '#000000' }}>
                 Critical
               </span>
             </label>
@@ -114,13 +119,22 @@ export default function AddCard({
           <input
             type="datetime-local"
             value={cardDeadline}
-            onChange={(e) => setCardDeadline(e.target.value)}
+            onChange={e => setCardDeadline(e.target.value)}
             required
+            className={css.input}
           />
         </label>
-        <button type="submit">Add</button>
+        <button type="submit" className={css.submitButton}>
+          Add
+        </button>
       </form>
-      <button onClick={() => setIsModalOpen(false)}>Close</button>
+      <span className={css.spanClose} onClick={() => setIsModalOpen(false)}>
+        <button>
+          <svg className={css.closeSvg} width="24px" height="24px">
+            <use href={sprite + '#icon-x-close'}></use>
+          </svg>
+        </button>
+      </span>
     </Modal>
   );
 }

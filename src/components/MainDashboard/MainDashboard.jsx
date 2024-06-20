@@ -518,6 +518,7 @@ export default function MainDashboard() {
 
   // Проверка наличия текущей доски и установка idBoard
   useEffect(() => {
+
     if (!board._id && boards.length > 0) {
       setIdBoard(boards[0]._id);
       dispatch(getBoard(boards[0]._id));
@@ -525,6 +526,17 @@ export default function MainDashboard() {
       setIdBoard(board._id);
     }
   }, [boards, board, dispatch]);
+
+  //   Object.keys(board).length == 0
+  //     ? setIdBoat(boards[0]._id)
+  //     : setIdBoat(board._id);
+  // }, [boards, board]);
+
+  // if (idBoard === '') {
+  //   setIdBoat(boards[0]._id);
+  //   // dispatch(getBoard(boards[0]._id));
+  // }
+
 
   // Получение колонок для текущей доски
   useEffect(() => {

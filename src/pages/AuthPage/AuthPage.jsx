@@ -1,8 +1,8 @@
-import { useParams, Link, useNavigate } from "react-router-dom";
-import LoginForm from "../../components/LoginForm/LoginForm";
-import RegisterForm from "../../components/RegisterForm/RegisterForm";
-import { Box, Tabs, Tab } from "@mui/material";
-import css from "./AuthPage.module.css";
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import LoginForm from '../../components/LoginForm/LoginForm';
+import RegisterForm from '../../components/RegisterForm/RegisterForm';
+import { Box, Tabs, Tab } from '@mui/material';
+import css from './AuthPage.module.css';
 
 const AuthPage = () => {
   const { id } = useParams();
@@ -16,8 +16,6 @@ const AuthPage = () => {
     <Box className={css.customContainer}>
       <Tabs
         classes={{
-          root: css.customTabs,
-          flexContainer: css.customFlexContainer,
           indicator: css.customTabsIndicator,
         }}
         value={id}
@@ -31,8 +29,6 @@ const AuthPage = () => {
           classes={{
             root: css.customTab,
             selected: css.customSelectedTab,
-            wrapper: css.customTabWrapper,
-            textColorInherit: css.customTabTextColorInherit,
           }}
         />
         <Tab
@@ -43,13 +39,11 @@ const AuthPage = () => {
           classes={{
             root: css.customTab,
             selected: css.customSelectedTab,
-            wrapper: css.customTabWrapper,
-            textColorInherit: css.customTabTextColorInherit,
           }}
         />
       </Tabs>
-      {id === "login" && <LoginForm />}
-      {id === "register" && <RegisterForm />}
+      {id === 'login' && <LoginForm />}
+      {id === 'register' && <RegisterForm />}
     </Box>
   );
 };

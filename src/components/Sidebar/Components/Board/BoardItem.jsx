@@ -530,6 +530,8 @@
 // export default BoardItem;
 
 import { useState } from 'react';
+import { FiEdit2 } from 'react-icons/fi';
+import { MdOutlineDeleteOutline } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { deleteBoard, fetchBoards } from '../../../../redux/boards/operations';
@@ -538,8 +540,6 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
 import SvgIcon from '@mui/material/SvgIcon';
 import EditBoardModal from './EditBoardModal';
 import Sprite from '../../../../assets/icons/Sprite.svg'; // Импорт спрайта
@@ -609,15 +609,43 @@ const BoardItem = ({ board }) => {
           <CardActions>
             <IconButton
               onClick={handleEditModalOpen}
-              sx={{ color: 'var(--color-plus-no-active)' }}
+              style={{ width: '16px', height: '16px' }}
+              sx={{
+                color: 'var(--color-plus-no-active)',
+                '&:hover': {
+                  backgroundColor: 'transparent', // Устанавливаем прозрачный фон при ховере
+                },
+              }}
             >
-              <EditIcon />
+              <div
+              // onClick={handleEditModalOpen}
+              // style={{ width: '16px', height: '16px' }}
+              >
+                <FiEdit2 />
+              </div>
             </IconButton>
             <IconButton
               onClick={() => handleDelete(board._id)}
-              sx={{ color: 'var(--color-plus-no-active)' }}
+              sx={{
+                color: 'var(--color-plus-no-active)',
+                '&:hover': {
+                  backgroundColor: 'transparent', // Устанавливаем прозрачный фон при ховере
+                },
+              }}
             >
-              <DeleteIcon />
+              <div
+                style={{
+                  width: '16px',
+                  height: '16px',
+                  cursor: 'pointer', // Добавляем указатель при наведении
+                  transition: 'color 0.3s ease', // Плавное изменение цвета при ховере
+                  '&:hover': {
+                    color: 'red', // Например, изменяем цвет иконки на красный при ховере
+                  },
+                }}
+              >
+                <MdOutlineDeleteOutline />
+              </div>
             </IconButton>
           </CardActions>
         </CardContent>

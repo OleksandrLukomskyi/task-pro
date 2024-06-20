@@ -1,5 +1,5 @@
 import { Suspense, lazy } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 // -------------------------------------------------------------
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -17,11 +17,11 @@ import { IsRefreshingComponent } from '../../components/IsRefreshingComponent/Is
 
 const HomePage = lazy(() => import('../../pages/HomePage/HomePage.jsx'));
 const AuthPage = lazy(() => import('../../pages/AuthPage/AuthPage.jsx'));
-const WelcomePage = lazy(
-  () => import('../../pages/WelcomePage/WelcomePage.jsx')
+const WelcomePage = lazy(() =>
+  import('../../pages/WelcomePage/WelcomePage.jsx')
 );
-const ScreensPage = lazy(
-  () => import('../../pages/ScreensPage/ScreensPage.jsx')
+const ScreensPage = lazy(() =>
+  import('../../pages/ScreensPage/ScreensPage.jsx')
 );
 const NotFoundPage = lazy(() => import('../../pages/NotFound/NotFound.jsx'));
 
