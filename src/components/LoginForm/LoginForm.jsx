@@ -1,6 +1,6 @@
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import {
   TextField,
   Button,
@@ -8,16 +8,16 @@ import {
   Typography,
   IconButton,
   InputAdornment,
-} from "@mui/material";
+} from '@mui/material';
 
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { logIn } from "../../redux/auth/operations";
-import { selectLoading, selectError } from "../../redux/auth/selectors";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import css from "./LoginForm.module.css";
-import inputFormTheme from "../../theme/inputFormTheme";
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { logIn } from '../../redux/auth/operations';
+import { selectLoading, selectError } from '../../redux/auth/selectors';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import css from './LoginForm.module.css';
+import inputFormTheme from '../../theme/inputFormTheme';
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -29,7 +29,7 @@ const LoginForm = () => {
   const loading = useSelector(selectLoading);
   const ifError = useSelector(selectError);
   const [showPassword, setShowPassword] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
 
   // об'єкт конфігурації параметрів хука useForm
   const {
@@ -45,19 +45,19 @@ const LoginForm = () => {
     setShowPassword(!showPassword);
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = data => {
     // Виконання запиту для login
     dispatch(logIn(data))
-      .then((result) => {
+      .then(result => {
         if (logIn.fulfilled.match(result)) {
           reset(); // скидаємо форму
         } else if (logIn.rejected.match(result)) {
-          setErrorMessage(result.payload || "Login failed");
+          setErrorMessage(result.payload || 'Login failed');
         }
       })
-      .catch((error) => {
+      .catch(error => {
         setErrorMessage(error.message);
-        console.error("Login is failed:", error.message);
+        console.error('Login is failed:', error.message);
       });
   };
 
@@ -69,7 +69,7 @@ const LoginForm = () => {
     >
       <TextField
         className={css.customTextField}
-        {...registerField("email")}
+        {...registerField('email')}
         label="Enter your email"
         variant="outlined"
         fullWidth
@@ -80,9 +80,9 @@ const LoginForm = () => {
       />
       <TextField
         className={css.customTextField}
-        {...registerField("password")}
+        {...registerField('password')}
         label="Confirm a password"
-        type={showPassword ? "text" : "password"}
+        type={showPassword ? 'text' : 'password'}
         variant="outlined"
         fullWidth
         error={!!errors.password}
@@ -95,7 +95,7 @@ const LoginForm = () => {
               <IconButton
                 onClick={handleClickShowPassword}
                 edge="end"
-                style={{ color: "var(--btn-color)", opacity: 0.4 }}
+                style={{ color: 'var(--btn-color)', opacity: 0.4 }}
               >
                 {showPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>
@@ -110,14 +110,14 @@ const LoginForm = () => {
           marginTop="normal"
           align="center"
         >
-          {"Invalid email or password: " + errorMessage}
+          {'Invalid email or password: ' + errorMessage}
         </Typography>
       )}
       <Button
         className={css.customButton}
         type="submit"
         variant="contained"
-        style={{ textTransform: "capitalize" }}
+        style={{ textTransform: 'capitalize' }}
         disabled={loading}
         fullWidth
       >

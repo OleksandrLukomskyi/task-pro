@@ -1,6 +1,6 @@
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import {
   TextField,
   Button,
@@ -8,16 +8,16 @@ import {
   Typography,
   IconButton,
   InputAdornment,
-} from "@mui/material";
+} from '@mui/material';
 
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { register } from "../../redux/auth/operations";
-import { selectLoading, selectError } from "../../redux/auth/selectors";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import css from "./RegisterForm.module.css";
-import inputFormTheme from "../../theme/inputFormTheme";
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from '../../redux/auth/operations';
+import { selectLoading, selectError } from '../../redux/auth/selectors';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import css from './RegisterForm.module.css';
+import inputFormTheme from '../../theme/inputFormTheme';
 
 const schema = yup.object().shape({
   userName: yup.string().min(2).max(32).required(),
@@ -30,7 +30,7 @@ const RegisterForm = () => {
   const loading = useSelector(selectLoading);
   const ifError = useSelector(selectError);
   const [showPassword, setShowPassword] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
 
   // об'єкт конфігурації параметрів хука useForm
   const {
@@ -48,19 +48,19 @@ const RegisterForm = () => {
     setShowPassword(!showPassword);
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = data => {
     // Виконання запиту реєстрації user
     dispatch(register(data))
-      .then((result) => {
+      .then(result => {
         if (register.fulfilled.match(result)) {
           reset(); // скидаємо форму
         } else if (register.rejected.match(result)) {
-          setErrorMessage(result.payload.message || "Registration failed");
+          setErrorMessage(result.payload.message || 'Registration failed');
         }
       })
-      .catch((error) => {
+      .catch(error => {
         setErrorMessage(error.message);
-        console.error("Registration failed:", error.message);
+        console.error('Registration failed:', error.message);
       });
   };
 
@@ -72,7 +72,7 @@ const RegisterForm = () => {
     >
       <TextField
         className={css.customTextField}
-        {...registerField("userName")}
+        {...registerField('userName')}
         label="Enter your name"
         variant="outlined"
         fullWidth
@@ -83,7 +83,7 @@ const RegisterForm = () => {
       />
       <TextField
         className={css.customTextField}
-        {...registerField("email")}
+        {...registerField('email')}
         label="Enter your email"
         variant="outlined"
         fullWidth
@@ -94,9 +94,9 @@ const RegisterForm = () => {
       />
       <TextField
         className={css.customTextField}
-        {...registerField("password")}
+        {...registerField('password')}
         label="Create a password"
-        type={showPassword ? "text" : "password"}
+        type={showPassword ? 'text' : 'password'}
         variant="outlined"
         fullWidth
         error={!!errors.password}
@@ -109,7 +109,7 @@ const RegisterForm = () => {
               <IconButton
                 onClick={handleClickShowPassword}
                 edge="end"
-                style={{ color: "var(--text-color-start-white)", opacity: 0.4 }}
+                style={{ color: 'var(--text-color-start-white)', opacity: 0.4 }}
               >
                 {showPassword ? <Visibility /> : <VisibilityOff />}
               </IconButton>
@@ -126,7 +126,7 @@ const RegisterForm = () => {
         className={css.customButton}
         type="submit"
         variant="contained"
-        style={{ textTransform: "capitalize" }}
+        style={{ textTransform: 'capitalize' }}
         disabled={loading}
         fullWidth
       >
