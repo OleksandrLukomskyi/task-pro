@@ -92,11 +92,11 @@ const CreateNewBoardButton = () => {
   return (
     <div className={css.create}>
       <div className={css.text}>
-        <p>Create a New Board</p>
+        <p>Create a new board</p>
       </div>
 
       {/* Кнопка для открытия модального окна */}
-      <button className={css.btn} onClick={openModal}>
+      <button className={css.btnPlus} onClick={openModal}>
         <div>+</div>
       </button>
       {/* Модальное окно */}
