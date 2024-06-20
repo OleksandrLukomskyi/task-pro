@@ -1,0 +1,133 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: var(--color-column);
+
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+  outline: none;
+  position: relative;
+}
+
+.modal h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.input,
+.textarea,
+input[type='datetime-local'] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #333;
+  border-radius: 4px;
+}
+
+.textarea {
+  height: 80px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  color: #ccc;
+}
+
+.colorContainer {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  column-gap: 12px;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+.colorOption {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+input[type='radio']:checked + .colorOption {
+  border: 2px solid #fff;
+}
+
+.colorLow {
+  background-color: #8fa1d0;
+}
+
+.colorMedium {
+  background-color: #e09cb5;
+}
+
+.colorHigh {
+  background-color: #bedbb0;
+}
+
+.colorCritical {
+  background-color: #918080;
+}
+
+button[type='submit'],
+button {
+  background-color: #bedbb0;
+  color: #151515;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+button[type='submit']:hover,
+button:hover {
+  background-color: #a8c79b;
+}
+
+.spanClose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.closeIcon {
+  fill: #fff;
+  width: 24px;
+  height: 24px;
+}
+.logoIcon {
+  margin-bottom: -10px;
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: var(--color-icon-back-stroke);
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-miterlimit: 4;
+}
+.iconBackground {
+  fill: var(--color-icon-back);
+}
