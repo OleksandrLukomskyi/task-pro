@@ -11,6 +11,7 @@
 
 .btn:hover {
   color: var(--color-logout-hover);
+  background-color: transparent;
 }
 
 .icon {
