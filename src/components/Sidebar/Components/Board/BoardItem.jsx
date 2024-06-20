@@ -608,6 +608,8 @@ const BoardItem = ({ board }) => {
           </Typography>
           <CardActions>
             <IconButton
+              onClick={handleEditModalOpen}
+              style={{ width: '16px', height: '16px' }}
               sx={{
                 color: 'var(--color-plus-no-active)',
                 '&:hover': {
@@ -616,8 +618,8 @@ const BoardItem = ({ board }) => {
               }}
             >
               <div
-                onClick={handleEditModalOpen}
-                style={{ width: '16px', height: '16px' }}
+              // onClick={handleEditModalOpen}
+              // style={{ width: '16px', height: '16px' }}
               >
                 <FiEdit2 />
               </div>
