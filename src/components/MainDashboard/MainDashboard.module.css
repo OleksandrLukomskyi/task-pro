@@ -22,6 +22,9 @@
   border: none;
   margin-left: 0;
 }
+э .buttonAddColumn:hover {
+  background-color: var(--color-column);
+}
 
 .columnsList {
   display: flex;

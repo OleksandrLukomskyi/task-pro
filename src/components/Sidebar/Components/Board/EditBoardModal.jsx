@@ -14,6 +14,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
 import SvgIcon from '@mui/material/SvgIcon';
 import { editBoard } from '../../../../redux/boards/operations';
+import BackgroundSelector from '../CreateNewBoard/BackgroundSelector';
 
 const style = {
   position: 'absolute',
@@ -85,7 +86,12 @@ const EditBoardModal = ({ show, onClose, board }) => {
         >
           <CloseIcon />
         </IconButton>
-        <Typography id="edit-board-modal-title" variant="h6" component="h2">
+        <Typography
+          id="edit-board-modal-title"
+          variant="h6"
+          component="h2"
+          sx={{ color: 'var(--text-color)' }}
+        >
           Edit Board
         </Typography>
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
@@ -95,34 +101,62 @@ const EditBoardModal = ({ show, onClose, board }) => {
             value={title}
             onChange={e => setTitle(e.target.value)}
             margin="normal"
+            sx={{
+              color: 'var(--text-color)',
+              backgroundColor: 'white',
+              borderRadius: '8px',
+            }}
           />
           <FormControl component="fieldset" sx={{ mt: 2 }}>
-            <FormLabel component="legend">Choose an Icon</FormLabel>
+            <FormLabel component="legend" sx={{ color: 'var(--text-color)' }}>
+              Choose an Icon
+            </FormLabel>
             <RadioGroup
               row
               value={selectedIcon}
               onChange={e => setSelectedIcon(e.target.value)}
+              sx={{
+                marginLeft: '10px',
+                marginTop: '10px',
+              }}
             >
-              <FormControlLabel
-                value="icon1"
-                control={<Radio />}
-                label={
-                  <SvgIcon>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      width="24"
-                      height="24"
+              {[
+                'icon-Project',
+                'icon-star-04',
+                'icon-loading-03',
+                'icon-puzzle-piece-02',
+                'icon-container',
+                'icon-lightning-02',
+                'icon-colors',
+                'icon-hexagon-01',
+              ].map(iconId => (
+                <FormControlLabel
+                  key={iconId}
+                  value={iconId}
+                  control={<Radio style={{ display: 'none' }} />}
+                  label={
+                    <SvgIcon
+                      sx={{
+                        fill:
+                          selectedIcon === iconId
+                            ? 'var(--color-icons-active)'
+                            : 'var(--color-icons-no-active)',
+                        // fill: 'none',
+                        width: '18px',
+                        height: '18px',
+                      }}
                     >
-                      <path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm-2 13h-3v-3h3v3zm0-5h-3V7h3v3zm5 5h-3v-3h3v3zm0-5h-3V7h3v3z" />
-                    </svg>
-                  </SvgIcon>
-                }
-              />
-              {/* Add other icons similarly */}
+                      <use
+                        xlinkHref={`../../../../../src/assets/icons/Sprite.svg#${iconId}`}
+                      />
+                    </SvgIcon>
+                  }
+                />
+              ))}
             </RadioGroup>
           </FormControl>
-          <FormControl component="fieldset" sx={{ mt: 2 }}>
+
+          {/* <FormControl component="fieldset" sx={{ mt: 2 }}>
             <FormLabel component="legend">Choose a Background</FormLabel>
             <RadioGroup
               row
@@ -141,14 +175,29 @@ const EditBoardModal = ({ show, onClose, board }) => {
                 }
               />
               {/* Add other backgrounds similarly */}
-            </RadioGroup>
-          </FormControl>
+          <BackgroundSelector
+            setSelectedBackground={setSelectedBackground}
+            sx={{ marginRight: '10px' }}
+          />
           {error && (
             <Typography color="error" sx={{ mt: 2 }}>
               {error}
             </Typography>
           )}
-          <Button type="submit" variant="contained" sx={{ mt: 2 }}>
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{
+              marginTop: '40px',
+              width: '100%',
+              height: 49,
+              backgroundColor: 'var(--btn-color)',
+              color: 'var(--text-color-btn)',
+              '&:hover': {
+                backgroundColor: 'var( --btn-color-hover)',
+              },
+            }}
+          >
             Update
           </Button>
         </Box>
