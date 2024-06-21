@@ -89,11 +89,6 @@ const authSlice = createSlice({
         state.isLoggedIn = false;
         state.isRefreshing = false;
         localStorage.removeItem('token');
-      })
-      // додано обробник refreshUser.rejected
-      .addCase(refreshUser.rejected, state => {
-        state.isRefreshing = false;
-        state.error = true;
       }),
 });
 
