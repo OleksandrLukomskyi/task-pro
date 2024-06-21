@@ -6,7 +6,7 @@ import {
   addBoard,
   editBoard,
 } from './operations';
-import { logOut } from '../auth/operations';
+import { logOut } from '../auth/authOperations';
 
 const boardSlice = createSlice({
   name: 'boards',

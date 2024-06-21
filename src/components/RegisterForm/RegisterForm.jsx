@@ -12,7 +12,7 @@ import {
 
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../../redux/auth/operations';
+import { register } from '../../redux/auth/authOperations';
 import { selectLoading, selectError } from '../../redux/auth/selectors';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';

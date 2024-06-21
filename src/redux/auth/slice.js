@@ -5,8 +5,7 @@ import {
   editUser,
   logOut,
   refreshUser,
-  // userThema,
-} from './operations.js';
+} from './authOperations';
 
 const initialState = {
   user: {
@@ -14,7 +13,7 @@ const initialState = {
     email: null,
     avatarURL: null,
   },
-  token: '', //null
+  token: null,
   thema: 'light',
   isLoggedIn: false,
   isRefreshing: false,
@@ -78,7 +77,7 @@ const authSlice = createSlice({
           // password: null, // password нема в state
           avatarURL: null,
         };
-        state.token = ''; //null
+        state.token = null;
         state.isLoggedIn = false;
         state.loading = false;
       })

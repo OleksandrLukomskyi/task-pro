@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
+
 import {
   addCard,
   editCard,
@@ -7,7 +8,7 @@ import {
   fetchCards,
   moveCard,
 } from './operations';
-import { logOut } from '../auth/operations';
+import { logOut } from '../auth/authOperations';
 
 const cardSlice = createSlice({
   name: 'cards',
