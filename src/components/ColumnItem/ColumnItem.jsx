@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useRef } from 'react';
 import { selectCards } from '../../redux/cards/selectors';
 import { fetchCards } from '../../redux/cards/operations';
 import {
@@ -29,21 +29,18 @@ export default function ColumnItem({ id, boardId, title, owner, idBoard }) {
   let [isModalAddCardOpen, setIsModalAddCardOpen] = useState(false);
   const [newColumnTitle, setNewColumnTitle] = useState('');
   let [oneBoardId, setoneBoardId] = useState(boardId);
-  // useEffect(() => {
-  //   dispatch(fetchColumns(oneBoardId));
-  // }, [dispatch, oneBoardId]);
+  const areyRef = useRef(false);
 
- 
   useEffect(() => {
+    if (areyRef.current) return;
+    areyRef.current = true;
     dispatch(fetchCards(id));
   }, [dispatch, id]);
-  
+
   const cards = useSelector(selectCards);
 
-
-
   const columnCards = useMemo(() => {
-     const filteredCards = cards.filter(card => card.column === idColumn);
+    const filteredCards = cards.filter(card => card.column === idColumn);
     return filteredCards;
   }, [cards, idColumn]);
 
@@ -66,11 +63,10 @@ export default function ColumnItem({ id, boardId, title, owner, idBoard }) {
     setIsModalOpen(false);
   };
 
-  
   const handleCreateCard = newCard => {
-    dispatch(addCard(newCard))
-      .then(() => dispatch(fetchCards(id)))
-      .catch(err => toast.error(`Error adding card: ${err.message}`));
+    dispatch(addCard(newCard));
+    // .then(() => dispatch(fetchCards(id)))
+    // .catch(err => toast.error(`Error adding card: ${err.message}`));
   };
   const handleAddCard = () => {
     setIsModalAddCardOpen(true);
@@ -118,8 +114,8 @@ export default function ColumnItem({ id, boardId, title, owner, idBoard }) {
             <li className={css.cardItem} key={item._id}>
               <Card
                 id={item._id}
-                boardId={item.boardId}
-                columnId={item.columnId}
+                boardId={item.board}
+                columnId={item.column}
                 title={item.title}
                 description={item.description}
                 priority={item.priority}
@@ -166,9 +162,12 @@ export default function ColumnItem({ id, boardId, title, owner, idBoard }) {
           overlayClassName={css.overlay}
         >
           <div className={css.modalContent}>
-          <span className={css.spanClose} onClick={() => setIsModalOpen(false)}>
-        <FiX className={css.closeIcon} />
-      </span>
+            <span
+              className={css.spanClose}
+              onClick={() => setIsModalOpen(false)}
+            >
+              <FiX className={css.closeIcon} />
+            </span>
             <h2 className={css.modalTitle}>Edit Column</h2>
             <form
               onSubmit={e => {
