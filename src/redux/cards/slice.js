@@ -8,7 +8,7 @@ import {
   fetchCards,
   moveCard,
 } from './operations';
-import { logOut } from '../auth/authOperations';
+import { logOut } from '../auth/operations';
 
 const cardSlice = createSlice({
   name: 'cards',

@@ -6,7 +6,7 @@ import {
   deleteColumn,
   editColumn,
 } from './operations';
-import { logOut } from '../auth/authOperations';
+import { logOut } from '../auth/operations';
 
 const columnSlice = createSlice({
   name: 'columns',
