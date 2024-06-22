@@ -1,0 +1,31 @@
+.logoIcon {
+    width: 20px;
+    height: 20px;
+    fill:none;
+    stroke:  var(--color-plus-no-active);
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-miterlimit: 4;
+    background-color: var(--sidebar-background);
+  }
+  
+  .deleteColumn {
+    color: var(--sidebar-background);
+    background-color: var(--sidebar-background);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: auto;
+  }
+
+  .deleteColumn:hover {
+    background-color: var(--sidebar-background);
+    
+  }
+
+  .logoIcon:hover {
+    stroke:  var(--color-plus-active);
+    fill: var(--color-plus-no-active);
+    
+  }

@@ -1,17 +1,15 @@
 import { useState } from 'react';
-import { FiEdit2 } from 'react-icons/fi';
-import { MdOutlineDeleteOutline } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { deleteBoard, getBoard } from '../../../../redux/boards/operations';
+import { deleteBoard, fetchBoards } from '../../../../redux/boards/operations';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
-import IconButton from '@mui/material/IconButton';
 import SvgIcon from '@mui/material/SvgIcon';
 import EditBoardModal from './EditBoardModal';
 import Sprite from '../../../../assets/icons/Sprite.svg'; // Импорт спрайта
+import css from './BoardItem.module.css';
 
 const BoardItem = ({ board }) => {
   const dispatch = useDispatch();
@@ -19,14 +17,10 @@ const BoardItem = ({ board }) => {
   const [error, setError] = useState('');
   const [editModalOpen, setEditModalOpen] = useState(false);
 
-  const handleBoardId = async idBoard => {
-    await dispatch(getBoard(idBoard));
-  };
-
   const handleDelete = async _id => {
     try {
       await dispatch(deleteBoard(_id));
-      // dispatch(fetchBoards());
+      dispatch(fetchBoards());
     } catch (error) {
       console.error('Failed to delete the board:', error);
       setError('Failed to delete the board');
@@ -34,20 +28,25 @@ const BoardItem = ({ board }) => {
   };
 
   const handleEditModalOpen = () => {
+   
     setEditModalOpen(true);
+    
   };
 
   const handleEditModalClose = () => {
+   
     setEditModalOpen(false);
+    dispatch(fetchBoards());
   };
 
   const handleClick = () => {
-    navigate(`/home/${board.title}`);
+    navigate(`/home/${board._id}`);
   };
 
   return (
-    <div onDoubleClick={() => handleBoardId(board._id)}>
-      <Card key={board.title} variant="outlined" sx={{ mb: 2, border: '0' }}>
+    <>
+                                                                              {/* Доска */}
+      <Card key={board._id} variant="outlined" sx={{ mb: 2, border: '0' }}>  
         <CardContent
           sx={{
             display: 'flex',
@@ -59,7 +58,8 @@ const BoardItem = ({ board }) => {
             padding: 1,
           }}
         >
-          <SvgIcon sx={{ mr: 2 }}>
+                                                          {/* Иконка доски */}
+          <SvgIcon sx={{ mr: 2, width: 16, height: 16 }}>
             <svg
               width="16"
               height="16"
@@ -69,6 +69,7 @@ const BoardItem = ({ board }) => {
               <use href={`${Sprite}#${board.icon}`} />
             </svg>
           </SvgIcon>
+                                                          {/* Название доски */}
           <Typography
             variant="h5"
             component="div"
@@ -77,63 +78,55 @@ const BoardItem = ({ board }) => {
             style={{ cursor: 'pointer', fontSize: '14px' }}
           >
             {board.title}
-          </Typography>
+          </Typography>  
+                                                          {/* Раздел кнопок */}
+
           <CardActions>
-            <IconButton
-              onClick={() => handleEditModalOpen()}
-              style={{ width: '16px', height: '16px' }}
-              sx={{
-                color: 'var(--color-plus-no-active)',
-                '&:hover': {
-                  backgroundColor: 'transparent', // Устанавливаем прозрачный фон при ховере
-                },
-              }}
-            >
-              <div
-              // onClick={handleEditModalOpen}
-              // style={{ width: '16px', height: '16px' }}
-              >
-                <FiEdit2 />
-              </div>
-            </IconButton>
-            <IconButton
-              onClick={() => handleDelete(board._id)}
-              sx={{
-                color: 'var(--color-plus-no-active)',
-                '&:hover': {
-                  backgroundColor: 'transparent', // Устанавливаем прозрачный фон при ховере
-                },
-              }}
-            >
-              <div
-                style={{
-                  width: '16px',
-                  height: '16px',
-                  cursor: 'pointer', // Добавляем указатель при наведении
-                  transition: 'color 0.3s ease', // Плавное изменение цвета при ховере
-                  '&:hover': {
-                    color: 'red', // Например, изменяем цвет иконки на красный при ховере
-                  },
-                }}
-              >
-                <MdOutlineDeleteOutline />
-              </div>
-            </IconButton>
+
+                                                         {/* Кнопка редактирования */}
+
+          <button
+          className={css.deleteColumn}
+          onClick={handleEditModalOpen}>
+          {' '}
+          <svg className={css.logoIcon}>
+            <use href={Sprite + '#icon-pencil-01'}></use>
+          </svg>{' '}
+        </button>
+
+                                                          {/* Кнопка удаления */}
+
+            <button className={css.deleteColumn} onClick={() => handleDelete(board._id)}>
+          {' '}
+          <svg className={css.logoIcon}>
+            <use href={Sprite + '#icon-trash-04'}></use>
+          </svg>{' '}
+        </button>            
           </CardActions>
+
         </CardContent>
+
         {error && (
           <Typography color="error" sx={{ mt: 2 }}>
             {error}
           </Typography>
         )}
+
       </Card>
+
+                                     {/* модальное окно */}
+
       <EditBoardModal
         show={editModalOpen}
         onClose={handleEditModalClose}
         board={board}
       />
-    </div>
+    </>
   );
 };
 
 export default BoardItem;
+
+
+
+
