@@ -66,8 +66,9 @@ const cardSlice = createSlice({
         state.error = false;
       })
       .addCase(moveCard.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.loading = false;
-        state.items = action.payload;
+        state.items.push(action.payload);
       })
       .addCase(moveCard.rejected, state => {
         state.loading = false;
@@ -79,7 +80,7 @@ const cardSlice = createSlice({
       })
       .addCase(fetchCards.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = action.payload;
+        state.items = [...state.items, ...action.payload];
       })
       .addCase(fetchCards.rejected, state => {
         state.loading = false;

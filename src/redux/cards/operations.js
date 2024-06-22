@@ -47,31 +47,11 @@ export const deleteCard = createAsyncThunk(
 // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 export const moveCard = createAsyncThunk(
   'cards/moveCard',
-  async ({ newColumnId, currentCardId, currentColumn }, thunkAPI) => {
-    let allCards = [];
+  async ({ cardId, newCard }, thunkAPI) => {
     try {
-      const response = await axios.get('/api/cards/', {
-        params: {
-          columnId: currentColumn,
-        },
-      });
-      allCards = response.data.cards;
-      const result = allCards.find(item => item._id === currentCardId);
+      const response = await axios.put(`/api/cards/${cardId}`, newCard);
 
-      const editCard = {
-        title: result.title,
-        description: result.description,
-        priority: result.priority,
-        deadline: result.deadline,
-        columnId: newColumnId,
-        board: result.board,
-      };
-
-      const newResponse = await axios.put(`/api/cards/${result._id}`, editCard);
-      console.log(newResponse.data);
-      return newResponse.data;
-
-      // return response.data.cards;
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
